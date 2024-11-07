@@ -14,7 +14,7 @@
 #include "Contact.hpp"
 #include <iostream>
 #include <iomanip>
-// maybe do this excercise without this library
+// maybe do this exercise without this library
 
 /**
  * @brief Sets the contact information.

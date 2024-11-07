@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 20:57:55 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/09/07 19:03:18 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/11/07 12:51:22 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,24 @@
 #include <string>
 // This line includes the string library, which is a standard library.
 // The string library is used to work with strings, and it provides functions like std::string and std::getline.
+
+/*TASK OF THE PROGRAM:
+ * The program should create a PhoneBook instance and repeatedly prompt the user for commands.
+ * The program should handle the following commands: ADD, SEARCH, and EXIT.
+ * You have to implement two classes:
+ * PhoneBook
+ * ◦ It has an array of contacts.
+ * ◦ It can store a maximum of 8 contacts. If the user tries to add a 9th contact,
+ * replace the oldest one by the new one.
+ * ◦ Please note that dynamic allocation is forbidden.
+ * Contact
+ * ◦ Stands for a phonebook contact.
+ * In your code, the phonebook must be instantiated as an instance of the PhoneBook
+ * class. Same thing for the contacts. Each one of them must be instantiated as an instance
+ * of the Contact class. You’re free to design the classes as you like but keep in mind that
+ * anything that will always be used inside a class is private, and that anything that can be
+ * used outside a class is public.
+ */
 
 int main() {
     // This is the beginning of the main function.
@@ -49,4 +67,18 @@ int main() {
 
         std::cin >> command;
         // This line reads a line of input from the
+        if (command == "ADD") {
+            book.addContact();
+        }
+        else if (command == "SEARCH") {
+            book.searchContact();
+        }
+        else if (command == "EXIT") {
+            break;
+        }
+        else {
+            std::cout << "Invalid command" << std::endl;
+        }
     }
+    return 0;
+}
