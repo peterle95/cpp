@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 19:15:45 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/09/07 19:15:47 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/11/07 13:11:40 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 #include <string>
 
-class Zombie {
+class Zombie 
+{
 private:
     std::string name;
 
