@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 20:57:55 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/07 12:51:22 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/11/07 12:54:48 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@
  * used outside a class is public.
  */
 
-int main() {
+int main() 
+{
     // This is the beginning of the main function.
     // The main function is the entry point of the program, and it is called automatically when the program is started.
     // The main function returns an integer, which is the exit status of the program.
@@ -57,7 +58,8 @@ int main() {
     // This line creates a string variable named "command".
     // The string variable is used to store the command that the user enters.
 
-    while (true) {
+    while (true) 
+    {
         // This line starts a while loop that will continue to run until the user enters the command "EXIT".
         // The while loop is used to repeatedly ask the user for a command until they enter "EXIT".
 

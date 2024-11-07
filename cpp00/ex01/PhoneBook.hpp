@@ -8,7 +8,8 @@
 #include "Contact.hpp"
 
 // This is a class definition. It is a new data type that can be used to create objects.
-class PhoneBook { 
+class PhoneBook 
+{ 
 private: // This is an access specifier that specifies that the members that follow are private.
         //      This means that they can only be accessed by other members of the same class.
     // This is an array of 8 Contact objects. This will store the contacts in the phonebook.

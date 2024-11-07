@@ -24,7 +24,8 @@
  * @param phone The phone number of the contact.
  * @param secret The darkest secret of the contact.
  */
-void Contact::setContact(std::string first, std::string last, std::string nick, std::string phone, std::string secret) {
+void Contact::setContact(std::string first, std::string last, std::string nick, std::string phone, std::string secret) 
+{
     firstName = first; // sets the first name of the contact
     lastName = last; // sets the last name of the contact
     nickname = nick; // sets the nickname of the contact

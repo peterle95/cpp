@@ -5,7 +5,8 @@
 #include <string>  // This is an include directive that includes the contents of the file "string".
                   //      This is needed so that the compiler knows what the std::string class is.
 
-class Contact {  // This is a class definition. It is a new data type that can be used to create objects.
+class Contact 
+{  // This is a class definition. It is a new data type that can be used to create objects.
 private:         // This is an access specifier that specifies that the members that follow are private.
                  //      This means that they can only be accessed by other members of the same class.
     std::string firstName;  // This is a member variable. It is a variable that is part of the class, and it is of type std::string.

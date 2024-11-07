@@ -35,7 +35,8 @@ PhoneBook::PhoneBook() : count(0), oldest(0) {}
 // and darkest secret of the contact.
 // Creates a new Contact object with the entered information and adds it to the array.
 // Updates the count and oldest variables.
-void PhoneBook::addContact() {
+void PhoneBook::addContact() 
+{
     std::string first, last, nick, phone, secret;
     
     // Prompts the user to enter the first name of the contact.
