@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 20:36:44 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/07 11:51:31 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/11/07 12:14:28 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@
  * The std::cout line at the end prints a newline to end the line.
  */
 
+/*TASK OF THE PROGRAM:
+ * The program takes a variable number of arguments, converts each argument to uppercase, and prints the result to the console.
+ * The program should not print quotation marks.
+ * If no arguments are provided, it prints a specific string to the console.
+ */
+
 int main(int argc, char** argv) // main function, which is the entry point of the program
 {
     if (argc == 1) // argc is the number of arguments passed to the program
@@ -38,17 +44,13 @@ int main(int argc, char** argv) // main function, which is the entry point of th
     }
     else
     {
-        int i = 1; // loop counter
-        while (i < argc) // loop until all arguments have been processed
+        for (int i = 1; i < argc; i++) // loop through each argument starting from the first one
         {
-            int j = 0; // loop counter for the current argument
-            while (argv[i][j]) // loop until the end of the current argument is reached
+            for (int j = 0; argv[i][j] != '\0'; j++) // loop through each character of the current argument until the null terminator
             {
                 std::cout << (char)toupper(argv[i][j]); // prints the current character of the argument, converted to uppercase
-                j++; // increment the loop counter
             }
             std::cout << " "; // prints a space to separate the arguments
-            i++; // increment the loop counter
         }
         std::cout << std::endl; // prints a newline to end the line
     }
