@@ -21,7 +21,8 @@ public:          // This is an access specifier that specifies that the members 
                      // This is a member function. It is a function that is part of the class, and it can be called on an object of the class.
                      //      The function takes five parameters, which are all of type std::string.
                      //      The function sets the member variables of the class to the values of the parameters.
-    void displayShort(int index); // This is a member function. It is a function that is part of the class, and it can be called on an object of the class.
+    void displayShort(int index); // This is a member function. It is a function that is part of the class,
+                                 //     	 and it can be called on an object of the class.
                                  //      The function takes one parameter, which is of type int.
                                  //      The function displays the contact information in a short format.
     void displayFull(); // This is a member function. It is a function that is part of the class, and it can be called on an object of the class.

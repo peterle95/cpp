@@ -37,7 +37,8 @@ void Contact::setContact(std::string first, std::string last, std::string nick, 
  * @brief Displays the contact information in a short format.
  * @param index The index of the contact.
  */
-void Contact::displayShort(int index) {
+void Contact::displayShort(int index) 
+{
     std::cout << std::setw(10) << index << "|"; // displays the index of the contact, right aligned in a field of width 10
     std::cout << std::setw(10) << (firstName.length() > 10 ? firstName.substr(0, 9) + "." : firstName) << "|"; // displays the first name of the contact, right aligned in a field of width 10
     // if the length of the first name is greater than 10 characters, it truncates the first name to 9 characters and appends a period at the end
@@ -46,12 +47,16 @@ void Contact::displayShort(int index) {
     std::cout << std::setw(10) << (nickname.length() > 10 ? nickname.substr(0, 9) + "." : nickname) << std::endl; // displays the nickname of the contact, right aligned in a field of width 10
     // if the length of the nickname is greater than 10 characters, it truncates the nickname to 9 characters and appends a period at the end
     // std::endl is used to insert a newline character at the end of the line
+
+
+    // THINK ABOUT SIMPLIFYING THIS
 }
 
 /**
  * @brief Displays the contact information in a long format.
  */
-void Contact::displayFull() {
+void Contact::displayFull() 
+{
     std::cout << "First Name: " << firstName << std::endl; // displays the first name of the contact, followed by a newline character
     std::cout << "Last Name: " << lastName << std::endl; // displays the last name of the contact, followed by a newline character
     std::cout << "Nickname: " << nickname << std::endl; // displays the nickname of the contact, followed by a newline character

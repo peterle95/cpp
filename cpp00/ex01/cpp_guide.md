@@ -10,6 +10,7 @@ private:
     // Data members (attributes)
     Contact contacts[8];
     int count;
+    int oldest;
 
 public:
     // Member functions (methods)
@@ -18,6 +19,25 @@ public:
     void searchContact();
 };
 ```
+
+**Understanding Classes**  
+A class in C++ serves as a blueprint for creating objects. It encapsulates data for the object and methods to manipulate that data. A method, also known as a member function, is a function that is defined within a class and operates on the data members of that class. Each class can have its own attributes (data members) and methods that define its behavior. 
+
+When you create an object of a class, you are instantiating that class, which means you are creating a specific instance of it with its own set of data.
+
+**The PhoneBook Class**  
+The `PhoneBook` class is designed to manage a collection of contacts. It contains an array of `Contact` objects, which represent individual entries in the phone book. The `count` attribute keeps track of the number of contacts currently stored in the phone book. 
+
+The `contacts` array and the `count` and `oldest` attributes are declared as private. This means they cannot be accessed directly from outside the class. The reason for making them private is to encapsulate the data and protect it from unauthorized access or modification. By restricting access, we ensure that the integrity of the data is maintained and that it can only be manipulated through the public member functions of the class.
+
+In contrast, public members are accessible from outside the class. They are used to define the interface through which other parts of the program can interact with the class. This distinction between private and public is fundamental in object-oriented programming, as it allows for controlled access to the class's internal state while exposing only the necessary functionality to the outside world.
+
+The class provides the following member functions:
+- **PhoneBook()**: A constructor that initializes the phone book, setting the initial count of contacts to zero and the oldest index to zero.
+- **addContact()**: A method to add a new contact to the phone book.
+- **searchContact()**: A method to search for a specific contact within the phone book.
+
+This structure allows for organized management of contact information.
 
 **Key OOP Concepts:**
 

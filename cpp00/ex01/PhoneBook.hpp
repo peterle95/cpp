@@ -22,7 +22,10 @@ private: // This is an access specifier that specifies that the members that fol
 public: // This is an access specifier that specifies that the members that follow are public.
         //      This means that they can be accessed by any other part of the program.
     // This is a constructor that is called when an object of this class is created.
-    PhoneBook();
+    // Constructors do not have a return type, hence no 'void'.
+    // A constructor is a special member function that initializes objects of a class.
+    // To initialize an object means to set its initial state by assigning values to its attributes.
+    PhoneBook(); 
     // This is a member function that adds a new contact to the phonebook.
     void addContact();
     // This is a member function that searches for a contact in the phonebook.
