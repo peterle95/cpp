@@ -72,15 +72,18 @@ void PhoneBook::addContact()
 // Prompts the user to enter the index of the contact that they want to display.
 // Displays the contact at the entered index.
 // If the index is invalid, displays an error message.
-void PhoneBook::searchContact() {
-    if (count == 0) {
+void PhoneBook::searchContact() 
+{
+    if (count == 0) 
+    {
         // If the count is 0, displays a message indicating that the phonebook is empty.
         std::cout << "Phonebook is empty." << std::endl;
         // Returns from the method.
         return;
     }
     // Loops through the contacts array and displays each contact.
-    for (int i = 0; i < count; i++) {
+    for (int i = 0; i < count; i++) 
+    {
         contacts[i].displayShort(i);
     }
     int index;
@@ -88,7 +91,9 @@ void PhoneBook::searchContact() {
     std::cout << "Enter index to display: ";
     // Reads the entered index into the index variable.
     std::cin >> index;// If the entered index is invalid, displays an error message.
-    if (std::cin.fail() || index < 0 || index >= count) {
+    // Checks if the previous input operation failed (e.g., if the user entered a non-integer value).
+    if (std::cin.fail() || index < 0 || index >= count) 
+    {
         std::cout << "Invalid index." << std::endl; // Clears the input buffer.
         std::cin.clear(); // Ignores any remaining characters in the input buffer.
         std::cin.ignore(10000, '\n');// Returns from the method.
