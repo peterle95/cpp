@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:05:46 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/09/12 11:05:48 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/11/07 15:54:50 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 #include <iostream>
 
-class Fixed {
+class Fixed 
+{
 private:
     int _fixedPointValue;
     static const int _fractionalBits = 8;

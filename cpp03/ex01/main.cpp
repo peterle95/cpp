@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:19:15 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/09/12 16:19:16 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/11/07 15:56:23 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 #include "ScavTrap.hpp"
 #include <iostream>
 
-int main() {
+int main() 
+{
     ClapTrap clap("CL4P-TP");
     ScavTrap scav("SC4V-TP");
     

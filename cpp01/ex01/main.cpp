@@ -1,7 +1,8 @@
 #include "Zombie.hpp"
 #include <iostream>
 
-int main() {
+int main() 
+{
     int hordeSize = 5;
     Zombie* horde = zombieHorde(hordeSize, "ZombieClone");
 

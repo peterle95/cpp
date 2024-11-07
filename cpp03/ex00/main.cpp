@@ -1,7 +1,8 @@
 #include "ClapTrap.hpp"
 #include <iostream>
 
-int main() {
+int main() 
+{
     ClapTrap clap("CL4P-TP");
     
     clap.attack("Enemy");

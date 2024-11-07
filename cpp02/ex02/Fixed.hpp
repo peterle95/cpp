@@ -3,7 +3,8 @@
 
 #include <iostream>
 
-class Fixed {
+class Fixed 
+{
 private:
     int _fixedPointValue;
     static const int _fractionalBits = 8;

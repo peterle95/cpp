@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:37:11 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/09/12 16:37:12 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/11/07 15:57:35 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 #include <string>
 
-class Animal {
+class Animal 
+{
 protected:
     std::string type;
 

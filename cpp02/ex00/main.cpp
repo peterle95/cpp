@@ -6,14 +6,15 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:03:49 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/09/12 11:03:51 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/11/07 15:54:30 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "Fixed.hpp"
 
-int main(void) {
+int main(void) 
+{
     Fixed a;
     Fixed b(a);
     Fixed c;

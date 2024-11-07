@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:47:31 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/09/12 16:47:33 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/11/07 16:03:23 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 #include "AAnimal.hpp"
 #include "Brain.hpp"
 
-class Dog : public AAnimal {
+class Dog : public AAnimal 
+{
 private:
     Brain* brain;
 

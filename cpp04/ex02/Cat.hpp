@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:47:47 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/09/12 16:47:49 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/11/07 16:03:09 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 #include "AAnimal.hpp"
 #include "Brain.hpp"
 
-class Cat : public AAnimal {
+class Cat : public AAnimal 
+{
 private:
     Brain* brain;
 

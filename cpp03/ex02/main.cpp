@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:26:30 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/09/12 16:26:31 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/11/07 15:57:12 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 #include "FragTrap.hpp"
 #include <iostream>
 
-int main() {
+int main() 
+{
     ClapTrap clap("CL4P-TP");
     ScavTrap scav("SC4V-TP");
     FragTrap frag("FR4G-TP");

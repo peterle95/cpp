@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:41:58 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/09/12 16:41:59 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/11/07 16:02:30 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,13 @@ int main()
     Animal* animals[arraySize];
 
     // Fill the array with Dogs and Cats
-    for (int i = 0; i < arraySize; ++i) {
-        if (i % 2 == 0) {
+    for (int i = 0; i < arraySize; ++i) 
+    {
+        if (i % 2 == 0) 
+        {
             animals[i] = new Dog();
-        } else {
+        } else 
+        {
             animals[i] = new Cat();
         }
     }
@@ -43,7 +46,8 @@ int main()
     delete copiedDog;
 
     // Delete all animals in the array
-    for (int i = 0; i < arraySize; ++i) {
+    for (int i = 0; i < arraySize; ++i) 
+    {
         delete animals[i];
     }
 

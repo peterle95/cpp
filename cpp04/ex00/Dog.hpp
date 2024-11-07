@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:37:29 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/09/12 16:37:31 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/11/07 15:58:04 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 #include "Animal.hpp"
 
-class Dog : public Animal {
+class Dog : public Animal 
+{
 public:
     Dog();
     Dog(const Dog& other);

@@ -25,6 +25,10 @@ public:
 ### Stack vs Heap Memory
 This program demonstrates two ways to create objects:
 
+- **Stack Memory**: This is a region of memory that stores temporary variables created by a function. It is automatically managed, meaning that memory is allocated when a function is called and freed when the function exits. Stack memory is faster to allocate and deallocate but is limited in size. Objects created on the stack are destroyed automatically when they go out of scope, making it suitable for small, short-lived objects.
+
+- **Heap Memory**: This is a region of memory used for dynamic memory allocation. Unlike stack memory, heap memory must be managed manually using `new` and `delete`. Memory allocated on the heap persists until it is explicitly freed, allowing for more flexible object lifetimes. However, it requires careful management to avoid memory leaks and fragmentation. Heap memory is generally larger than stack memory, making it suitable for larger objects or when the lifetime of an object needs to extend beyond the scope in which it was created.
+
 1. **Stack Memory**:
    - Automatically managed memory
    - Memory is freed when object goes out of scope

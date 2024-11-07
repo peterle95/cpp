@@ -1,7 +1,8 @@
 #include "Harl.hpp"
 #include <iostream>
 
-int main() {
+int main() 
+{
     Harl harl;
 
     std::cout << "Harl complains at DEBUG level:" << std::endl;

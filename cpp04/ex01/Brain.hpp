@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:43:04 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/09/12 16:43:05 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/11/07 15:59:14 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 #include <string>
 
-class Brain {
+class Brain 
+{
 private:
     std::string ideas[100];
 

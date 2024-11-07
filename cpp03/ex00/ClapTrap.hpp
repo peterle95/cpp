@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:23:56 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/09/12 16:23:58 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/11/07 15:56:14 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 #include <string>
 
-class ClapTrap {
+class ClapTrap 
+{
 protected:
     std::string name;
     unsigned int hitPoints;
