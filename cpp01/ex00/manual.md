@@ -18,7 +18,7 @@ public:
     ~Zombie();  // Destructor
     void announce(void);  // Public method
 };
-
+```
 
 ## 2. Memory Management
 
