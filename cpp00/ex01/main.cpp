@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 20:57:55 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/07 12:54:48 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/11/08 12:04:24 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,11 @@
 
 int main() 
 {
-    // This is the beginning of the main function.
-    // The main function is the entry point of the program, and it is called automatically when the program is started.
-    // The main function returns an integer, which is the exit status of the program.
-
+    // We create an instance of the PhoneBook class to manage a collection of contacts.
+    // The PhoneBook class handles the storage and organization of up to 8 Contact instances.
+    // We do not create an instance of the Contact class here because the PhoneBook class
+    // is responsible for creating and managing Contact instances internally.
     PhoneBook book;
-    // This line creates an instance of the PhoneBook class, which is a class that we have written.
-    // The instance is named "book", and it is a local variable of the main function.
 
     std::string command;
     // This line creates a string variable named "command".

@@ -10,6 +10,13 @@
 // The class also keeps track of which contact is the oldest contact in the array
 // using the oldest variable.
 // The oldest contact is the contact that was added to the array last.
+
+    // The "oldest" variable keeps track of the index of the oldest contact in the array.
+    // When a new contact is added, it is placed at the index indicated by "oldest".
+    // If the number of contacts exceeds 8, the oldest contact will be replaced by the new one.
+    // The "oldest" index is updated in a circular manner using modulo operation:
+    // (oldest + 1) % 8 ensures that after reaching the last index (7), it wraps around to 0.
+    // This way, the array always contains the most recent 8 contacts, and the oldest one is overwritten.
 //
 // The addContact method prompts the user to enter the first name, last name,
 // nickname, phone number, and darkest secret of a contact.
@@ -65,7 +72,8 @@ void PhoneBook::addContact()
     // Updates the oldest variable to point to the newly created contact.
     oldest = (oldest + 1) % 8;
     // If the count is less than 8, increments the count.
-    if (count < 8) count++;
+    if (count < 8) 
+        count++;
 }
 
 // Searches for a contact by index and displays it.

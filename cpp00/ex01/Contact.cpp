@@ -13,7 +13,11 @@
 
 #include "Contact.hpp"
 #include <iostream>
-#include <iomanip>
+#include <iomanip> // This library provides facilities for manipulating the input/output format, such as setting the width of output fields and controlling the formatting of floating-point numbers.
+// Examples of usage:
+// std::setw(10) sets the width of the next output field to 10 characters.
+// std::setprecision(2) sets the decimal precision for floating-point numbers to 2 digits.
+// std::fixed ensures that floating-point numbers are displayed in fixed-point notation.
 // maybe do this exercise without this library
 
 /**
