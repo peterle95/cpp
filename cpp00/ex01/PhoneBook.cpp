@@ -34,7 +34,17 @@
 #include <iomanip>
 
 // Constructor for the PhoneBook class.
-// Initializes the count and oldest variables to 0.
+// A constructor is a special member function that is automatically called when an 
+// object of the class is created.
+// It is used to initialize the object's member variables to a valid state.
+// The syntax for a constructor is similar to that of a regular member function, 
+// but it does not have a return type,
+// and its name must match the class name. In this case, PhoneBook::PhoneBook() is 
+// the constructor for the PhoneBook class.
+// The initializer list (": count(0), oldest(0)") is used to set the initial values 
+// of the count and oldest variables to 0.
+// This is important because it ensures that the PhoneBook starts with no contacts 
+// and the oldest index is set correctly.
 PhoneBook::PhoneBook() : count(0), oldest(0) {}
 
 // Adds a contact to the array.
