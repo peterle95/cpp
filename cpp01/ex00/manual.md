@@ -4,7 +4,7 @@
 
 ### What is a Class?
 A class is a blueprint for creating objects. In this program, we have a `Zombie` class that defines what a zombie is and what it can do. Classes typically have:
-- Private attributes (data members): These are variables that hold the state or properties of an object and cannot be accessed directly from outside the class. They ensure encapsulation and protect the integrity of the object's data.
+- Private attributes (data members): These are variables that hold the state or properties of an object and cannot be accessed directly from outside the class. This concept is known as encapsulation, which is a fundamental principle of object-oriented programming. Encapsulation restricts direct access to some of an object's components, which helps to prevent unintended interference and misuse of the object's data. It allows the internal representation of the object to be hidden from the outside, exposing only what is necessary through public methods. This is particularly useful for maintaining the integrity of the object's data, as it ensures that the data can only be modified in controlled ways through the class's public interface.
 - Public methods (member functions): These are functions that define the behavior of the class and can be called from outside the class. They provide an interface for interacting with the object's data and functionality.
 - Constructors and destructors: Constructors are special member functions that are called when an object is created, allowing for initialization of the object's attributes. Destructors are called when an object is destroyed, allowing for cleanup of resources and memory management.
 

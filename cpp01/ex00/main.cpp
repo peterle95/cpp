@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 19:15:36 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/07 13:11:57 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/11/09 13:52:39 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,25 @@
 
 #include "Zombie.hpp"
 
-Zombie* newZombie(std::string name);
-void randomChump(std::string name);
+// This function prototype declares a function that creates a new Zombie on the heap with a given name.
+Zombie* newZombie(std::string name); // Function to create a Zombie and return its pointer.
+// This function prototype declares a function that creates a Zombie on the stack and announces itself.
+void randomChump(std::string name); // Function to create a Zombie and make it announce itself.
 
 int main() 
 {
-    Zombie* heapZombie = newZombie("Heapy");
-    heapZombie->announce();
+    // Create a new Zombie on the heap with the name "Heapy" and store its pointer in heapZombie.
+    Zombie* heapZombie = newZombie("Heapy"); 
+    // Call the announce method on the heapZombie to make it announce itself.
+    // The '->' operator is used to access members (methods or attributes) of 
+    // an object that is pointed to by a pointer.
+    heapZombie->announce(); 
     
-    randomChump("Stacky");
+    // Create a new Zombie on the stack with the name "Stacky" and make it announce itself.
+    randomChump("Stacky"); 
     
-    delete heapZombie;
-    return 0;
+    // Delete the heap-allocated Zombie to free up memory.
+    delete heapZombie; 
+    // Return 0 to indicate that the program finished successfully.
+    return 0; 
 }

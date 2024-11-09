@@ -1,16 +1,11 @@
 # C++ Programming Manual
 
-## Introduction to C++
-
-C++ is a powerful, high-level programming language that is widely used for system/software development, game development, and performance-critical applications. It is an extension of the C programming language and includes object-oriented features.
-
 ## Basic Concepts
 
 ### 1. Syntax
 
 C++ syntax is the set of rules that defines the combinations of symbols that are considered to be correctly structured programs. Here are some basic elements:
 
-- **Comments**: Use `//` for single-line comments and `/* ... */` for multi-line comments.
 - **Variables**: Used to store data. You must declare a variable before using it.
   
   ```cpp
@@ -96,18 +91,47 @@ C++ has a rich standard library that provides many useful functions and classes,
 - **Strings**: `string` for string manipulation.
 - **Containers**: `vector`, `map`, etc., for data storage.
 
-### 8. Error Handling
+### 8. Zombie Horde Exercise
 
-C++ uses exceptions for error handling. You can throw and catch exceptions to manage errors gracefully.
+This exercise demonstrates how to create a horde of Zombie objects in C++. Below is a step-by-step explanation of how the program works:
 
-```cpp
-try {
-    throw std::runtime_error("An error occurred");
-} catch (const std::runtime_error& e) {
-    std::cout << e.what();
-}
-```
+1. **User Input**: The program starts by prompting the user to enter the number of zombies they want in the horde. This is done using `std::cin`.
 
-## Conclusion
+2. **Zombie Horde Creation**: The `zombieHorde` function is called with the user-defined number of zombies and a name (in this case, "ZombieClone"). This function is responsible for allocating memory for the zombies.
 
-C++ is a versatile language that combines the efficiency of low-level programming with the features of high-level languages. Understanding the basic concepts outlined in this manual will provide a solid foundation for further learning and development in C++.
+   ```cpp
+   Zombie* horde = zombieHorde(hordeSize, "ZombieClone");
+   ```
+
+3. **Memory Allocation**: Inside the `zombieHorde` function, an array of `Zombie` objects is dynamically allocated using `new`. The size of the array is determined by the user input.
+
+   ```cpp
+   Zombie* horde = new Zombie[N];
+   ```
+
+4. **Initialization**: A loop iterates through each zombie in the allocated array, setting their name using the `setName` method.
+
+   ```cpp
+   for (int i = 0; i < N; ++i) {
+       horde[i].setName(name);
+   }
+   ```
+
+5. **Announcing Zombies**: Back in the `main` function, another loop goes through each zombie in the horde and calls the `announce` method, which outputs the zombie's name and its characteristic sound.
+
+   ```cpp
+   for (int i = 0; i < hordeSize; ++i) {
+       horde[i].announce();
+   }
+   ```
+
+6. **Memory Cleanup**: After all zombies have announced themselves, the allocated memory for the horde is deallocated using `delete[]` to prevent memory leaks.
+
+   ```cpp
+   delete[] horde;
+   ```
+
+7. **Program Completion**: The program returns 0, indicating successful execution.
+
+This exercise illustrates key concepts in C++ such as dynamic memory management, object-oriented programming, and user interaction.
+
