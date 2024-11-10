@@ -174,18 +174,6 @@ In summary, the main difference between `HumanA` and `HumanB` lies in how they h
      // No call to jim.setWeapon() means 'jim' remains unarmed
      ```
 
-3. **Conditional Weapon Assignment**:
-   - In some cases, you might have logic in your program that conditionally assigns a weapon to `HumanB`. If the conditions are not met, the weapon may never be set.
-   - Example:
-     ```cpp
-     HumanB jim("Jim");
-     if (someCondition) {
-         Weapon club("crude spiked club");
-         jim.setWeapon(club); // Only set the weapon if the condition is true
-     }
-     // If 'someCondition' is false, 'jim' remains without a weapon
-     ```
-
 #### Behavior When Attacking Without a Weapon
 
 - When the `attack` method is called on a `HumanB` object that does not have a weapon, it checks if the `weapon` pointer is `nullptr`.
