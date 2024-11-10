@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 14:46:58 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/10 11:56:51 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/11/10 11:59:13 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,14 @@ angle brackets):
 HumanA and HumanB are almost the same except for these two tiny details:
 • While HumanA takes the Weapon in its constructor, HumanB doesn’t.
 • HumanB may not always have a Weapon, whereas HumanA will always be armed.
+If your implementation is correct, executing the following code will print an attack
+with "crude spiked club" then a second attack with "some other type of club" for both
+test cases:
+
+--> Don’t forget to check for memory leaks.
+IN WHICH CASE DO YOU THINK IT WOULD BE BEST TO USE A POINTER TO
+WEAPON? AND A REFERENCE TO WEAPON? WHY? THINK ABOUT IT BEFORE
+STARTING THIS EXERCISE.
 */
 
 #include "Weapon.hpp"
