@@ -16,4 +16,4 @@ public:
     void attack() const;
 };
 
-#endif // HUMANB_HPP
+#endif

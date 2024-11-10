@@ -14,6 +14,8 @@ int main()
     {
         Weapon club = Weapon("crude spiked club");
         HumanB jim("Jim");
+        bool weapon_set = false;
+        if (weapon_set)
         jim.setWeapon(club);
         jim.attack();
         club.setType("some other type of club");

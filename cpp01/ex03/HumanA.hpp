@@ -15,4 +15,4 @@ public:
     void attack() const;
 };
 
-#endif // HUMANA_HPP
+#endif
