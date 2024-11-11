@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 14:19:06 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/09 14:23:15 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/11/11 14:10:53 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,22 @@ for something you already do: address manipulation.*/
 // This program demonstrates the use of pointers and references in C++.
 // It initializes a string variable, creates a pointer and a reference to that string,
 // and then prints their memory addresses and values.
+
+//int i = 3; 
+
+// A pointer to variable i or "stores the address of i"
+// int *ptr = &i; 
+
+// OR
+// int *ptr;    
+// ptr = &i;
+
+// A reference (or alias) for i.
+// int &ref = i; 
+
+// BUT!!!
+// int &ref;
+// ref = i; --> this is incorrect as we should declare and initialize references at single step
 
 int main() 
 {
@@ -67,3 +83,5 @@ int main()
 // - Pointers can be null (i.e., they can point to nothing), whereas references must always refer to a valid object.
 // - The syntax for dereferencing a pointer (using *) is different from accessing a reference (which behaves like the variable itself).
 // - Pointers require explicit memory management (e.g., using new and delete), while references do not.
+
+// --> https://www.geeksforgeeks.org/pointers-vs-references-cpp/

@@ -28,55 +28,35 @@ The core functionality is encapsulated in the `replaceInFile` function:
 void replaceInFile(const std::string& filename, const std::string& s1, const std::string& s2)
 ```
 - **Parameters**:
-  - `filename`: The name of the file to read from.
-  - `s1`: The substring to be replaced.
-  - `s2`: The substring to replace `s1` with.
+  - `filename`: This parameter is of type `std::string` and represents the name of the file that the function will read from. It is expected to be a valid path to a file on the filesystem. The function will attempt to open this file for reading.
+  - `s1`: This parameter is also of type `std::string` and represents the substring that the function will search for within the contents of the specified file. This is the text that will be replaced.
+  - `s2`: This parameter is of type `std::string` and represents the substring that will replace every occurrence of `s1` found in the file. 
 
-### Opening the Input File
-The function attempts to open the specified input file:
+### Functionality
+The `replaceInFile` function performs the following tasks:
 
-```cpp
-std::ifstream inFile(filename.c_str());
-```
-- If the file cannot be opened, an error message is displayed, and the function returns early.
+1. **File Opening**: 
+   - The function first attempts to open the input file specified by `filename` using an `std::ifstream` object. If the file cannot be opened (for example, if it does not exist or the program lacks permission to read it), an error message is printed to the standard error stream, and the function returns early to prevent further execution.
 
-### Creating the Output File
-An output file is created with the same name as the input file, but with `.replace` appended:
+2. **Output File Creation**:
+   - If the input file is successfully opened, the function constructs the name of the output file by appending `.replace` to the original filename. It then attempts to create an `std::ofstream` object for writing to this new file. If the output file cannot be created, another error message is printed, and the function exits.
 
-```cpp
-std::ofstream outFile(outFilename.c_str());
-```
-- Similar to the input file, if the output file cannot be created, an error message is displayed.
+3. **Reading and Replacing Content**:
+   - The function reads the input file line by line using a loop that utilizes `std::getline()`. For each line read, it searches for occurrences of the substring `s1` using the `find` method of `std::string`. 
+   - If `s1` is found, the function constructs a new string by concatenating the parts of the line before and after the found substring, inserting `s2` in its place. This process continues until all occurrences of `s1` in the line have been replaced.
 
-### Reading and Replacing Content
-The function reads the input file line by line:
+4. **Writing to the Output File**:
+   - After processing each line, the modified line is written to the output file using the `<<` operator of the `std::ofstream` object. Each line is followed by a newline character to maintain the original file's structure.
 
-```cpp
-while (std::getline(inFile, line))
-```
-- For each line, it searches for occurrences of `s1` and replaces them with `s2`:
+5. **Closing Files**:
+   - Once all lines have been processed, the function closes both the input and output files to free up system resources. It also prints a completion message indicating that the replacement process is finished and specifies the name of the output file.
 
-```cpp
-while ((pos = line.find(s1, pos)) != std::string::npos) {
-    line = line.substr(0, pos) + s2 + line.substr(pos + s1.length());
-    pos += s2.length();
-}
-```
-- This loop continues until all occurrences of `s1` in the line are replaced.
+### Syntax Explanation
+- The function is defined with a return type of `void`, meaning it does not return any value. 
+- The parameters are passed by reference (indicated by the `&` symbol), which allows the function to access the original strings without making copies, improving efficiency.
+- The use of `const` before the parameter types indicates that these parameters will not be modified within the function, ensuring that the original values remain unchanged.
 
-### Writing to the Output File
-After processing each line, the modified line is written to the output file:
-
-```cpp
-outFile << line << std::endl;
-```
-
-### Closing Files
-Finally, both the input and output files are closed, and a completion message is printed:
-
-```cpp
-std::cout << "Replacement complete. Output written to: " << outFilename << std::endl;
-```
+This function is a key component of the program, enabling the core functionality of reading a file, replacing specified substrings, and writing the results to a new file.
 
 ## Step 3: The `main` Function
 The `main` function serves as the entry point of the program:
