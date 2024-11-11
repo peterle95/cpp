@@ -20,16 +20,53 @@ void Harl::error() {
     std::cout << "ERROR: This is unacceptable! I want to speak to the manager now." << std::endl;
 }
 
+// The complain function takes a string parameter 'level' which indicates the type of complaint 
+// the Harl object should respond to. It uses an array of pointers to member functions of the 
+// Harl class, which correspond to the different complaint levels: debug, info, warning, and error.
+// The levels are stored in a separate array of strings for comparison.
+// The function iterates through the levels array, and when it finds a match with the provided 
+// 'level', it calls the corresponding member function using the syntax (this->*complaints[i])().
+// Here, 'this' is a pointer to the current instance of the Harl class, allowing access to its 
+// member functions. If no valid level is found, it outputs "Invalid complaint level".
+
 void Harl::complain(std::string level) 
 {
-    void (Harl::*complaints[])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
-    std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+    // Array of pointers to member functions of the Harl class.
+    // Each element in this array corresponds to a specific complaint level.
+    // The syntax 'void (Harl::*complaints[])()' declares an array of pointers to member functions
+    // that return void and take no parameters. The '&Harl::functionName' syntax is used to get
+    // the address of each member function.
 
-    for (int i = 0; i < 4; i++) 
+    void (Harl::*complaints[])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+    /*the empty parentheses () indicate that the member functions 
+    being pointed to do not take any parameters.
+    
+    void (Harl::*complaints[])() declares an array of pointers to member functions of the Harl class.
+    The void before the parentheses indicates that these functions return void.
+    The empty parentheses () specify that these functions do not accept any arguments.
+    */
+
+
+    // Array of strings representing the complaint levels.
+    // Each string corresponds to the member function in the 'complaints' array.
+    // This array is used to compare the input level with the defined levels.
+    std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+    int sizeArray = sizeof(levels) / sizeof(levels[0]);
+
+    for (int i = 0; i < sizeArray; i++) 
     {
         if (level == levels[i]) 
         {
+            // 'this' is a pointer to the current instance of the Harl class.
+            // Using 'this->' allows us to access the member function pointed to by complaints[i].
+            // It is necessary to use 'this->' when calling a member function through a 
+            //pointer to member function.
             (this->*complaints[i])();
+            /*In this line, the empty parentheses () are used to call the 
+            member function that the pointer complaints[i] points to.
+
+            (this->*complaints[i])(); dereferences the pointer to the member function, allowing access to the function itself.
+            The empty parentheses () after this expression indicate that the function is being called with no arguments.*/
             return;
         }
     }

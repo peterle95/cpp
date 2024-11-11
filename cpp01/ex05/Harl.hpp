@@ -14,4 +14,4 @@ public:
     void complain(std::string level);
 };
 
-#endif // HARL_HPP
+#endif
