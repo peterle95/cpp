@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Fixed.hpp"
 
+/*TASK OF THE PROGRAM*/
+
 int main( void ) 
 {
     Fixed a;

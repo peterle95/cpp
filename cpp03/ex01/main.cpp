@@ -6,13 +6,16 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:19:15 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/07 15:56:23 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/11/11 20:57:54 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
 #include <iostream>
+
+/*TASK OF THE PROGRAM*/
+
 
 int main() 
 {

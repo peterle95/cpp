@@ -6,17 +6,12 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:04:14 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/07 15:53:16 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/11/11 21:31:13 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 #include <iostream>
-
-Fixed::Fixed() : _fixedPointValue(0) 
-{
-    std::cout << "Default constructor called" << std::endl;
-}
 
 Fixed::Fixed(const Fixed &src) 
 {
@@ -46,4 +41,9 @@ int Fixed::getRawBits(void) const
 void Fixed::setRawBits(int const raw) 
 {
     this->_fixedPointValue = raw;
+}
+
+Fixed::Fixed() : _fixedPointValue(0) 
+{
+    std::cout << "Default constructor called" << std::endl;
 }

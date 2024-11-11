@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:36:56 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/09/12 16:36:58 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/11/11 20:58:10 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 #include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
 #include <iostream>
+
+/*TASK OF THE PROGRAM*/
+
 
 int main()
 {

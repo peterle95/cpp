@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:26:30 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/07 15:57:12 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/11/11 20:58:01 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
 #include <iostream>
+
+/*TASK OF THE PROGRAM*/
+
 
 int main() 
 {

@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:41:58 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/07 16:02:30 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/11/11 20:58:50 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "Dog.hpp"
 #include "Cat.hpp"
 #include <iostream>
+
+/*TASK OF THE PROGRAM*/
 
 int main()
 {
