@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 20:36:44 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/07 12:14:28 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/11/12 06:05:01 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,25 @@
  * argc: the number of arguments passed to the program (including the name of the program)
  * argv: an array of character pointers, where each element points to a string representing an argument
  *
- * The loop iterates over each argument, and for each argument, it iterates over each character in the argument string.
+ * The loop iterates over each argument, and for each argument, it 
+ * iterates over each character in the argument string.
  * toupper is used to convert each character to uppercase, and the result is printed to the console.
  *
- * The outer loop iterates over each argument, and the inner loop iterates over each character in the argument string.
+ * The outer loop iterates over each argument, and the inner loop 
+ * iterates over each character in the argument string.
  * The variable i is used to keep track of the current argument being processed, and the variable 
  * j is used to keep track of the
  * current character being processed within that argument.
  *
- * The std::cout line prints the current argument, converted to uppercase, followed by a space to separate the arguments.
+ * The std::cout line prints the current argument, converted to uppercase, 
+ * followed by a space to separate the arguments.
  *
  * The std::cout line at the end prints a newline to end the line.
  */
 
 /*TASK OF THE PROGRAM:
- * The program takes a variable number of arguments, converts each argument to uppercase, and prints the result to the console.
+ * The program takes a variable number of arguments, converts each argument to 
+ * uppercase, and prints the result to the console.
  * The program should not print quotation marks.
  * If no arguments are provided, it prints a specific string to the console.
  */
