@@ -38,15 +38,19 @@ void Harl::complain(std::string level)
     // the address of each member function.
 
     void (Harl::*complaints[])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
-    /*the empty parentheses () indicate that the member functions 
-    being pointed to do not take any parameters.
-    
+    /* The empty parentheses () indicate that the member functions 
+    being pointed to do not take any parameters. For example, 
+    these functions could be called without any arguments like this: 
+    (this->*complaints[i])(); where complaints[i] points to a 
+    member function such as &Harl::debug, which does not require 
+    any input parameters.
+
     void (Harl::*complaints[])() declares an array of pointers to member functions of the Harl class.
     The void before the parentheses indicates that these functions return void.
     The empty parentheses () specify that these functions do not accept any arguments.
     */
 
-
+    Harl harl; // Instantiate an object of the Harl class.
     // Array of strings representing the complaint levels.
     // Each string corresponds to the member function in the 'complaints' array.
     // This array is used to compare the input level with the defined levels.
@@ -61,12 +65,15 @@ void Harl::complain(std::string level)
             // Using 'this->' allows us to access the member function pointed to by complaints[i].
             // It is necessary to use 'this->' when calling a member function through a 
             //pointer to member function.
-            (this->*complaints[i])();
+            (harl.*complaints[i])();
             /*In this line, the empty parentheses () are used to call the 
             member function that the pointer complaints[i] points to.
+            (harl.*complaints[i])(); dereferences the pointer to the member function.
 
+            Another way to call the member function is:
             (this->*complaints[i])(); dereferences the pointer to the member function, allowing access to the function itself.
-            The empty parentheses () after this expression indicate that the function is being called with no arguments.*/
+            The empty parentheses () after this expression indicate that the function is being called with no arguments.
+            But then remove the instance of the class Harl.*/
             return;
         }
     }
