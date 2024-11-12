@@ -1,15 +1,22 @@
 NAME = animal_program
+CC = c++
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+SRCS = main.cpp \
+       Animal.cpp \
+       Dog.cpp \
+       Cat.cpp \
+       Brain.cpp
 
-SRCS = main.cpp Animal.cpp Dog.cpp Cat.cpp Brain.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+
+%.o: %.cpp
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJS)

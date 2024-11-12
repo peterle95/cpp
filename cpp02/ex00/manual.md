@@ -1,83 +1,219 @@
-# Fixed-Point Number Representation Program
+# Important Concepts
 
-## Overview
+- **Constructors and Destructors**: Special member functions that manage the lifecycle of objects.
+- **Copy Constructor**: Used to create a new object as a copy of an existing object.
+- **Copy Assignment Operator**: Used to assign the values from one object to another.
+- **Static Members**: Shared among all instances of a class, useful for constants.
+- **Encapsulation**: The class encapsulates data and provides public methods to interact with it.
 
-This program implements a class that represents a fixed-point number in C++. The class is designed in Orthodox Canonical Form, which includes a default constructor, a copy constructor, a copy assignment operator, and a destructor. The program demonstrates the use of these features through a simple main function.
+---
 
-## Step-by-Step Guide
+## Overview of the Program
 
-### 1. Class Definition
+This C++ program implements a class called `Fixed` that represents fixed-point numbers. The program demonstrates the use of constructors, destructors, and operator overloading, which are key concepts in C++.
 
-The `Fixed` class is defined in `Fixed.hpp`. It contains:
+---
 
-- **Private Members:**
-  - `_fixedPointValue`: An integer that stores the fixed-point number value.
-  - `_fractionalBits`: A static constant integer set to 8, representing the number of fractional bits.
+## Step-by-Step Breakdown
 
-- **Public Members:**
-  - A default constructor that initializes `_fixedPointValue` to 0.
-  - A copy constructor that creates a new object as a copy of an existing object.
-  - A copy assignment operator that allows one object to be assigned the value of another.
-  - A destructor that cleans up when an object goes out of scope.
-  - `getRawBits()`: A member function that returns the raw value of the fixed-point number.
-  - `setRawBits(int const raw)`: A member function that sets the raw value of the fixed-point number.
+### 1. File Structure
 
-### 2. Implementation of the Class
+The program consists of several files:
 
-The implementation of the `Fixed` class is found in `Fixed.cpp`. Here’s how the members are defined:
+- **main.cpp**: Contains the main function and demonstrates the usage of the `Fixed` class.
+- **Fixed.cpp**: Implements the methods of the `Fixed` class.
+- **Fixed.hpp**: Contains the declaration of the `Fixed` class.
+- **Makefile**: Used to compile the program.
 
-- **Default Constructor:**
-  Initializes `_fixedPointValue` to 0 and prints a message indicating that the constructor was called.
+### 2. Class Declaration (Fixed.hpp)
 
-- **Copy Constructor:**
-  Copies the value from another `Fixed` object and prints a message indicating that the copy constructor was called.
+The `Fixed` class is declared in `Fixed.hpp`:
 
-- **Copy Assignment Operator:**
-  Checks for self-assignment, copies the value from another `Fixed` object, and prints a message indicating that the copy assignment operator was called.
-
-- **Destructor:**
-  Prints a message when the object is destroyed.
-
-- **getRawBits():**
-  Returns the value of `_fixedPointValue` and prints a message indicating that the function was called.
-
-- **setRawBits():**
-  Sets the value of `_fixedPointValue`.
-
-### 3. Main Function
-
-The `main` function in `main.cpp` demonstrates the usage of the `Fixed` class:
-
-- Three `Fixed` objects are created: `a`, `b`, and `c`.
-- `b` is initialized as a copy of `a` using the copy constructor.
-- `c` is assigned the value of `b` using the copy assignment operator.
-- The raw values of `a`, `b`, and `c` are printed to the console.
-
-### 4. Compilation and Execution
-
-The program is compiled using a Makefile (`Makefile`). The commands in the Makefile specify how to compile the program and manage object files. The `all` target builds the executable, while `clean` and `fclean` remove object files and the executable, respectively.
-
-To compile and run the program, use the following commands in the terminal:
-
-```bash
-make
-./fixed
+```cpp
+class Fixed
+{
+private:
+int fixedPointValue; // Stores the fixed-point number value
+static const int fractionalBits = 8; // Number of fractional bits
+public:
+Fixed(); // Default constructor
+Fixed(const Fixed &src); // Copy constructor
+Fixed &operator=(const Fixed &rhs); // Copy assignment operator
+~Fixed(); // Destructor
+int getRawBits(void) const; // Returns the raw value
+void setRawBits(int const raw); // Sets the raw value
+};
 ```
 
-## Concepts to Understand
+### Explanation of Constructors and Copy Constructors
 
+#### Why Do We Need a Constructor?
 
-## Concepts to Understand
+A constructor is a special member function that is automatically called when an object of a class is created. The primary purpose of a constructor is to initialize the object's attributes and allocate resources if necessary. In the context of the `Fixed` class, the constructor serves the following purposes:
 
-### 1. Object-Oriented Programming (OOP)
+1. **Initialization**: The constructor initializes the `_fixedPointValue` to a default value (in this case, `0`). This ensures that every instance of the `Fixed` class starts with a known state, preventing potential errors that could arise from using uninitialized variables.
 
-This program utilizes OOP principles, including encapsulation (hiding data).
+2. **Resource Management**: If the class were to manage resources (like dynamic memory, file handles, etc.), the constructor would be responsible for allocating those resources. Although the current implementation does not require resource management, having a constructor prepares the class for future enhancements.
 
-#### Encapsulation
+3. **Encapsulation**: By using a constructor, we encapsulate the initialization logic within the class, making it easier to manage and modify in one place.
 
-Encapsulation is the principle of bundling the data (attributes) and methods (functions) that operate on the data into a single unit, or class. It restricts direct access to some of the object's components, which is a means of preventing unintended interference and misuse of the methods and data. In the `Fixed` class, the `_fixedPointValue` and `_fractionalBits` are private members, meaning they cannot be accessed directly from outside the class. Instead, public methods like `getRawBits()` and `setRawBits()` are provided to interact with these private members.
+#### Why Do We Need a Copy Constructor?
 
+A copy constructor is a special constructor that creates a new object as a copy of an existing object. The need for a copy constructor arises from the following reasons:
 
-## Conclusion
+1. **Object Copying**: When you want to create a new instance of a class that is a copy of an existing instance, the copy constructor is called. This is particularly important when passing objects by value to functions or returning objects from functions. Without a copy constructor, the default behavior would be to perform a shallow copy, which may lead to issues if the class manages resources.
 
-This program provides a basic implementation of a fixed-point number class in C++. By understanding the concepts outlined above, you can gain a deeper insight into how the program works and how to extend it for more complex functionalities.
+2. **Preventing Shallow Copies**: In the `Fixed` class, the copy constructor ensures that the `_fixedPointValue` of the new object is set to the value of the existing object. This is crucial for maintaining the integrity of the data. If the class were to manage dynamic memory or other resources, a shallow copy could lead to multiple objects pointing to the same resource, resulting in undefined behavior when one object is modified or destroyed.
+
+3. **Consistency**: The copy constructor allows for consistent behavior when copying objects. It ensures that the new object is a true copy of the original, preserving the state and behavior of the original object.
+
+In summary, constructors and copy constructors are fundamental to object-oriented programming in C++. They ensure that objects are properly initialized and managed, allowing for safe and predictable behavior when working with instances of a class.
+
+### 3. Class Implementation (Fixed.cpp)
+
+The methods of the `Fixed` class are defined in `Fixed.cpp`:
+
+- **Default Constructor**:
+  Initializes `_fixedPointValue` to 0 and prints a message.
+
+```cpp
+Fixed::Fixed() : _fixedPointValue(0) 
+{
+    std::cout << "Default constructor called" << std::endl;
+}
+```
+
+- **Copy Constructor**:
+  Initializes a new object as a copy of an existing object and prints a message.
+
+```cpp
+Fixed::Fixed(const Fixed &src) 
+{
+    std::cout << "Copy constructor called" << std::endl;
+    *this = src; // Calls the copy assignment operator
+}
+```
+
+- **Copy Assignment Operator**:
+  Assigns the value of one object to another and prints a message.
+
+```cpp
+Fixed &Fixed::operator=(const Fixed &rhs) 
+{
+    std::cout << "Copy assignment operator called" << std::endl;
+    if (this != &rhs) // Prevent self-assignment
+        this->_fixedPointValue = rhs.getRawBits();
+    return *this;
+}
+```
+
+- **Destructor**:
+  Prints a message when an object is destroyed.
+
+```cpp
+Fixed::~Fixed() 
+{
+    std::cout << "Destructor called" << std::endl;
+}
+```
+
+- **getRawBits Method**:
+  Returns the raw value of `_fixedPointValue` and prints a message.
+
+```cpp
+int Fixed::getRawBits(void) const 
+{
+    std::cout << "getRawBits member function called" << std::endl;
+    return this->_fixedPointValue;
+}
+```
+
+- **setRawBits Method**:
+  Sets the value of `_fixedPointValue`.
+
+```cpp
+void Fixed::setRawBits(int const raw) 
+{
+    this->_fixedPointValue = raw;
+}
+```
+
+### 4. Main Function (main.cpp)
+
+The `main` function demonstrates the usage of the `Fixed` class:
+
+```cpp
+int main(void) 
+{
+    Fixed a; // Calls the default constructor
+    Fixed b(a); // Calls the copy constructor
+    Fixed c; // Calls the default constructor
+
+    c = b; // Calls the copy assignment operator
+
+    std::cout << a.getRawBits() << std::endl; // Outputs the raw value of a
+    std::cout << b.getRawBits() << std::endl; // Outputs the raw value of b
+    std::cout << c.getRawBits() << std::endl; // Outputs the raw value of c
+
+    return 0;
+}
+```
+
+### 5. Compilation and Execution
+
+The `Makefile` is used to compile the program:
+
+```makefile
+NAME = fixed
+
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+
+SRCS = main.cpp Fixed.cpp
+OBJS = $(SRCS:.cpp=.o)
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
+
+clean:
+	rm -f $(OBJS)
+
+fclean: clean
+	rm -f $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re
+```
+
+- **Targets**:
+  - `all`: Compiles the program.
+  - `clean`: Removes object files.
+  - `fclean`: Removes the executable.
+  - `re`: Rebuilds the program.
+
+### Explanation of Constructors and Copy Constructors
+
+#### Why Do We Need a Constructor?
+
+A constructor is a special member function that is automatically called when an object of a class is created. The primary purpose of a constructor is to initialize the object's attributes and allocate resources if necessary. In the context of the `Fixed` class, the constructor serves the following purposes:
+
+1. **Initialization**: The constructor initializes the `_fixedPointValue` to a default value (in this case, `0`). This ensures that every instance of the `Fixed` class starts with a known state, preventing potential errors that could arise from using uninitialized variables.
+
+2. **Resource Management**: If the class were to manage resources (like dynamic memory, file handles, etc.), the constructor would be responsible for allocating those resources. Although the current implementation does not require resource management, having a constructor prepares the class for future enhancements.
+
+3. **Encapsulation**: By using a constructor, we encapsulate the initialization logic within the class, making it easier to manage and modify in one place.
+
+#### Why Do We Need a Copy Constructor?
+
+A copy constructor is a special constructor that creates a new object as a copy of an existing object. The need for a copy constructor arises from the following reasons:
+
+1. **Object Copying**: When you want to create a new instance of a class that is a copy of an existing instance, the copy constructor is called. This is particularly important when passing objects by value to functions or returning objects from functions. Without a copy constructor, the default behavior would be to perform a shallow copy, which may lead to issues if the class manages resources.
+
+2. **Preventing Shallow Copies**: In the `Fixed` class, the copy constructor ensures that the `_fixedPointValue` of the new object is set to the value of the existing object. This is crucial for maintaining the integrity of the data. If the class were to manage dynamic memory or other resources, a shallow copy could lead to multiple objects pointing to the same resource, resulting in undefined behavior when one object is modified or destroyed.
+
+3. **Consistency**: The copy constructor allows for consistent behavior when copying objects. It ensures that the new object is a true copy of the original, preserving the state and behavior of the original object.
+
+In summary, constructors and copy constructors are fundamental to object-oriented programming in C++. They ensure that objects are properly initialized and managed, allowing for safe and predictable behavior when working with instances of a class.

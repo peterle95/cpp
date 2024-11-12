@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/12 16:19:15 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/11 20:57:54 by pmolzer          ###   ########.fr       */
+/*   Created: 2024/11/12 09:19:57 by pmolzer           #+#    #+#             */
+/*   Updated: 2024/11/12 09:20:01 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
-#include "ScavTrap.hpp"
-#include <iostream>
+#ifndef BRAIN_HPP
+#define BRAIN_HPP
 
-/*TASK OF THE PROGRAM*/
+#include <string>
 
-
-int main() 
+class Brain 
 {
-    ClapTrap clap("CL4P-TP");
-    ScavTrap scav("SC4V-TP");
-    
-    clap.attack("Enemy");
-    clap.takeDamage(5);
-    clap.beRepaired(3);
-    
-    scav.attack("Another Enemy");
-    scav.takeDamage(20);
-    scav.beRepaired(15);
-    scav.guardGate();
-    
-    return 0;
-}
+private:
+    std::string ideas[100];
+
+public:
+    Brain();
+    Brain(const Brain& other);
+    Brain& operator=(const Brain& other);
+    ~Brain();
+};
+
+#endif
+
