@@ -12,8 +12,8 @@ The program consists of multiple files:
 
 ### Header File (Fixed.hpp):
 The header file defines the `Fixed` class and its member functions. It includes guards (`#ifndef`, `#define`, `#endif`) to prevent multiple inclusions. The class has:
-- A private member variable `_fixedPointValue` to store the fixed-point value.
-- A static constant `_fractionalBits` set to 8, which determines the number of bits used for the fractional part.
+- A private member variable `_fixedPointValue` to store the fixed-point value. This variable is not accessible from outside the class, ensuring that the internal representation of the fixed-point number is protected from direct modification, which promotes encapsulation and data integrity.
+- A static constant `_fractionalBits` set to 8, which determines the number of bits used for the fractional part. Being static means that this constant is shared across all instances of the class, and it cannot be modified at runtime. This ensures that the fixed-point representation remains consistent across all objects of the `Fixed` class.
 
 ### Class Constructors:
 - **Default Constructor**: Initializes `_fixedPointValue` to 0 and prints a message.

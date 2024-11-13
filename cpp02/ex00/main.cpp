@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:03:49 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/12 09:25:57 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/11/13 17:06:59 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,7 @@ int main(void) // Main function where the program execution starts
     std::cout << c.getRawBits() << std::endl; // Output the raw value of 'c'
     /* This calls getRawBits() for 'c', again printing the message and returning 0. */
 
-    return 0; // End of the main function
-    /* The program returns 0, indicating successful execution. */
+    return 0;
 }
 
 /* 
