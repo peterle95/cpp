@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:05:56 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/13 17:49:22 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/11/14 19:44:18 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,20 @@ Fixed::Fixed()
 Constructor that initializes the Fixed object with an integer value.
 The integer is converted to a fixed-point representation by shifting left 
 by the number of fractional bits.
+
+This line converts an integer value 'n' into its fixed-point representation.
+The fixed-point representation is achieved by shifting the integer 'n' to the left 
+by the number of fractional bits (_fractionalBits). 
+
+Shifting left by _fractionalBits effectively multiplies 'n' by 2 raised to the power 
+of _fractionalBits (which is 8 in this case). This is done to allocate space for 
+the fractional part of the fixed-point number. 
+
+For example, if n is 5 and _fractionalBits is 8, the operation would be:
+5 << 8, which is equivalent to 5 * 256 = 1280. 
+
+This means that the integer value is now represented in a way that allows for 
+fixed-point arithmetic, where the lower bits represent the fractional part.
 */
 Fixed::Fixed(const int n)
 {
@@ -50,6 +64,28 @@ Fixed::Fixed(const int n)
 /* 
 Constructor that initializes the Fixed object with a float value.
 The float is rounded and converted to a fixed-point representation.
+
+This line converts a float value 'n' into its fixed-point representation.
+The conversion is done by first multiplying 'n' by 2 raised to the power of 
+_fractionalBits (which is 8 in this case). This effectively shifts the decimal 
+point to the right, allowing for the representation of fractional values in 
+the fixed-point format.
+
+The expression (1 << _fractionalBits) computes 2 raised to the power of 
+_fractionalBits. For example, if _fractionalBits is 8, this results in 
+256 (or 2^8). 
+
+Multiplying 'n' by this value scales the float to the fixed-point format. 
+The `roundf` function is then used to round the result to the nearest integer, 
+ensuring that the fixed-point representation is accurate and does not lose 
+precision due to floating-point arithmetic.
+
+For example, if n is 5.75, the operation would be:
+5.75 * (1 << 8) = 5.75 * 256 = 1472. 
+
+This means that the float value is now represented in a way that allows for 
+fixed-point arithmetic, where the integer value represents the scaled 
+fixed-point number.
 */
 Fixed::Fixed(const float n)
 {
