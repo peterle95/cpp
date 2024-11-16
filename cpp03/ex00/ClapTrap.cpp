@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:24:09 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/16 16:21:45 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/11/16 16:22:26 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,6 @@ void ClapTrap::setHitPoints(unsigned int hitPoints)
  * Setter for the ClapTrap's energy points.
  * Sets the energy points of the ClapTrap instance.
  */
-
 // void ClapTrap::setEnergyPoints(unsigned int energyPoints) { this->energyPoints = energyPoints; }
 void ClapTrap::setEnergyPoints(unsigned int energyPoints) 
 { 
