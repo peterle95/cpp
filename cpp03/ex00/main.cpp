@@ -6,15 +6,12 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 22:07:39 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/11 22:07:40 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/11/16 16:45:37 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 #include <iostream>
-
-/*TASK OF THE PROGRAM*/
-
 
 int main() 
 {
