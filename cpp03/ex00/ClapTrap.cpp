@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:24:09 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/16 16:26:53 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/11/16 16:42:34 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,76 +63,4 @@ void ClapTrap::beRepaired(unsigned int amount)
     {
         std::cout << "ClapTrap " << name << " can't repair. Not enough energy or hit points." << std::endl;
     }
-}
-
-/* 
- * Getter for the ClapTrap's name.
- * Returns the name of the ClapTrap instance.
- */
-std::string ClapTrap::getName() const 
-{ 
-    return name;
-}
-
-/* 
- * Getter for the ClapTrap's hit points.
- * Returns the current hit points of the ClapTrap instance.
- */
-unsigned int ClapTrap::getHitPoints() const 
-{ 
-    return hitPoints;
-}
-
-/* 
- * Getter for the ClapTrap's energy points.
- * Returns the current energy points of the ClapTrap instance.
- */
-unsigned int ClapTrap::getEnergyPoints() const 
-{ 
-    return energyPoints;
-}
-
-/* 
- * Getter for the ClapTrap's attack damage.
- * Returns the current attack damage of the ClapTrap instance.
- */
-unsigned int ClapTrap::getAttackDamage() const 
-{ 
-    return attackDamage;
-}
-
-/* 
- * Setter for the ClapTrap's name.
- * Sets the name of the ClapTrap instance.
- */
-void ClapTrap::setName(const std::string& name) 
-{ 
-    this->name = name;
-}
-
-/* 
- * Setter for the ClapTrap's hit points.
- * Sets the hit points of the ClapTrap instance.
- */
-void ClapTrap::setHitPoints(unsigned int hitPoints) 
-{ 
-    this->hitPoints = hitPoints;
-}
-
-/* 
- * Setter for the ClapTrap's energy points.
- * Sets the energy points of the ClapTrap instance.
- */
-void ClapTrap::setEnergyPoints(unsigned int energyPoints) 
-{ 
-    this->energyPoints = energyPoints;
-}
-
-/* 
- * Setter for the ClapTrap's attack damage.
- * Sets the attack damage of the ClapTrap instance.
- */
-void ClapTrap::setAttackDamage(unsigned int attackDamage) 
-{ 
-    this->attackDamage = attackDamage;
 }
