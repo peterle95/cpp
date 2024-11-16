@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:24:09 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/16 16:22:26 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/11/16 16:41:55 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ ClapTrap::ClapTrap(std::string name) : name(name), hitPoints(10), energyPoints(1
  */
 ClapTrap::ClapTrap(std::string name)
 {
+    /*
+     * We need to initialize the name because, although we are passing it to the constructor,
+     * we must assign it to the class's member variable to store it for later use. The "this->"
+     * keyword is used to refer to the current instance of the class, which helps distinguish
+     * between the member variable "name" and the parameter "name" passed to the constructor.
+     */
     this->name = name;  /* Set the name of the ClapTrap instance */
     hitPoints = 10;     /* Initialize hit points to 10 */
     energyPoints = 10;  /* Initialize energy points to 10 */
@@ -89,84 +95,4 @@ void ClapTrap::beRepaired(unsigned int amount)
     {
         std::cout << "ClapTrap " << name << " can't repair. Not enough energy or hit points." << std::endl; /* Print failure message */
     }
-}
-
-/* 
- * Getter for the ClapTrap's name.
- * Returns the name of the ClapTrap instance.
- */
-// std::string ClapTrap::getName() const { return name; }
-std::string ClapTrap::getName() const 
-{ 
-    return name;  /* Return the name of the ClapTrap */
-}
-
-/* 
- * Getter for the ClapTrap's hit points.
- * Returns the current hit points of the ClapTrap instance.
- */
-// unsigned int ClapTrap::getHitPoints() const { return hitPoints; }
-unsigned int ClapTrap::getHitPoints() const 
-{ 
-    return hitPoints;  /* Return the current hit points */
-}
-
-/* 
- * Getter for the ClapTrap's energy points.
- * Returns the current energy points of the ClapTrap instance.
- */
-// unsigned int ClapTrap::getEnergyPoints() const { return energyPoints; }
-unsigned int ClapTrap::getEnergyPoints() const 
-{ 
-    return energyPoints;  /* Return the current energy points */
-}
-
-/* 
- * Getter for the ClapTrap's attack damage.
- * Returns the current attack damage of the ClapTrap instance.
- */
-// unsigned int ClapTrap::getAttackDamage() const { return attackDamage; }
-unsigned int ClapTrap::getAttackDamage() const 
-{ 
-    return attackDamage;  /* Return the current attack damage */
-}
-
-/* 
- * Setter for the ClapTrap's name.
- * Sets the name of the ClapTrap instance.
- */
-// void ClapTrap::setName(const std::string& name) { this->name = name; }
-void ClapTrap::setName(const std::string& name) 
-{ 
-    this->name = name;  /* Set the name of the ClapTrap */
-}
-
-/* 
- * Setter for the ClapTrap's hit points.
- * Sets the hit points of the ClapTrap instance.
- */
-// void ClapTrap::setHitPoints(unsigned int hitPoints) { this->hitPoints = hitPoints; }
-void ClapTrap::setHitPoints(unsigned int hitPoints) 
-{ 
-    this->hitPoints = hitPoints;  /* Set the hit points of the ClapTrap */
-}
-
-/* 
- * Setter for the ClapTrap's energy points.
- * Sets the energy points of the ClapTrap instance.
- */
-// void ClapTrap::setEnergyPoints(unsigned int energyPoints) { this->energyPoints = energyPoints; }
-void ClapTrap::setEnergyPoints(unsigned int energyPoints) 
-{ 
-    this->energyPoints = energyPoints;  /* Set the energy points of the ClapTrap */
-}
-
-/* 
- * Setter for the ClapTrap's attack damage.
- * Sets the attack damage of the ClapTrap instance.
- */
-// void ClapTrap::setAttackDamage(unsigned int attackDamage) { this->attackDamage = attackDamage; }
-void ClapTrap::setAttackDamage(unsigned int attackDamage) 
-{ 
-    this->attackDamage = attackDamage;  /* Set the attack damage of the ClapTrap */
 }

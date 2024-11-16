@@ -6,42 +6,36 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:23:56 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/16 16:23:38 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/11/16 16:41:42 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLAPTRAP_HPP
-#define CLAPTRAP_HPP
+#ifndef CLAPTRAP_HPP  /* Check if CLAPTRAP_HPP is not defined */
+#define CLAPTRAP_HPP  /* Define CLAPTRAP_HPP to prevent multiple inclusions */
 
-#include <string>
+#include <string>  /* Include the string library for using std::string */
 
+/* 
+ * ClapTrap class definition.
+ * This class simulates a ClapTrap character with attributes for name, hit points,
+ * energy points, and attack damage. It provides methods for attacking, taking damage,
+ * repairing, and accessing/modifying its attributes.
+ */
 class ClapTrap 
 {
-private:
-    std::string name;
-    unsigned int hitPoints;
-    unsigned int energyPoints;
-    unsigned int attackDamage;
+private:  /* Access specifier for private members */
+    std::string name;  /* The name of the ClapTrap instance */
+    unsigned int hitPoints;  /* The health of the ClapTrap */
+    unsigned int energyPoints;  /* The energy available for actions */
+    unsigned int attackDamage;  /* The damage dealt by the ClapTrap */
 
-public:
-    ClapTrap(std::string name);
-    ~ClapTrap();
+public:  /* Access specifier for public members */
+    ClapTrap(std::string name);  /* Constructor that initializes the ClapTrap with a name */
+    ~ClapTrap();  /* Destructor that cleans up when a ClapTrap instance is destroyed */
 
-    void attack(const std::string& target);
-    void takeDamage(unsigned int amount);
-    void beRepaired(unsigned int amount);
-
-    // Getters
-    std::string getName() const;
-    unsigned int getHitPoints() const;
-    unsigned int getEnergyPoints() const;
-    unsigned int getAttackDamage() const;
-
-    // Setters
-    void setName(const std::string& name);
-    void setHitPoints(unsigned int hitPoints);
-    void setEnergyPoints(unsigned int energyPoints);
-    void setAttackDamage(unsigned int attackDamage);
+    void attack(const std::string& target);  /* Method for the ClapTrap to attack a target */
+    void takeDamage(unsigned int amount);  /* Method for the ClapTrap to take damage */
+    void beRepaired(unsigned int amount);  /* Method for the ClapTrap to repair itself */
 };
 
 #endif
