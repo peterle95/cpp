@@ -6,11 +6,12 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:23:39 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/07 15:56:44 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/11/16 17:53:16 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
+#include "ClapTrap.hpp"
 #include <iostream>
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name) 
