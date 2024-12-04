@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 19:15:50 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/09 13:53:06 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/12/04 15:18:51 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include <iostream>
 
 // Constructor for the Zombie class that initializes the zombie's name.
+// A constructor is essential for creating an instance of the class with specific initial values.
+// In this case, it sets the name of the Zombie, allowing each Zombie object to have a unique identity.
 Zombie::Zombie(std::string name) : name(name) {} // Initialize the name member variable with the provided name.
 
 // Destructor for the Zombie class that outputs a message when a zombie is destroyed.
