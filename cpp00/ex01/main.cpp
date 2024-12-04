@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 20:57:55 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/08 12:04:24 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/12/04 12:26:38 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,16 +67,20 @@ int main()
 
         std::cin >> command;
         // This line reads a line of input from the
-        if (command == "ADD") {
+        if (command == "ADD") 
+        {
             book.addContact();
         }
-        else if (command == "SEARCH") {
+        else if (command == "SEARCH") 
+        {
             book.searchContact();
         }
-        else if (command == "EXIT") {
+        else if (command == "EXIT") 
+        {
             break;
         }
-        else {
+        else 
+        {
             std::cout << "Invalid command" << std::endl;
         }
     }
