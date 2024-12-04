@@ -6,14 +6,14 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 22:05:16 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/11 22:05:17 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/12/04 15:32:01 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "HumanB.hpp"
 #include <iostream>
 
-HumanB::HumanB(const std::string& name) : name(name), weapon(nullptr) {}
+HumanB::HumanB(const std::string& name) : name(name), weapon(NULL) {}
 
 void HumanB::setWeapon(Weapon& newWeapon) 
 {
@@ -22,9 +22,12 @@ void HumanB::setWeapon(Weapon& newWeapon)
 
 void HumanB::attack() const 
 {
-    if (weapon) {
+    if (weapon) 
+    {
         std::cout << name << " attacks with their " << weapon->getType() << std::endl;
-    } else {
+    } 
+    else 
+    {
         std::cout << name << " has no weapon to attack with" << std::endl;
     }
 }
