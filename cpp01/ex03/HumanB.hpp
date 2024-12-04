@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 14:47:54 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/12 09:23:58 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/12/04 19:03:07 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,13 @@ public:
     void setWeapon(Weapon& weapon); /* Method to set the weapon for this HumanB object */
     void attack() const; /* Method to perform an attack, displaying the attack message */
 };
+
+/* 
+ * Explanation:
+ * In HumanB, the weapon is a pointer because HumanB is designed to allow for flexibility in weapon 
+ * assignment. A pointer can be set to nullptr, meaning that HumanB can exist without a weapon. 
+ * This design allows HumanB to be created without an initial weapon and to set or change the weapon 
+ * dynamically later, reflecting scenarios where a character may not always have a weapon available.
+ */
 
 #endif
