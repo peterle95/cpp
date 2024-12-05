@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 19:15:36 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/09 13:52:39 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/12/05 16:29:40 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,6 @@
  */
 
 #include "Zombie.hpp"
-
-// This function prototype declares a function that creates a new Zombie on the heap with a given name.
-Zombie* newZombie(std::string name); // Function to create a Zombie and return its pointer.
-// This function prototype declares a function that creates a Zombie on the stack and announces itself.
-void randomChump(std::string name); // Function to create a Zombie and make it announce itself.
 
 int main() 
 {

@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 19:15:45 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/09 13:54:58 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/12/05 16:29:44 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,10 @@ public:
     ~Zombie(); // Destructor that cleans up when a zombie object is destroyed.
     void announce(void); // Method that allows the zombie to announce itself.
 };
+
+// This function prototype declares a function that creates a new Zombie on the heap with a given name.
+Zombie* newZombie(std::string name); // Function to create a Zombie and return its pointer.
+// This function prototype declares a function that creates a Zombie on the stack and announces itself.
+void randomChump(std::string name); // Function to create a Zombie and make it announce itself.
 
 #endif
