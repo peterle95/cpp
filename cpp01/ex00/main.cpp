@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 19:15:36 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/12/05 16:29:40 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/12/05 16:44:33 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,20 @@ int main()
     // Create a new Zombie on the heap with the name "Heapy" and store its pointer in heapZombie.
     Zombie* heapZombie = newZombie("Heapy"); 
     // Call the announce method on the heapZombie to make it announce itself.
-    // The '->' operator is used to access members (methods or attributes) of 
-    // an object that is pointed to by a pointer.
+    // The '->' operator is a member access operator that allows us to access the members 
+    // (both methods and attributes) of an object through a pointer. 
+    // In this context, heapZombie is a pointer variable that holds the address of a 
+    // Zombie object created on the heap. 
+
+    // WHEN WE USE THE '->' OPERATOR, WE ARE EFFECTIVELY DEREFERENCING THE POINTER TO 
+    // ACCESS THE ZOMBIE OBJECT IT POINTS TO. 
+    
+    // This means we can directly invoke the methods defined in the Zombie class, 
+    // such as the announce method. 
+    // By calling heapZombie->announce(), we are instructing the program to execute 
+    // the announce method for the specific Zombie instance referred to by heapZombie. 
+    // This method will output the Zombie's name followed by the characteristic sound, 
+    // demonstrating the functionality of the Zombie class.
     heapZombie->announce(); 
     
     // Create a new Zombie on the stack with the name "Stacky" and make it announce itself.
