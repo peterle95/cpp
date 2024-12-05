@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 13:23:41 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/12/05 16:52:06 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/12/05 17:05:32 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ Zombie* zombieHorde(int N, std::string name)
     Zombie *horde = new Zombie[N]; 
     // Dynamically allocate an array of N Zombies. The variable 'horde' is a pointer 
     // because it holds the address of the first element of the dynamically allocated 
-    // array in heap memory, allowing access to all Zombie objects in the array.
+    // array in heap memory, allowing access to all Zombie objects in the array
+    // Here we are using the default constructor of the Zombie class, which initializes 
+    // the name to an empty string.
     
     for (int i = 0; i < N; ++i) 
     { // Loop through each Zombie in the horde.

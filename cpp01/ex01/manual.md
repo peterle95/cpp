@@ -74,6 +74,22 @@ C++ supports OOP, which allows you to create classes and objects.
   myDog.bark();
   ```
 
+- **Constructors**: Special member functions that are called when an object of a class is created. In the `Zombie` class, there are two constructors:
+
+  1. **Default Constructor**: 
+     - Called when a `Zombie` object is created without any parameters. 
+     - Example: 
+       ```cpp
+       Zombie myZombie; // Calls the default constructor, initializing name to an empty string.
+       ```
+
+  2. **Parameterized Constructor**: 
+     - Called when a `Zombie` object is created with a specific name.
+     - Example: 
+       ```cpp
+       Zombie myZombie("ZombieClone"); // Calls the parameterized constructor, initializing name to "ZombieClone".
+       ```
+
 ### 6. Memory Management
 
 C++ allows manual memory management using `new` and `delete`.

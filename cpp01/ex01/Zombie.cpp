@@ -6,18 +6,23 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 13:23:32 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/12 09:22:46 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/12/05 17:08:37 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 #include <iostream>
 
-// Default constructor for the Zombie class, initializes the name to an empty string.
-Zombie::Zombie() : name("") {} // Initializes the name member variable to an empty string.
+// The Zombie class requires two constructors to provide flexibility in object creation. 
+// The default constructor initializes the name to an empty string, allowing for the creation 
+// of a Zombie object without immediately assigning a name. This is useful in scenarios 
+// where the name may be set later using the setName method. 
+// It ensures that the name member variable has a defined state (an empty string) 
+// rather than being uninitialized, which could lead to undefined behavior.
+Zombie::Zombie() : name("") {}
 
 // Constructor that takes a string parameter to set the name of the Zombie.
-Zombie::Zombie(std::string name) : name(name) {} // Initializes the name member variable with the provided name.
+// Zombie::Zombie(std::string name) : name(name) {} // Initializes the name member variable with the provided name.
 
 // Destructor for the Zombie class, outputs a message when a Zombie is destroyed.
 Zombie::~Zombie() 

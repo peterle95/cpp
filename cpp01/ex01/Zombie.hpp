@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 13:23:36 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/12/05 16:46:08 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/12/05 17:08:42 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ private:
 
 public:
     Zombie(); // Default constructor declaration
-    Zombie(std::string name); // Constructor that takes a string to initialize the Zombie's name
+    // Zombie(std::string name); // Constructor that takes a string to initialize the Zombie's name
     ~Zombie(); // Destructor declaration
 
     void announce() const; // Method to announce the Zombie's presence
