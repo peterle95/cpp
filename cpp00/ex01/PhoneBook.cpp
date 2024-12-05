@@ -110,11 +110,13 @@ void PhoneBook::searchContact()
     // Reads the entered index into the index variable.
     std::cin >> index;// If the entered index is invalid, displays an error message.
     // Checks if the previous input operation failed (e.g., if the user entered a non-integer value).
+    // Checks if the previous input operation failed (e.g., if the user entered a non-integer value).
+    // std::cin.fail() returns true if an input operation failed, indicating an error in the input stream.
     if (std::cin.fail() || index < 0 || index >= count) 
     {
         std::cout << "Invalid index." << std::endl; // Clears the input buffer.
         std::cin.clear(); // Ignores any remaining characters in the input buffer.
-        std::cin.ignore(10000, '\n');// Returns from the method.
+        std::cin.ignore(10000, '\n'); // This line clears the input buffer by ignoring up to 10,000 characters or until a newline is encountered, ensuring that any invalid input is discarded before returning from the method.
         return;
     }
     // Displays the contact at the entered index.
