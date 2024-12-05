@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 13:23:36 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/12 09:22:58 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/12/05 16:46:08 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ public:
     void setName(const std::string& name); // Method to set the Zombie's name
 };
 
-Zombie* zombieHorde(int N, std::string name); // Function declaration to create a horde of Zombies
+Zombie* zombieHorde(int N, std::string name); // Function prototype to create a horde of Zombies
 
 #endif
