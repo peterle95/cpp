@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 14:46:58 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/12 09:24:57 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/12/06 16:09:20 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int main()
         HumanB jim("Jim"); /** Instantiate a HumanB object with a name, without an initial weapon. */
         
         // Set the 'club' weapon for 'jim' using the setWeapon method.
-        jim.setWeapon(club); /** Assign the previously created weapon to 'jim' using a setter method. */
+        jim.setWeapon(&club); /** Assign the previously created weapon to 'jim' using a setter method. */
 
         // Call the attack method on 'jim', which will display the attack message with the current weapon type or indicate no weapon.
         jim.attack(); /** Execute the attack method to show how 'jim' uses the weapon or indicate no weapon. */

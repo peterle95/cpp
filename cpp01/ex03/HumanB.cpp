@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 14:47:47 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/12 09:23:49 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/12/06 16:06:42 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
  * Constructor for the HumanB class.
  * Initializes a HumanB object with a given name and sets the weapon pointer to nullptr.
  */
-HumanB::HumanB(const std::string& name) : name(name), weapon(nullptr) {}
+HumanB::HumanB(const std::string& name) : name(name), weapon(NULL) {}
 
 // The constructor uses an initializer list to set the member variables. 
 // The syntax `name(name)` initializes the member variable `name` with the value of the parameter `name`.
@@ -40,9 +40,9 @@ HumanB::HumanB(const std::string& name) : name(name), weapon(nullptr) {}
  * Method to set the weapon for this HumanB object.
  * Takes a reference to a Weapon object and assigns it to the weapon pointer.
  */
-void HumanB::setWeapon(Weapon& newWeapon) 
+void HumanB::setWeapon(Weapon* newWeapon) 
 {
-    weapon = &newWeapon; /* Assign the address of the newWeapon to the weapon pointer */
+    weapon = newWeapon; /* Assign the address of the newWeapon to the weapon pointer */
 }
 
 /* 

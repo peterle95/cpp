@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 14:47:54 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/12/04 19:03:07 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/12/06 16:06:38 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ private:
 
 public:
     HumanB(const std::string& name); /* Constructor that initializes the HumanB object with a name */
-    void setWeapon(Weapon& weapon); /* Method to set the weapon for this HumanB object */
+    void setWeapon(Weapon* weapon); /* Method to set the weapon for this HumanB object */
     void attack() const; /* Method to perform an attack, displaying the attack message */
 };
 
