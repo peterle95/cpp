@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 22:04:11 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/11 22:04:12 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/12/06 15:27:47 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #include <iostream>
 
 Zombie::Zombie() : name("") {}
-
-Zombie::Zombie(std::string name) : name(name) {}
 
 Zombie::~Zombie() 
 {

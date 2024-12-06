@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 22:04:16 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/11 22:04:17 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/12/06 15:27:37 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ private:
 
 public:
     Zombie();
-    Zombie(std::string name);
     ~Zombie();
 
     void announce() const;
