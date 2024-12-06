@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 14:19:06 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/12 09:23:16 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/12/06 15:44:03 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,19 +69,26 @@ int main()
     return 0; // Return 0 to indicate successful execution.
 }
 
-// Pointers and references are both used to refer to other variables, but they have some key differences and similarities:
+// Pointers and references are both used to refer to other variables, but they have some 
+// key differences and similarities:
 // Similarities:
 // - Both can be used to access the value of the variable they refer to.
 // - Both can be used to modify the value of the variable they refer to (if the variable is not const).
 // 
 // Use Cases:
-// - Pointers are often used in dynamic memory allocation, data structures (like linked lists), and when you need to manage the lifetime of an object manually.
-// - References are typically used for function parameters and return types when you want to avoid copying large objects, providing a cleaner syntax for accessing variables.
+// - Pointers are often used in dynamic memory allocation, data structures 
+// (like linked lists), and when you need to manage the lifetime of an object manually.
+// - References are typically used for function parameters and return types 
+// when you want to avoid copying large objects, providing a cleaner syntax 
+// for accessing variables.
 //
 // Differences:
-// - A pointer can be reassigned to point to a different variable, while a reference cannot be changed once it is initialized.
-// - Pointers can be null (i.e., they can point to nothing), whereas references must always refer to a valid object.
-// - The syntax for dereferencing a pointer (using *) is different from accessing a reference (which behaves like the variable itself).
+// - A pointer can be reassigned to point to a different variable, while a reference
+// cannot be changed once it is initialized.
+// - Pointers can be null (i.e., they can point to nothing), whereas references must 
+// always refer to a valid object.
+// - The syntax for dereferencing a pointer (using *) is different from accessing 
+// a reference (which behaves like the variable itself).
 // - Pointers require explicit memory management (e.g., using new and delete), while references do not.
 
 // --> https://www.geeksforgeeks.org/pointers-vs-references-cpp/
