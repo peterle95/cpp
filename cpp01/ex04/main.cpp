@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 11:55:09 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/12 09:25:49 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/12/06 16:50:52 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ and explicit dependencies, we could add <stddef.h> or its C++ equivalent <cstdde
  *   Using a reference avoids copying the string, which is more efficient, and the `const` keyword ensures that 
  *   the function does not modify the original string.
  * - `const std::string& s1`: This parameter is a constant reference to the first string to be replaced.
- * - `const std::string& s2`: This parameter is a constant reference to the second string that will replace occurrences of s1.
+ * - `const std::string& s2`: This parameter is a constant reference to the second string that will 
+ *      replace occurrences of s1.
  * 
  * The term "function signature" refers to the part of the function declaration that specifies the function's name, 
  * its return type, and its parameters. It defines how the function can be called and what arguments it expects.
@@ -54,19 +55,24 @@ void replaceInFile(const std::string& filename, const std::string& s1, const std
 {
     // The std::ifstream class is used to create an input file stream, which allows us to read data from files. 
     // We pass the filename as a C-style string using c_str(), which is a member function of the std::string class. 
-    // This function converts the std::string object to a const char* type, which is required by the std::ifstream constructor 
+    // This function converts the std::string object to a const char* type, which is required
+    // by the std::ifstream constructor 
     // for opening files. This is a common requirement in C++ when dealing with file streams. 
-    // Note that we cannot use C++11 features in this program, so we must rely on c_str() for compatibility with older standards.
+    // Note that we cannot use C++11 features in this program, so we must rely on c_str() for 
+    // compatibility with older standards.
     // If the file is successfully opened, we can read its contents line by line or character by character.
-    // This is essential for our program, as we need to access the file's data to perform the string replacement operation.
+    // This is essential for our program, as we need to access the file's data to perform the 
+    // string replacement operation.
     std::ifstream inFile(filename.c_str()); /* Open the input file for reading */
     if (!inFile)  /* Check if the file was successfully opened */
     {
-        std::cerr << "Error: Unable to open input file: " << filename << std::endl; /* Print error message if file cannot be opened */
+        std::cerr << "Error: Unable to open input file: " << filename << std::endl; 
+        /* Print error message if file cannot be opened */
         return; /* Exit the function if the file cannot be opened */
     }
 
-    std::string outFilename = filename + ".replacedString"; /* Create the output filename by appending '.replace' to the original filename */
+    std::string outFilename = filename + ".replacedString"; 
+    /* Create the output filename by appending '.replace' to the original filename */
     std::ofstream outFile(outFilename.c_str()); /* Open the output file for writing */
     if (!outFile)  /* Check if the output file was successfully created */
     {
@@ -77,7 +83,9 @@ void replaceInFile(const std::string& filename, const std::string& s1, const std
     std::string line; /* Declare a string variable to hold each line of the input file */
     while (std::getline(inFile, line))  /* Read the input file line by line */
     {
-        size_t pos = 0; /* Initialize position variable of type size_t (unsigned integer type used for sizes and array indices)
+        size_t pos = 0; 
+        /* Initialize position variable of type size_t (unsigned integer type 
+         * used for sizes and array indices)
          * size_t is guaranteed to be large enough to contain the size of the largest possible object */
         while ((pos = line.find(s1, pos)) != std::string::npos) 
         { /* Outer while loop: Continue as long as we can find occurrences of s1 in the line
@@ -128,8 +136,10 @@ int main(int argc, char* argv[])
     }
 
     std::string filename = argv[1]; /* Retrieve the filename from the command-line arguments */
-    std::string s1 = argv[2]; /* Retrieve the first string (substring to be replaced) from the command-line arguments */
-    std::string s2 = argv[3]; /* Retrieve the second string (substring to replace with) from the command-line arguments */
+    std::string s1 = argv[2]; /* Retrieve the first string (substring to be replaced) 
+    from the command-line arguments */
+    std::string s2 = argv[3]; /* Retrieve the second string (substring to replace with) 
+    from the command-line arguments */
 
     /* if (s1.empty())
     {
