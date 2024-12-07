@@ -29,6 +29,12 @@ This array holds pointers to the four complaint functions. The program also defi
 ```cpp
 std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 ```
+#### 3.1 Calling Member Functions
+When a valid complaint level is provided, the corresponding member function is called using the pointer syntax:
+```cpp
+   (harl.*complaints[i])();
+```
+Here, `harl` is an instance of the `Harl` class, `complaints[i]` is a pointer to a member function of the `Harl` class, and `()` is used to call the member function.
 
 ### 4. Handling Complaints
 The `complain` function iterates through the `levels` array to find a match with the input `level`. If a match is found, it calls the corresponding member function using the pointer:
