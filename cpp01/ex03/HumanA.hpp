@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 14:47:43 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/12/15 16:26:11 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/12/15 16:28:38 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ private:
 
 public:
     HumanA(const std::string& name, Weapon& weapon); 
+    /* Constructor that initializes the HumanA object with a name and a weapon reference. 
     /* Constructor that initializes the HumanA object with a name and a weapon reference. 
        A pointer could also work, but it would allow for the possibility of the weapon being null, 
        which could lead to undefined behavior if not handled properly. Using a pointer could 
