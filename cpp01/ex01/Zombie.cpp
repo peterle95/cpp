@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 13:23:32 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/12/05 17:08:37 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/12/15 12:56:15 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@
 // where the name may be set later using the setName method. 
 // It ensures that the name member variable has a defined state (an empty string) 
 // rather than being uninitialized, which could lead to undefined behavior.
-Zombie::Zombie() : name("") {}
+Zombie::Zombie() : name("") {
+        std::cout << "calling constructor in Zombie.cpp with name: " << name << std::endl;
+}
 
 // Constructor that takes a string parameter to set the name of the Zombie.
 // Zombie::Zombie(std::string name) : name(name) {} // Initializes the name member variable with the provided name.
@@ -39,5 +41,6 @@ void Zombie::announce() const
 // Method to set the name of the Zombie.
 void Zombie::setName(const std::string& newName) 
 {
+    std::cout << "calling SetName" << std::endl;
     name = newName; // Assigns the provided newName to the name member variable.
 }

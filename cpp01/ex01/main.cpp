@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 13:12:55 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/12 09:22:29 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/12/15 12:54:26 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ int main()
     int hordeSize;
     std::cout << "Enter the number of zombies in the horde: ";
     std::cin >> hordeSize;
+    std::cout << "calling zombieHorde from main" << std::endl;
     Zombie* horde = zombieHorde(hordeSize, "ZombieClone"); // Allocate a horde of zombies and initialize them with the name "ZombieClone".
 
+    std::cout << "entering for loop" << std::endl;
     for (int i = 0; i < hordeSize; ++i)  // Loop through each zombie in the horde.
     {
         std::cout << "Zombie " << i + 1 << ": "; // Print the index of the current zombie.
@@ -40,6 +42,6 @@ int main()
     }
 
     delete[] horde; // Deallocate the memory used for the horde of zombies.
-
+    std::cout << "horde destroyed" << std::endl;
     return 0; // Return 0 to indicate successful completion of the program.
 }

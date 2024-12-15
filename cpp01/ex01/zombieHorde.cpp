@@ -6,22 +6,24 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 13:23:41 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/12/05 17:05:32 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/12/15 12:55:00 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
+#include<iostream>
 
 // This function creates a horde of N Zombies and assigns them a given name.
 Zombie* zombieHorde(int N, std::string name) 
 {
+    std::cout << "calling zombieHorde" << std::endl;
     Zombie *horde = new Zombie[N]; 
     // Dynamically allocate an array of N Zombies. The variable 'horde' is a pointer 
     // because it holds the address of the first element of the dynamically allocated 
     // array in heap memory, allowing access to all Zombie objects in the array
     // Here we are using the default constructor of the Zombie class, which initializes 
     // the name to an empty string.
-    
+    std::cout << "entering for loop in zombieHorde" << std::endl;
     for (int i = 0; i < N; ++i) 
     { // Loop through each Zombie in the horde.
         // The setName method is called on the current Zombie object in the horde array, which is accessed using the index 'i'.
@@ -32,15 +34,16 @@ Zombie* zombieHorde(int N, std::string name)
         // This operation is crucial for ensuring that each Zombie can announce itself with 
         // the correct name later on.
         horde[i].setName(name); // Set the name of the current Zombie to the provided name.
-
+            std::cout << "setName ended" << std::endl;
         // horde is a pointer to an array of Zombie objects. 
         // Since horde[i] accesses the Zombie object at index i, we use the dot operator (.) 
         // to call the setName method on that object. 
         // If we were to use horde[i]->setName(name), it would imply that horde[i] is a pointer 
         // to a Zombie object, which it is not; horde[i] is the actual Zombie object itself.
     }
-    
+    std::cout << "exiting zombieHorde" << std::endl;
     return horde; // Return the pointer to the array of Zombies.
+
 }
 
 /* To use horde->setName(name); and horde->next, you would need to change 
