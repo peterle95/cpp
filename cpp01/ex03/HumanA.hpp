@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 14:47:43 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/12/06 16:05:38 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/12/15 14:29:55 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,12 @@ public:
        Therefore, while a pointer is a valid option, using a reference enforces the relationship 
        between HumanA and Weapon more strictly, ensuring that HumanA must always have a weapon 
        to function correctly. */
-    void attack() const; /* Method to perform an attack, displaying the attack message */
+    void attack() const; /* Method to perform an attack, displaying the attack message.
+                           The 'const' qualifier indicates that this method does not modify 
+                           any member variables of the HumanA class, ensuring that it can be 
+                           called on const instances of HumanA. This is important for 
+                           maintaining const-correctness in the code, allowing for safer 
+                           and more predictable behavior when using const objects. */
 };
 
 /* 

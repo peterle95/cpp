@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 14:48:01 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/12 09:25:07 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/12/15 14:27:56 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,16 @@ const std::string& Weapon::getType() const
     return type; /* Return the private attribute 'type' */
 }
 
-/* Method to set the type of the weapon */
+/* Method to set the type of the weapon 
+ * 
+ * The function is defined as 'Weapon::setType' instead of just 'setType' 
+ * because it is a member function of the Weapon class. The 'Weapon::' 
+ * prefix indicates that this function belongs to the Weapon class, 
+ * allowing the compiler to associate it with the correct class context. 
+ * This is necessary in C++ to avoid naming conflicts with other 
+ * functions that may have the same name in different classes or 
+ * in the global scope.
+ */
 void Weapon::setType(const std::string& newType) 
 {
     type = newType; /* Update the private attribute 'type' with the new value */

@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 14:47:39 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/12/06 16:11:16 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/12/15 14:28:52 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@
  * Syntax Explanation:
  * The constructor uses an initializer list to initialize the member variables:
  * - `name(name)`: This initializes the member variable `name` with the value of the parameter `name`.
- * - `weapon(weapon)`: This initializes the member variable `weapon` with the reference to the passed Weapon object.
+ * - `weapon(weapon)`: This initializes the member variable `weapon` with the 
+ *   reference to the passed Weapon object.
  */
 HumanA::HumanA(const std::string& name, Weapon& weapon) : name(name), weapon(weapon) {}
 
