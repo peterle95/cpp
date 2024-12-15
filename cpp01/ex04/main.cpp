@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 11:55:09 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/12/06 16:50:52 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/12/15 17:25:35 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,10 @@ void replaceInFile(const std::string& filename, const std::string& s1, const std
     // This function converts the std::string object to a const char* type, which is required
     // by the std::ifstream constructor 
     // for opening files. This is a common requirement in C++ when dealing with file streams. 
-    // Note that we cannot use C++11 features in this program, so we must rely on c_str() for 
+    // In C++11, we could use the std::string constructor directly with the filename instead of c_str(),
+    // as well as utilize std::ifstream and std::ofstream with string parameters. 
+    // Additionally, we could use std::string's replace method for more straightforward string replacement.
+    // However, since we are not using C++11 features in this program, we must rely on c_str() for 
     // compatibility with older standards.
     // If the file is successfully opened, we can read its contents line by line or character by character.
     // This is essential for our program, as we need to access the file's data to perform the 
@@ -70,19 +73,22 @@ void replaceInFile(const std::string& filename, const std::string& s1, const std
         /* Print error message if file cannot be opened */
         return; /* Exit the function if the file cannot be opened */
     }
+    std::cout << "Input file opened successfully." << std::endl; // Debug: Confirm successful file opening
 
     std::string outFilename = filename + ".replacedString"; 
-    /* Create the output filename by appending '.replace' to the original filename */
+    std::cout << "Creating output file: " << outFilename << std::endl; // Debug: Show the output filename
     std::ofstream outFile(outFilename.c_str()); /* Open the output file for writing */
     if (!outFile)  /* Check if the output file was successfully created */
     {
         std::cerr << "Error: Unable to create output file: " << outFilename << std::endl;
         return;
     }
+    std::cout << "Output file created successfully." << std::endl; // Debug: Confirm successful output file creation
 
     std::string line; /* Declare a string variable to hold each line of the input file */
     while (std::getline(inFile, line))  /* Read the input file line by line */
     {
+        std::cout << "Processing line: " << line << std::endl; // Debug: Show the current line being processed
         size_t pos = 0; 
         /* Initialize position variable of type size_t (unsigned integer type 
          * used for sizes and array indices)
@@ -95,27 +101,43 @@ void replaceInFile(const std::string& filename, const std::string& s1, const std
          * It is returned by the find() method when the specified substring (s1) is not found in the string (line).
          * This value is of type size_t and is defined in the standard library, making it conformant with C++98. 
          * If find() returns npos, it means no more occurrences were found */
-            line = line.substr(0, pos) + s2 + line.substr(pos + s1.length()); /* Create a new string by:
-             * 1. Taking the substring from start to current position (line.substr(0, pos))
-             * 2. Adding the replacement string (s2)
-             * 3. Taking the rest of the line after the found string (line.substr(pos + s1.length()))
-             * Example: If line = "Hello World", s1 = "World", s2 = "Earth"
-             * pos would be 6, and the new line would be "Hello Earth" */
+            std::cout << "Found '" << s1 << "' at position: " << pos << std::endl; // Debug: Show where s1 is found
+            line = line.substr(0, pos) + s2 + line.substr(pos + s1.length());
+            // This line constructs a new string by replacing the first occurrence of s1 in the line with s2.
+            // The process is broken down into three steps:
+            // 1. Extract the substring from the beginning of the line up to the position where s1 was found.
+            //    This is done using line.substr(0, pos), which gives us the part of the line before s1.
+            // 2. Append the replacement string s2 to this substring.
+            // 3. Extract the substring from the position right after s1 to the end of the line.
+            //    This is done using line.substr(pos + s1.length()), which gives us the part of the line after s1.
+            // 
+            // For example, if we have:
+            // line = "The quick brown fox jumps over the lazy dog"
+            // s1 = "fox"
+            // s2 = "cat"
+            // pos would be 16 (the starting index of "fox").
+            // The new line would be constructed as follows:
+            // - First part: line.substr(0, 16) -> "The quick brown "
+            // - Second part: s2 -> "cat"
+            // - Third part: line.substr(16 + 3) -> " jumps over the lazy dog"
+            // Therefore, the resulting line would be "The quick brown cat jumps over the lazy dog".
+            std::cout << "Line after replacement: " << line << std::endl; // Debug: Show the line after replacement
             pos += s2.length(); /* Update position to skip over the replacement string
              * This prevents infinite loops by ensuring we start searching 
              * after the string we just inserted */
         }
         outFile << line << std::endl; /* Write the modified line to the output file */
+        std::cout << "Written modified line to output file." << std::endl; // Debug: Confirm line written to output
     }
 
     inFile.close(); /* Close the input file to free up resources. 
     This ensures that any resources associated with the file are released, 
     preventing memory leaks and allowing other processes to access the file if needed. */
+    std::cout << "Input file closed." << std::endl; // Debug: Confirm input file closure
     outFile.close(); /* Close the output file to ensure all data is written. 
     This flushes any buffered output to the file, guaranteeing that all 
     changes are saved before the program terminates. */
-
-    std::cout << "Replacement complete. Output written to: " << outFilename << std::endl; 
+    std::cout << "Output file closed. Replacement complete. Output written to: " << outFilename << std::endl; 
 }
 
 /* 
@@ -141,11 +163,11 @@ int main(int argc, char* argv[])
     std::string s2 = argv[3]; /* Retrieve the second string (substring to replace with) 
     from the command-line arguments */
 
-    /* if (s1.empty())
+    if (s1.empty())
     {
         std::cerr << "Error: string1 cannot be empty" << std::endl;
         return 1;
-    } */
+    }
     replaceInFile(filename, s1, s2);
 
     return 0;
