@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 22:06:26 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/11 22:06:27 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/12/16 11:49:16 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,15 @@ void Harl::complain(std::string level)
     // Each string corresponds to the member function in the 'complaints' array.
     // This array is used to compare the input level with the defined levels.
     std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+    // To determine the number of elements in the 'levels' array, we divide the total size of the array by the size of one element. 
+    // 'sizeof(levels)' gives us the total number of bytes used by the entire array, while 'sizeof(levels[0])' gives us the size of a single element (a string in this case). 
+    // By dividing these two values, we get the number of elements in the array, which is stored in 'sizeArray'. 
+    // This allows us to iterate through the array safely without exceeding its bounds.
+    // For example, if 'levels' contains {"DEBUG", "INFO", "WARNING", "ERROR"}, 
+    // sizeof(levels) would return 4 * sizeof(std::string) because there are 4 strings in the array, 
+    // and sizeof(levels[0]) would return sizeof(std::string), which is the size of one string. 
+    // The value of sizeof(std::string) can vary depending on the implementation, but it typically returns a value around 24 to 32 bytes on most platforms. 
+    // Therefore, sizeArray would be calculated as 4 * sizeof(std::string) / sizeof(std::string), resulting in sizeArray being 4.
     int sizeArray = sizeof(levels) / sizeof(levels[0]);
 
     for (int i = 0; i < sizeArray; i++) 
