@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 11:55:09 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/12/15 17:25:35 by pmolzer          ###   ########.fr       */
+/*   Updated: 2024/12/17 11:39:57 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,11 @@ void replaceInFile(const std::string& filename, const std::string& s1, const std
 
     std::string outFilename = filename + ".replacedString"; 
     std::cout << "Creating output file: " << outFilename << std::endl; // Debug: Show the output filename
-    std::ofstream outFile(outFilename.c_str()); /* Open the output file for writing */
+    // The c_str() method is called on the outFilename object to convert the std::string to a C-style string (const char*), 
+    // which is required by the std::ofstream constructor for opening files. 
+    // However, since C++11, we can directly pass a std::string to the ofstream constructor, 
+    // making the c_str() call unnecessary in modern C++.
+    std::ofstream outFile(outFilename.c_str());
     if (!outFile)  /* Check if the output file was successfully created */
     {
         std::cerr << "Error: Unable to create output file: " << outFilename << std::endl;
