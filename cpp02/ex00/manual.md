@@ -1,10 +1,88 @@
 # Important Concepts
 
-- **Constructors and Destructors**: Special member functions that manage the lifecycle of objects.
-- **Copy Constructor**: Used to create a new object as a copy of an existing object.
-- **Copy Assignment Operator**: Used to assign the values from one object to another.
-- **Static Members**: Shared among all instances of a class, useful for constants.
-- **Encapsulation**: The class encapsulates data and provides public methods to interact with it.
+
+# Orthodox Canonical Form
+
+The orthodox canonical form refers to a specific structure that classes in C++ should follow to ensure proper management of resources and object lifecycles. This form typically includes:
+
+1. A default constructor.
+2. A copy constructor.
+3. A copy assignment operator.
+4. A destructor.
+
+This structure is relevant to this project because the `Fixed` class manages a resource (the fixed-point value) and needs to ensure that objects are correctly initialized, copied, and destroyed to prevent resource leaks and undefined behavior.
+
+### Examples from the Project
+
+- **Default Constructor**: The `Fixed` class has a default constructor that initializes `_fixedPointValue` to `0`, ensuring a known state for each instance.
+  
+  ```cpp
+  Fixed::Fixed() : _fixedPointValue(0) 
+  {
+      std::cout << "Default constructor called" << std::endl;
+  }
+  ```
+
+- **Copy Constructor**: The copy constructor creates a new `Fixed` object as a copy of an existing one, ensuring that the `_fixedPointValue` is copied correctly.
+
+  ```cpp
+  Fixed::Fixed(const Fixed &src) 
+  {
+      std::cout << "Copy constructor called" << std::endl;
+      *this = src; // Calls the copy assignment operator
+  }
+  ```
+
+- **Copy Assignment Operator**: This operator checks for self-assignment and copies the `_fixedPointValue` from one object to another.
+
+  ```cpp
+  Fixed &Fixed::operator=(const Fixed &rhs) 
+  {
+      std::cout << "Copy assignment operator called" << std::endl;
+      if (this != &rhs) // Prevent self-assignment
+          this->_fixedPointValue = rhs.getRawBits();
+      return *this;
+  }
+  ```
+
+- **Destructor**: The destructor prints a message when an object is destroyed, helping to track the lifecycle of `Fixed` objects.
+
+  ```cpp
+  Fixed::~Fixed() 
+  {
+      std::cout << "Destructor called" << std::endl;
+  }
+  ```
+
+By adhering to the orthodox canonical form, the `Fixed` class ensures that it manages its resources correctly and behaves predictably when objects are copied or assigned.
+
+
+- **Constructors and Destructors**: 
+  - **General Use**: Constructors are special member functions that are automatically called when an object of a class is created. They are primarily used to initialize the object's attributes and allocate resources if necessary. Destructors, on the other hand, are called when an object goes out of scope or is explicitly deleted, and they are used to free resources that the object may have acquired during its lifetime.
+  - **Specific to This Project**: In the `Fixed` class, the default constructor initializes the `_fixedPointValue` to `0`, ensuring that every instance starts with a known state. The destructor prints a message when an object is destroyed, which helps in tracking the lifecycle of `Fixed` objects during execution.
+
+- **Copy Constructor**: 
+  - **General Use**: A copy constructor is a special constructor that creates a new object as a copy of an existing object. For example, if you have a class `Point` that represents a point in 2D space, the copy constructor allows you to create a new `Point` object from an existing one, like this:
+  
+    ```cpp
+    Point p1(3, 4); // Create a Point object p1
+    Point p2 = p1;  // Use the copy constructor to create p2 as a copy of p1
+    ```
+  
+  This is essential for managing resources correctly, especially when objects are passed by value or returned from functions.
+  - **Specific to This Project**: The copy constructor in the `Fixed` class ensures that when a new `Fixed` object is created from an existing one, the `_fixedPointValue` is copied correctly. This prevents issues that could arise from shallow copies, particularly if the class were to manage dynamic resources in the future.
+
+- **Copy Assignment Operator**: 
+  - **General Use**: The copy assignment operator allows one object to be assigned the value of another after both objects have been created. It is crucial for ensuring that the assignment operation behaves correctly, especially in the presence of self-assignment.
+  - **Specific to This Project**: In the `Fixed` class, the copy assignment operator checks for self-assignment and copies the `_fixedPointValue` from one object to another. This operator is vital for maintaining the integrity of the data when objects are assigned to each other.
+
+- **Static Members**: 
+  - **General Use**: Static members are shared among all instances of a class. They are useful for constants or data that should be common to all objects of the class, rather than unique to each instance.
+  - **Specific to This Project**: The `Fixed` class uses a static constant integer `_fractionalBits` to define the number of fractional bits for fixed-point representation. This value is shared across all instances of `Fixed`, ensuring consistency and reducing memory usage.
+
+- **Encapsulation**: 
+  - **General Use**: Encapsulation is a fundamental principle of object-oriented programming that restricts direct access to some of an object's components. It helps in bundling the data (attributes) and methods (functions) that operate on the data into a single unit or class, and it protects the integrity of the data by exposing only necessary parts through public methods.
+  - **Specific to This Project**: The `Fixed` class encapsulates the `_fixedPointValue` and provides public methods like `getRawBits()` and `setRawBits(int const raw)` to interact with this private data. This design ensures that the internal representation of the fixed-point number is hidden from the user, allowing for controlled access and modification, which is crucial for maintaining the integrity of the data throughout the program.
 
 ---
 
