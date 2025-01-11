@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:04:14 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/01/03 16:34:45 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/01/07 16:42:42 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,27 @@ This constructor creates a new Fixed object as a copy of an existing one.
 Fixed::Fixed(const Fixed &src) 
 {
     std::cout << "Copy constructor called" << std::endl;
-    *this = src;
+    *this = src; // 'this' is a pointer to the current object, allowing access to its members.
 }
 
 /* 
 Copy assignment operator for the Fixed class. 
-This operator allows one Fixed object to be assigned the value of another.
-*/
-Fixed &Fixed::operator=(const Fixed &rhs) 
-{
-    std::cout << "Copy assignment operator called" << std::endl;
-    if (this != &rhs)
-        this->_fixedPointValue = rhs.getRawBits();
-    return *this;
-}
+This operator allows one Fixed object to be assigned the value of another.*/
+ Fixed &Fixed::operator=(const Fixed &rhs) 
+ {
+     /* Output a message indicating that the copy assignment operator has been called. */
+     std::cout << "Copy assignment operator called" << std::endl;
+     
+     /* Check if the current object is not the same as the object being assigned from (rhs). 
+        This prevents self-assignment, which could lead to issues. */
+     if (this != &rhs) // 'this' is a pointer to the current object, used to check for self-assignment.
+         /* If they are different, set the current object's fixed-point value to the raw value of the rhs object. 
+            This is done by calling the getRawBits() method on rhs. */
+         this->_fixedPointValue = rhs.getRawBits();
+     
+     /* Return a reference to the current object to allow for chained assignments. */
+     return *this; // Returns a reference to the current object.
+ }
 
 /* 
 Destructor for the Fixed class. 
