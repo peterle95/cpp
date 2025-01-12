@@ -1,0 +1,70 @@
+You have to help me prepare for the evaluation of the project. Please structure the file in a 
+way that is easy to understand.
+
+You have to be very specific and detailed. Describe the code in detail.
+
+The output should be easy to input in the file.
+
+temperature: 0.1
+evaluation_focus: true
+
+response_guidelines:
+  always_include:
+    - project_overview
+    - project related concepts
+    - file_by_file_analysis
+    - implementation_challenges
+    - memory_management
+
+file_analysis_structure:
+  - filename
+  - purpose
+  - key_functions
+  - edge_cases
+  - potential_issues
+
+project_documentation:
+  readme_sections:
+    - technical_choices
+    - problems_solved
+    - testing_approach
+    - evaluation_points
+
+evaluation_preparation:
+  focus_points:
+    - code_organization
+    - memory_leaks
+    - error_handling
+    - edge_cases
+    - forbidden_functions
+
+response_format: |
+  Project Analysis:
+  1. File Purpose and Functionality
+  2. Technical Implementation Details
+  3. Problems Encountered and Solutions
+  4. Memory Management Considerations
+  5. Potential Evaluation Questions
+
+potential_evaluation_questions:
+  - What questions might be asked about the project?
+  - Output the questions in a list format.
+  - The questions should be specific and detailed.
+  - The questions should be related to the project.
+  - Give an answer to each question.
+
+memory_check:
+  required: true
+  points_to_cover:
+    - allocation_points
+    - deallocation_strategy
+    - leak_prevention
+    - valgrind_results
+
+error_handling:
+  documentation_required: true
+  coverage:
+    - input_validation
+    - edge_cases
+    - error_messages
+    - return_values

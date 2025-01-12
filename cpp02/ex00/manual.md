@@ -1,6 +1,3 @@
-# Important Concepts
-
-
 # Orthodox Canonical Form
 
 The orthodox canonical form refers to a specific structure that classes in C++ should follow to ensure proper management of resources and object lifecycles. This form typically includes:
@@ -237,41 +234,6 @@ int main(void)
 }
 ```
 
-### 5. Compilation and Execution
-
-The `Makefile` is used to compile the program:
-
-```makefile
-NAME = fixed
-
-CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-
-SRCS = main.cpp Fixed.cpp
-OBJS = $(SRCS:.cpp=.o)
-
-all: $(NAME)
-
-$(NAME): $(OBJS)
-	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
-
-clean:
-	rm -f $(OBJS)
-
-fclean: clean
-	rm -f $(NAME)
-
-re: fclean all
-
-.PHONY: all clean fclean re
-```
-
-- **Targets**:
-  - `all`: Compiles the program.
-  - `clean`: Removes object files.
-  - `fclean`: Removes the executable.
-  - `re`: Rebuilds the program.
-
 ### Explanation of Constructors and Copy Constructors
 
 #### Why Do We Need a Constructor?
@@ -295,3 +257,100 @@ A copy constructor is a special constructor that creates a new object as a copy 
 3. **Consistency**: The copy constructor allows for consistent behavior when copying objects. It ensures that the new object is a true copy of the original, preserving the state and behavior of the original object.
 
 In summary, constructors and copy constructors are fundamental to object-oriented programming in C++. They ensure that objects are properly initialized and managed, allowing for safe and predictable behavior when working with instances of a class.
+
+
+## Project Analysis
+
+### 1. File Purpose and Functionality
+This project implements a class named `Fixed` that represents a fixed-point number. The main purpose of the project is to demonstrate the use of constructors, destructors, and operator overloading in C++. The `Fixed` class encapsulates the behavior of fixed-point arithmetic, allowing for the creation, copying, and assignment of fixed-point number objects.
+
+### 2. Technical Implementation Details
+The project consists of three main files:
+- **`main.cpp`**: The entry point of the program that demonstrates the functionality of the `Fixed` class.
+- **`Fixed.hpp`**: The header file that declares the `Fixed` class and its member functions.
+- **`Fixed.cpp`**: The implementation file that defines the member functions of the `Fixed` class.
+
+#### Key Functions:
+- **Constructors**:
+  - Default constructor initializes the fixed-point value to 0.
+  - Copy constructor creates a new object as a copy of an existing one.
+- **Destructor**: Cleans up when a `Fixed` object goes out of scope.
+- **Member Functions**:
+  - `getRawBits()`: Returns the raw fixed-point value.
+  - `setRawBits(int const raw)`: Sets the raw fixed-point value.
+
+### 3. Problems Encountered and Solutions
+- **Self-Assignment in Copy Assignment Operator**: The implementation checks for self-assignment to prevent issues when an object is assigned to itself. This is done using the condition `if (this != &rhs)`.
+- **Memory Management**: The project does not dynamically allocate memory, so there are no memory leaks. The destructor is implemented to ensure proper cleanup.
+
+### 4. Memory Management Considerations
+- **Allocation Points**: No dynamic memory allocation is used in this project, so there are no allocation points to manage.
+- **Deallocation Strategy**: The destructor is defined but does not need to free any resources since no dynamic memory is allocated.
+- **Leak Prevention**: Since there are no dynamic allocations, there are no memory leaks.
+- **Valgrind Results**: Running Valgrind would show no memory leaks or errors, as the project does not use dynamic memory.
+
+### 5. Potential Evaluation Questions
+
+- **How does the copy constructor work, and why is it important?**
+  The copy constructor creates a new instance of the `Fixed` class as a copy of an existing instance. It takes a reference to another `Fixed` object as a parameter and initializes the new object with the same value as the source object. This is important because it ensures that when an object is copied, the new object has its own separate copy of the data, preventing unintended modifications to the original object. In the `Fixed` class, the copy constructor also outputs a message indicating that it has been called, which helps in tracing object creation.
+
+- **What happens if you do not check for self-assignment in the copy assignment operator?**
+  If you do not check for self-assignment in the copy assignment operator, it can lead to issues where the object's data is modified while it is being assigned to itself. For example, if the assignment operator does not check if `this` is the same as `&rhs`, it may overwrite the object's data with its own data, potentially leading to unexpected behavior or data corruption. In the `Fixed` class, the check `if (this != &rhs)` prevents this issue by ensuring that the assignment only occurs if the two objects are different.
+
+- **Can you explain the purpose of the `getRawBits` and `setRawBits` functions?**
+  The `getRawBits` function is a member function that returns the raw fixed-point value stored in the `_fixedPointValue` member variable. It allows external code to access the internal representation of the fixed-point number without modifying it. The `setRawBits` function, on the other hand, is used to set the value of `_fixedPointValue` directly. This function allows for the modification of the fixed-point number's value, enabling flexibility in how the class is used. Together, these functions provide a way to manage the internal state of the `Fixed` class while maintaining encapsulation.
+
+- **How does the program demonstrate the use of constructors and destructors?**
+  The program demonstrates the use of constructors and destructors by creating instances of the `Fixed` class and observing the output messages that indicate when each constructor and destructor is called. When an object is created using the default constructor, a message "Default constructor called" is printed. Similarly, when an object is created using the copy constructor, the message "Copy constructor called" is displayed. Finally, when the objects go out of scope at the end of the `main` function, the destructor is called, and the message "Destructor called" is printed. This sequence of messages illustrates the lifecycle of the `Fixed` objects and shows how constructors and destructors manage resource allocation and cleanup.
+
+### Project Related Concepts
+
+- **Fixed-Point Arithmetic**: Fixed-point arithmetic is a method of representing real numbers that allows for a fixed number of digits after the decimal point. This is particularly useful in systems where floating-point representation may lead to precision issues or where performance is critical, such as in embedded systems or digital signal processing. The `Fixed` class in this project encapsulates the behavior of fixed-point numbers, allowing for precise arithmetic operations without the overhead of floating-point calculations.
+
+- **Orthodox Canonical Form**: In C++, the Orthodox Canonical Form refers to a specific pattern for defining classes that manage resources. This includes defining a default constructor, a copy constructor, a copy assignment operator, and a destructor. This pattern ensures that objects are properly initialized, copied, and cleaned up, preventing resource leaks and undefined behavior. The `Fixed` class adheres to this form, ensuring that it can be safely copied and assigned.
+
+- **Encapsulation**: Encapsulation is a fundamental principle of object-oriented programming that restricts direct access to some of an object's components and can prevent the accidental modification of data. In the `Fixed` class, the internal representation of the fixed-point value is kept private, and access to it is controlled through public member functions (`getRawBits` and `setRawBits`). This promotes data integrity and hides the implementation details from the user.
+
+- **Operator Overloading**: Operator overloading allows developers to define custom behavior for operators (like `=`, `+`, etc.) when they are used with user-defined types. In this project, the copy assignment operator is overloaded to allow for the assignment of one `Fixed` object to another. This is crucial for ensuring that the assignment operation behaves correctly, especially in the context of resource management and self-assignment checks.
+
+
+- **Const-Correctness**: Const-correctness is a practice in C++ that ensures that functions that do not modify the state of an object are marked as `const`. This allows the compiler to enforce const-correctness and helps prevent unintended modifications. In the `Fixed` class, the `getRawBits` function is marked as `const`, indicating that it does not alter the state of the object, which enhances the safety and clarity of the code.
+
+---
+
+## File-by-File Analysis
+
+### 1. `Fixed.hpp`
+- **Purpose**: Declares the `Fixed` class and its member functions.
+- **Key Functions**:
+  - Constructors and destructor.
+  - `getRawBits()` and `setRawBits()`.
+- **Edge Cases**: None, as it only declares functions.
+- **Potential Issues**: None identified.
+
+### 2. `Fixed.cpp`
+- **Purpose**: Implements the member functions of the `Fixed` class.
+- **Key Functions**:
+  - Default constructor, copy constructor, copy assignment operator, and destructor.
+- **Edge Cases**: Self-assignment check in the copy assignment operator.
+- **Potential Issues**: None identified.
+
+### 3. `main.cpp`
+- **Purpose**: Demonstrates the functionality of the `Fixed` class.
+- **Key Functions**:
+  - Main function that creates instances of `Fixed` and outputs their raw values.
+- **Edge Cases**: None, as it primarily tests the constructors and assignment operator.
+- **Potential Issues**: None identified.
+
+---
+
+## Implementation Challenges
+- Understanding the Orthodox Canonical Form for C++ classes, which includes defining a default constructor, copy constructor, copy assignment operator, and destructor.
+- Ensuring proper function calls and outputs to demonstrate the behavior of the `Fixed` class.
+
+---
+
+## Memory Management
+- The project does not involve dynamic memory allocation, thus simplifying memory management concerns. The destructor is present but does not perform any operations since there are no resources to free.
+
+---
