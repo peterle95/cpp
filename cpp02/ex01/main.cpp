@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:05:37 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/14 19:49:52 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/01/13 11:27:02 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ fixed-point number. It creates instances of the Fixed class, showcasing
 the default constructor, copy constructor, and copy assignment operator. 
 The program outputs the raw values of the fixed-point numbers to the console.
 */
-int main(void) // Main function where the program execution starts
+int main(void)
 {
     Fixed a; // Create an instance of Fixed using the default constructor
     /* This calls the default constructor of the Fixed class, which initializes 
