@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:04:14 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/01/07 16:42:42 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/01/13 15:55:02 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,21 @@ Fixed::Fixed(const Fixed &src)
 /* 
 Copy assignment operator for the Fixed class. 
 This operator allows one Fixed object to be assigned the value of another.*/
- Fixed &Fixed::operator=(const Fixed &rhs) 
- {
-     /* Output a message indicating that the copy assignment operator has been called. */
+Fixed &Fixed::operator=(const Fixed &rhs)
+{
+/* The syntax 'Fixed &Fixed::operator=(const Fixed &rhs)' defines the copy assignment operator for the Fixed class.
+- 'Fixed &' indicates that this function returns a reference to a Fixed object. This allows for 
+  chaining of assignment operations (e.g., a = b = c).
+- 'Fixed::' specifies that this operator function is a member of the Fixed class. It indicates 
+  that the function is associated with the Fixed class and can access its private members.
+- 'operator=' is the name of the function, which is a special operator function in C++. 
+  It allows the use of the assignment operator '=' to assign one Fixed object to another.
+- 'const Fixed &rhs' is the parameter of the function. It is a reference to a constant Fixed object 
+  that represents the right-hand side of the assignment. The 'const' qualifier ensures that the 
+  original object (rhs) will not be modified during the assignment process, promoting safety and 
+  preventing unintended side effects.
+- Overall, this syntax defines how one Fixed object can be assigned the value of another Fixed object 
+  while ensuring proper memory management and preventing self-assignment issues.*/
      std::cout << "Copy assignment operator called" << std::endl;
      
      /* Check if the current object is not the same as the object being assigned from (rhs). 
@@ -49,7 +61,7 @@ This operator allows one Fixed object to be assigned the value of another.*/
      
      /* Return a reference to the current object to allow for chained assignments. */
      return *this; // Returns a reference to the current object.
- }
+}
 
 /* 
 Destructor for the Fixed class. 
