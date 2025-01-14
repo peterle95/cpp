@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:05:56 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/01/14 18:30:31 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/01/14 18:31:51 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ fixed-point arithmetic, where the lower bits represent the fractional part.
 */
 Fixed::Fixed(const int n)
 {
-    _fixedPointValue = n << _fractionalBits; // Convert integer to fixed-point representation
-    std::cout << "Int constructor called" << std::endl; // Print message indicating the integer constructor was called
-   /* std::cout << "\n=== Integer Constructor Debug ===" << std::endl;
+    /* _fixedPointValue = n << _fractionalBits; // Convert integer to fixed-point representation
+    std::cout << "Int constructor called" << std::endl; // Print message indicating the integer constructor was called */
+   std::cout << "\n=== Integer Constructor Debug ===" << std::endl;
     std::cout << "Input n: " << n << std::endl;
     _fixedPointValue = n << _fractionalBits;
     std::cout << "After shift (_fixedPointValue): " << _fixedPointValue << std::endl;
@@ -67,7 +67,7 @@ Fixed::Fixed(const int n)
     for (int i = 31; i >= 0; i--)
         std::cout << ((_fixedPointValue >> i) & 1);
     std::cout << std::endl;
-    std::cout << "=== End Integer Constructor ===\n" << std::endl; */
+    std::cout << "=== End Integer Constructor ===\n" << std::endl;
 }
 
 /* 
@@ -98,11 +98,11 @@ fixed-point number.
 */
 Fixed::Fixed(const float n)
 {
-    _fixedPointValue = roundf(n * (1 << _fractionalBits)); // Convert float to fixed-point representation
+    /* _fixedPointValue = roundf(n * (1 << _fractionalBits)); // Convert float to fixed-point representation
     std::cout << "Float constructor called" << std::endl; // Print message indicating the float constructor was called
     std::cout << "n: " << n << std::endl;
-    std::cout << "_fixedPointValue: " << _fixedPointValue << std::endl; 
-    /* std::cout << "\n=== Integer Constructor Debug ===" << std::endl;
+    std::cout << "_fixedPointValue: " << _fixedPointValue << std::endl; */ 
+    std::cout << "\n=== Integer Constructor Debug ===" << std::endl;
     std::cout << "Input n: " << n << std::endl;
     
     float scaled = n * (1 << _fractionalBits);
@@ -118,7 +118,7 @@ Fixed::Fixed(const float n)
     
     float back = (float)_fixedPointValue / (1 << _fractionalBits);
     std::cout << "Converting back to float: " << back << std::endl;
-    std::cout << "=== End Float Constructor ===\n" << std::endl; */
+    std::cout << "=== End Float Constructor ===\n" << std::endl;
 }
 
 /* 
@@ -127,11 +127,11 @@ This constructor creates a new Fixed object as a copy of an existing one.
 */
 Fixed::Fixed(const Fixed &src) 
 {
-    std::cout << "Copy constructor called" << std::endl; // Print message indicating the copy constructor was called
+    /* std::cout << "Copy constructor called" << std::endl; // Print message indicating the copy constructor was called
     *this = src; // Use the copy assignment operator to copy the value from src to the current object
     std::cout << "src: " << src._fixedPointValue << std::endl;
-    std::cout << "_fixedPointValue: " << _fixedPointValue << std::endl;
-    /* std::cout << "\n=== Float Constructor Debug ===" << std::endl;
+    std::cout << "_fixedPointValue: " << _fixedPointValue << std::endl; */
+    std::cout << "\n=== Float Constructor Debug ===" << std::endl;
     std::cout << "Input n: " << src._fixedPointValue << std::endl;
     
     float scaled = src._fixedPointValue * (1 << _fractionalBits);
@@ -147,7 +147,7 @@ Fixed::Fixed(const Fixed &src)
     
     float back = (float)_fixedPointValue / (1 << _fractionalBits);
     std::cout << "Converting back to float: " << back << std::endl;
-    std::cout << "=== End Float Constructor ===\n" << std::endl; */
+    std::cout << "=== End Float Constructor ===\n" << std::endl;
 }
 
 /* 
@@ -156,7 +156,7 @@ This operator allows one Fixed object to be assigned the value of another.
 */
 Fixed &Fixed::operator=(const Fixed &rhs) 
 {
-    std::cout << "Copy assignment operator called" << std::endl; // Print message indicating the copy assignment operator was called
+   /*  std::cout << "Copy assignment operator called" << std::endl; // Print message indicating the copy assignment operator was called
     std::cout << "this: " << this->_fixedPointValue << std::endl;
     if (this != &rhs) // Check for self-assignment
     {
@@ -164,8 +164,8 @@ Fixed &Fixed::operator=(const Fixed &rhs)
     }
     std::cout << "rhs: " << rhs._fixedPointValue << std::endl;
     std::cout << "_fixedPointValue: " << _fixedPointValue << std::endl;
-    return *this; // Return the current object to allow for chained assignments
-    /* std::cout << "\n=== Assignment Operator Debug ===" << std::endl;
+    return *this; // Return the current object to allow for chained assignments */
+    std::cout << "\n=== Assignment Operator Debug ===" << std::endl;
     std::cout << "Current _fixedPointValue: " << this->_fixedPointValue << std::endl;
     std::cout << "RHS _fixedPointValue: " << rhs.getRawBits() << std::endl;
     
@@ -174,7 +174,7 @@ Fixed &Fixed::operator=(const Fixed &rhs)
     
     std::cout << "New _fixedPointValue: " << this->_fixedPointValue << std::endl;
     std::cout << "=== End Assignment Operator ===\n" << std::endl;
-    return *this; */
+    return *this;
 }
 
 /* 
@@ -210,14 +210,14 @@ This function returns the float representation of the fixed-point value.
 */
 float Fixed::toFloat(void) const 
 {
-    return static_cast<float>(this->_fixedPointValue) / (1 << _fractionalBits); // Convert fixed-point value to float
-    /*float result = static_cast<float>(this->_fixedPointValue) / (1 << _fractionalBits);
+    //return static_cast<float>(this->_fixedPointValue) / (1 << _fractionalBits); // Convert fixed-point value to float
+    float result = static_cast<float>(this->_fixedPointValue) / (1 << _fractionalBits);
     std::cout << "\n=== toFloat Debug ===" << std::endl;
     std::cout << "_fixedPointValue: " << _fixedPointValue << std::endl;
     std::cout << "Divided by " << (1 << _fractionalBits) << std::endl;
     std::cout << "Result: " << result << std::endl;
     std::cout << "=== End toFloat ===\n" << std::endl;
-    return result;*/
+    return result;
 }
 
 /* 
