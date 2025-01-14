@@ -43,8 +43,6 @@ The main function demonstrates the usage of the `Fixed` class:
 - It prints the values of the `Fixed` objects using `std::cout`.
 - It converts the fixed-point values to integers and prints them.
 
-### Compilation and Execution:
-The Makefile defines how to compile the program. It specifies the compiler, flags, source files, and rules for building the executable. Running `make` in the terminal compiles the program, and executing `./fixed01` runs the program.
 
 ## Important Concepts
 - **Fixed-Point Arithmetic**: This program uses fixed-point representation to handle decimal numbers without floating-point precision issues. It achieves this by using integer arithmetic and scaling.

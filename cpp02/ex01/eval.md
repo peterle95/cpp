@@ -187,6 +187,46 @@ int Fixed::toInt(void) const
 }
 ```
 
+## Copy Assignment Operator
+
+
+
+Let's break down what happens in `a = Fixed(1234.4321f)`:
+
+1. First, `Fixed(1234.4321f)` creates a temporary `Fixed` object:
+````cpp:Fixed.cpp
+Fixed::Fixed(const float n)
+{
+    _fixedPointValue = roundf(n * (1 << _fractionalBits));
+    // 1234.4321 * 256 = 316014.6176
+    // after roundf = 316015
+    std::cout << "Float constructor called" << std::endl;
+}
+````
+
+2. Then, the copy assignment operator is called:
+````cpp:Fixed.cpp
+Fixed &Fixed::operator=(const Fixed &rhs) 
+{
+    if (this != &rhs)
+    {
+        this->_fixedPointValue = rhs.getRawBits();
+        // getRawBits simply returns the _fixedPointValue (316015)
+        // of the temporary object created in step 1
+    }
+    return *this;
+}
+````
+
+So `getRawBits()` doesn't actually extract or convert anything - it just returns the already converted value (`_fixedPointValue`) that was calculated in the float constructor. The conversion from float to fixed-point format happens in the constructor, not in `getRawBits()`.
+
+The sequence is:
+1. Float constructor converts 1234.4321f to 316015
+2. Copy assignment gets this value (316015) via `getRawBits()`
+3. The value 316015 is stored in `a._fixedPointValue`
+
+When you later print `a`, this value is converted back to float by dividing by 256, giving you 1234.4321f again.
+
 ## Error Handling & Edge Cases
 
 1. **Self-Assignment Protection**:
