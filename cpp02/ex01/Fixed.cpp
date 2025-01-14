@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:05:56 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/14 19:44:18 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/01/14 15:16:28 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ Fixed::Fixed(const int n)
 {
     _fixedPointValue = n << _fractionalBits; // Convert integer to fixed-point representation
     std::cout << "Int constructor called" << std::endl; // Print message indicating the integer constructor was called
+   /*  std::cout << "n: " << n << std::endl;
+    std::cout << "_fixedPointValue: " << _fixedPointValue << std::endl; */
 }
 
 /* 
@@ -91,6 +93,8 @@ Fixed::Fixed(const float n)
 {
     _fixedPointValue = roundf(n * (1 << _fractionalBits)); // Convert float to fixed-point representation
     std::cout << "Float constructor called" << std::endl; // Print message indicating the float constructor was called
+    std::cout << "n: " << n << std::endl;
+    std::cout << "_fixedPointValue: " << _fixedPointValue << std::endl; 
 }
 
 /* 
@@ -101,6 +105,8 @@ Fixed::Fixed(const Fixed &src)
 {
     std::cout << "Copy constructor called" << std::endl; // Print message indicating the copy constructor was called
     *this = src; // Use the copy assignment operator to copy the value from src to the current object
+    std::cout << "src: " << src._fixedPointValue << std::endl;
+    std::cout << "_fixedPointValue: " << _fixedPointValue << std::endl;
 }
 
 /* 
@@ -115,6 +121,8 @@ Fixed &Fixed::operator=(const Fixed &rhs)
         this->_fixedPointValue = rhs.getRawBits(); // Copy the raw value from rhs to the current object's fixed-point value
     }
     return *this; // Return the current object to allow for chained assignments
+    std::cout << "rhs: " << rhs._fixedPointValue << std::endl;
+    std::cout << "_fixedPointValue: " << _fixedPointValue << std::endl;
 }
 
 /* 
