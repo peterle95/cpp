@@ -6,11 +6,9 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:05:37 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/11 20:57:31 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/01/14 17:26:21 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*TASK OF THE PROGRAM*/
 
 #include <iostream>
 #include "Fixed.hpp"
