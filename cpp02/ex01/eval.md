@@ -34,6 +34,36 @@ const Fixed &fixed: Constant reference to our Fixed object
 Uses toFloat() to convert the fixed-point value to a readable format
 Returns the stream reference to allow chaining (cout << fixed1 << fixed2)
 
+### Understanding the `<<` Operator in the Insertion Operator
+
+1. **Purpose**:
+   - The `<<` operator is overloaded to allow `Fixed` objects to be output directly to output streams (like `std::cout`).
+   - It converts the `Fixed` object to a floating-point representation using the `toFloat()` method and sends that value to the output stream.
+
+2. **How It Works**:
+   - When you use `std::cout << fixed;`, the overloaded `operator<<` function is called.
+   - Inside this function, `fixed.toFloat()` is invoked, which converts the internal fixed-point representation to a floating-point number.
+   - The resulting float is then sent to the output stream.
+
+3. **Example Usage**:
+   ```cpp
+   Fixed f(5.5f);
+   std::cout << f << std::endl; // Calls operator<<, which outputs 5.5
+   ```
+
+4. **Overflow Consideration**:
+   - The `<<` operator itself does not cause overflow in this context. Instead, it simply formats the output.
+   - However, if the internal representation of the `Fixed` object is such that it cannot be accurately represented as a float (e.g., if it exceeds the range of float), you might encounter issues when converting to float, but this is not directly related to the `<<` operator itself.
+
+
+### Summary
+
+- The `<<` operator in the context of the `Fixed` class is used to output the floating-point representation of the fixed-point number.
+- It does not directly cause overflow; rather, it formats the output for display.
+- The conversion to float happens in the `toFloat()` method, and any potential issues with representation would arise from that conversion, not from the `<<` operator itself. 
+
+
+
 ## Implementation Approach
 
 ### Fixed-Point Number Representation
@@ -112,6 +142,51 @@ Integer 5.5:  00000101.10000000  (1408 in decimal)
 - Gives us 256 possible decimal values (2^8)
 - Allows representation of decimals like 0.5 (128), 0.25 (64), 0.125 (32), etc.
 - Provides a good balance between range and precision
+
+When we say that using 8 bits for the fractional part gives us 256 possible decimal values, we are referring to the number of distinct values that can be represented with 8 bits. Here's a breakdown:
+
+### Understanding 8 Bits
+
+1. **Binary Representation**:
+   - Each bit can be either 0 or 1.
+   - With 8 bits, the total number of combinations is \(2^8 = 256\).
+
+2. **Range of Values**:
+   - The values that can be represented range from 0 to 255 in decimal (for unsigned representation).
+   - If we consider signed representation (which is not typically used for fractional parts), the range would be from -128 to 127.
+
+### Examples of Decimal Values Represented by 8 Bits
+
+Here are some examples of how the 8 bits can represent fractional values when used in the context of fixed-point representation:
+
+- **0.0**: 
+  - Binary: `00000000` (0 in decimal)
+  
+- **0.5**: 
+  - Binary: `00000001` (1 in decimal)
+  - Represents \(1/256\) or \(0.5\) when scaled by \(2^{-8}\).
+
+- **0.25**: 
+  - Binary: `00000010` (2 in decimal)
+  - Represents \(2/256\) or \(0.25\) when scaled by \(2^{-8}\).
+
+- **0.125**: 
+  - Binary: `00000011` (3 in decimal)
+  - Represents \(3/256\) or \(0.125\) when scaled by \(2^{-8}\).
+
+- **1.0**: 
+  - Binary: `00000000` (0 in decimal for integer part) + `00000001` (1 in decimal for fractional part)
+  - Represents \(256/256\) or \(1.0\) when scaled by \(2^{-8}\).
+
+- **2.0**: 
+  - Binary: `00000010` (2 in decimal for integer part) + `00000000` (0 in decimal for fractional part)
+  - Represents \(512/256\) or \(2.0\) when scaled by \(2^{-8}\).
+
+### Summary
+
+- The 8 bits allocated for the fractional part allow for 256 distinct values, which can represent decimal fractions from \(0\) to \(255/256\) (or \(0\) to \(1\) when considering the scaling).
+- This provides a good balance between range and precision, allowing for a variety of decimal values to be represented accurately in the fixed-point format. 
+
 
 So when we store 5 as 1280, we're essentially reserving space for decimal values that might be needed in other operations, even if this particular number is a whole integer.
 
