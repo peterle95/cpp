@@ -6,20 +6,32 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 22:07:16 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/11 22:07:17 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/01/16 11:55:05 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 #include <cmath>
 
-Fixed::Fixed() : _fixedPointValue(0) {}
+Fixed::Fixed()
+{
+    _fixedPointValue = 0;
+}
 
-Fixed::Fixed(const int n) : _fixedPointValue(n << _fractionalBits) {}
+Fixed::Fixed(const int n)
+{
+    _fixedPointValue = n << _fractionalBits;
+}
 
-Fixed::Fixed(const float n) : _fixedPointValue(roundf(n * (1 << _fractionalBits))) {}
+Fixed::Fixed(const float n) 
+{
+    _fixedPointValue = roundf(n * (1 << _fractionalBits));
+}
 
-Fixed::Fixed(const Fixed &src) { *this = src; }
+Fixed::Fixed(const Fixed &src) 
+{ 
+    *this = src; 
+}
 
 Fixed &Fixed::operator=(const Fixed &rhs) 
 {
@@ -30,9 +42,15 @@ Fixed &Fixed::operator=(const Fixed &rhs)
 
 Fixed::~Fixed() {}
 
-int Fixed::getRawBits(void) const { return this->_fixedPointValue; }
+int Fixed::getRawBits(void) const 
+{ 
+    return this->_fixedPointValue; 
+}
 
-void Fixed::setRawBits(int const raw) { this->_fixedPointValue = raw; }
+void Fixed::setRawBits(int const raw) 
+{ 
+    this->_fixedPointValue = raw; 
+}
 
 float Fixed::toFloat(void) const 
 {
