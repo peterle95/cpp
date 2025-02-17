@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:05:56 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/01/14 18:31:51 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/02/17 11:08:44 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,10 @@ Fixed::Fixed(const Fixed &src)
     std::cout << "\n=== Float Constructor Debug ===" << std::endl;
     std::cout << "Input n: " << src._fixedPointValue << std::endl;
     
+    // In our fixed-point system, the integer _fixedPointValue is stored as a scaled number,
+    // where the scaling factor (1 << _fractionalBits) (i.e., 256 for 8 fractional bits)
+    // ensures that the fractional portion is preserved. Multiplying by this factor converts
+    // the stored integer back into its true numerical value for accurate debugging and computation.
     float scaled = src._fixedPointValue * (1 << _fractionalBits);
     std::cout << "After scaling (n * 256): " << scaled << std::endl;
     

@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 22:07:16 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/01/17 13:42:37 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/02/17 13:46:01 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,28 @@
 #include <cmath>
 
 // Default constructor initializes the fixed point value to 0
-Fixed::Fixed()
+Fixed::Fixed() : _fixedPointValue(0)
 {
-    _fixedPointValue = 0;
+    std::cout << "[DEBUG] Default constructor called (value: 0)\n";
 }
 
 // Constructor that initializes the fixed point value from an integer
 Fixed::Fixed(const int n)
 {
-    _fixedPointValue = n << _fractionalBits;
+    _fixedPointValue = n << _fractionalBits; // this is the same as multiplying times 256 because 
+    std::cout << "[DEBUG] Int constructor called (n: " << n << " -> fixed: " << _fixedPointValue << ")\n";
 }
 
 // Constructor that initializes the fixed point value from a float
 Fixed::Fixed(const float n) 
 {
+    // Using left shift (n << _fractionalBits) with a float would not work 
+    // because the bitwise left shift operator
+    // is defined only for integral types. Therefore, we use multiplication 
+    // to correctly scale the float value.
     _fixedPointValue = roundf(n * (1 << _fractionalBits));
+    std::cout << "[DEBUG] Float constructor called (n: " << n 
+              << " -> fixed: " << _fixedPointValue << ")\n";
 }
 
 // Copy constructor
@@ -46,7 +53,10 @@ Fixed &Fixed::operator=(const Fixed &rhs)
 }
 
 // Destructor
-Fixed::~Fixed() {}
+Fixed::~Fixed() 
+{
+    std::cout << "[DEBUG] Destructor called (value: " << _fixedPointValue << ")\n";
+}
 
 // Returns the raw fixed point value
 int Fixed::getRawBits(void) const 
@@ -63,13 +73,19 @@ void Fixed::setRawBits(int const raw)
 // Converts the fixed point value to a float
 float Fixed::toFloat(void) const 
 {
-    return static_cast<float>(this->_fixedPointValue) / (1 << _fractionalBits);
+    float result = static_cast<float>(this->_fixedPointValue) / (1 << _fractionalBits);
+    std::cout << "[DEBUG] toFloat() conversion: " << _fixedPointValue 
+              << " -> " << result << "\n";
+    return result;
 }
 
 // Converts the fixed point value to an integer
 int Fixed::toInt(void) const 
 { 
-    return this->_fixedPointValue >> _fractionalBits; 
+    int result = this->_fixedPointValue >> _fractionalBits;
+    std::cout << "[DEBUG] toInt() conversion: " << _fixedPointValue 
+              << " -> " << result << "\n";
+    return result;
 }
 
 // Greater than operator
@@ -132,6 +148,8 @@ bool Fixed::operator!=(const Fixed &rhs) const
 // The function returns a new Fixed object that represents the sum of the current object's value and the rhs object's value.
 Fixed Fixed::operator+(const Fixed &rhs) const 
 { 
+    std::cout << "[DEBUG] Addition operator: " << this->_fixedPointValue 
+              << " + " << rhs._fixedPointValue << "\n";
     return Fixed(this->toFloat() + rhs.toFloat()); 
 }
 
@@ -160,8 +178,10 @@ Fixed Fixed::operator*(const Fixed &rhs) const
 // Otherwise, it returns a new Fixed object that represents the quotient of the current object's value and the rhs object's value.
 Fixed Fixed::operator/(const Fixed &rhs) const 
 {
+    std::cout << "[DEBUG] Division operator: " << this->_fixedPointValue 
+              << " / " << rhs._fixedPointValue << "\n";
     if (rhs._fixedPointValue == 0) {
-        std::cerr << "Error: Division by zero" << std::endl;
+        std::cerr << "Error: Division by zero\n";
         return Fixed(0);
     }
     return Fixed(this->toFloat() / rhs.toFloat());
@@ -172,7 +192,9 @@ Fixed Fixed::operator/(const Fixed &rhs) const
 // It increments the current object's fixed-point value by 1 and returns a reference to the updated object.
 Fixed &Fixed::operator++() 
 {
+    std::cout << "[DEBUG] Pre-increment: " << _fixedPointValue;
     this->_fixedPointValue++;
+    std::cout << " -> " << _fixedPointValue << "\n";
     return *this;
 }
 
@@ -181,6 +203,7 @@ Fixed &Fixed::operator++()
 // It creates a temporary copy of the current object, increments the current object's value, and returns the temporary copy.
 Fixed Fixed::operator++(int) 
 {
+    std::cout << "[DEBUG] Post-increment (original: " << _fixedPointValue << ")\n";
     Fixed temp(*this);
     operator++();
     return temp;
@@ -211,6 +234,7 @@ Fixed Fixed::operator--(int)
 // The function uses the less than operator to determine which object is smaller and returns it.
 Fixed &Fixed::min(Fixed &a, Fixed &b) 
 { 
+    std::cout << "[DEBUG] min() called with " << a << " and " << b << "\n";
     return (a < b) ? a : b; 
 }
 
