@@ -1,84 +1,40 @@
-I'll help you present the ex00 project as a 42 student. Here's a comprehensive overview:
+# Evaluation Questions and Answers
 
-## Project Purpose and Requirements
+## 1. Copy Constructor
+**Question:** How does the copy constructor work in the `Fixed` class and why is it important?  
+**Answer:**  
+The copy constructor accepts a reference to a constant `Fixed` object to initialize a new instance. It uses the copy assignment operator (`*this = src`) to duplicate the internal `_fixedPointValue`. This ensures the new object is an exact copy without sharing memory (even though no dynamic memory is used here). It is essential for proper object copying when objects are passed by value or returned from functions.
 
-This is the first exercise of Module 02, focusing on implementing a fixed-point number class in Orthodox Canonical Form. The main requirements were to:
+## 2. Copy Assignment Operator
+**Question:** What is the significance of the self-assignment check (`if (this != &rhs)`) in the copy assignment operator?  
+**Answer:**  
+The self-assignment check prevents the scenario where an object is inadvertently assigned to itself, which could lead to data corruption or unnecessary operations. By ensuring that the source and destination are different objects, the operator safely copies the `_fixedPointValue` only when required.
 
-1. Create a `Fixed` class that represents fixed-point numbers
-2. Implement it following Orthodox Canonical Form (default constructor, copy constructor, copy assignment operator, destructor)
-3. Include specific private members:
-   - An integer to store the fixed-point value
-   - A static constant integer for fractional bits (set to 8)
-4. Provide member functions to get and set the raw bits
+## 3. Static Member Use
+**Question:** What role does the `static const int _fractionalBits` play in the `Fixed` class?  
+**Answer:**  
+The `_fractionalBits` member defines the number of bits used for the fractional part in the fixed-point representation. Being static and constant, it is shared across all instances and ensures that every object of the `Fixed` class uses the same precision configuration. This consistency is crucial for correctly handling fixed-point arithmetic operations.
 
-## Implementation Approach
+## 4. Memory Management
+**Question:** Discuss the memory management strategy used in this project and its implications during evaluation.  
+**Answer:**  
+The project does not perform any dynamic memory allocation. All data members are declared with automatic storage, and the destructor serves primarily for tracing the object lifecycle rather than for memory deallocation. Since no dynamic memory allocation occurs, this design inherently prevents memory leaks, which can be validated by tools like Valgrind.
 
-I implemented this using three main files:
+## 5. Debug Output
+**Question:** How do the debug messages within constructors and member functions assist in the evaluation process?  
+**Answer:**  
+Debug messages (e.g., "Default constructor called", "Copy constructor called", "Destructor called") provide real-time feedback about the object lifecycle and method invocations. They help evaluators trace the sequence of operations, ensuring that object creation, copying, and destruction occur as designed. This traceability is key in diagnosing and verifying correct copy semantics and lifecycle management.
 
-1. `Fixed.hpp` - Class declaration
-2. `Fixed.cpp` - Method implementations
-3. `main.cpp` - Test program
+---
 
-### Key Design Choices
+# Fixed-Point Specific Questions
 
-1. **Encapsulation**: I made `_fixedPointValue` private to protect the internal representation
-2. **Const Correctness**: Used `const` for the copy constructor parameter and `getRawBits()` method
-3. **Verbose Output**: Added descriptive messages for each constructor/destructor call to track object lifecycle
+## 6. Fixed-Point Representation Fundamentals
+**Question:** What is a fixed-point number representation, and how does it differ from floating-point representation?  
+**Answer:**  
+A fixed-point number representation stores a number as an integer along with an implied scaling factor (typically by using a fixed number of fractional bits). Unlike floating-point numbers, which allocate bits for a mantissa and exponent to handle a wide range of values dynamically, fixed-point has a fixed precision and scale. This results in predictable performance and simpler arithmetic at the cost of a limited range and precision.
 
-## Key Functions and Classes
-
-The `Fixed` class is the core component. Here are its key elements:
-
-### Private Members
-```cpp
-private:
-    int _fixedPointValue;
-    static const int _fractionalBits = 8;
-```
-
-### Constructors and Operators
-```cpp
-Fixed::Fixed() : _fixedPointValue(0) 
-{
-    std::cout << "Default constructor called" << std::endl;
-}
-
-Fixed::Fixed(const Fixed &src) 
-{
-    std::cout << "Copy constructor called" << std::endl;
-    *this = src;
-}
-
-Fixed &Fixed::operator=(const Fixed &rhs)
-{
-    std::cout << "Copy assignment operator called" << std::endl;
-    if (this != &rhs)
-        this->_fixedPointValue = rhs.getRawBits();
-    return *this;
-}
-```
-
-## Edge Cases and Error Handling
-
-1. **Self-Assignment Protection**: 
-```cpp
-if (this != &rhs)
-```
-This check prevents issues during self-assignment (e.g., `a = a`).
-
-2. **Const Correctness**: Using `const` references prevents accidental modifications:
-```cpp
-int getRawBits(void) const;
-```
-
-## What I Learned
-
-1. **Orthodox Canonical Form**: Understanding why these four components (default constructor, copy constructor, assignment operator, and destructor) are essential for proper class design.
-
-2. **Fixed-Point Numbers**: Learning about fixed-point arithmetic as an alternative to floating-point numbers.
-
-3. **Copy Semantics**: Understanding deep vs shallow copying and why proper copy construction is important.
-
-4. **Operator Overloading**: Learning how to properly implement the assignment operator with self-assignment protection.
-
-If you have any specific questions about the implementation or would like me to elaborate on any part, I'd be happy to explain further.
+## 7. Role of `_fractionalBits`
+**Question:** How does the `_fractionalBits` constant in the `Fixed` class affect the operations and precision of fixed-point arithmetic in this project?  
+**Answer:**  
+The `_fractionalBits` constant determines how many bits are used to represent the fractional part of the number. This fixed value ensures a consistent scaling factor across all fixed-point calculations, thereby regulating the precision. It directly affects the smallest increment or decrement possible in the number's value, and any arithmetic operation must adhere to the scale defined by `
