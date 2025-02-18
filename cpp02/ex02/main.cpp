@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:07:48 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/02/18 09:58:45 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/02/18 10:00:27 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ int main( void )
 
     std::cout << Fixed::max( a, b ) << std::endl;
 
-   std::cout << "Max(" << a << ", " << b << ") = " << Fixed::max(a, b) << std::endl;
+    /* std::cout << "Max(" << a << ", " << b << ") = " << Fixed::max(a, b) << std::endl;
     std::cout << "Min(" << a << ", " << b << ") = " << Fixed::min(a, b) << std::endl;
     std::cout << "Const Min(" << 1.2f << ", " << 2.5f << ") = "
               << Fixed::min(Fixed(1.2f), Fixed(2.5f)) << std::endl;
     std::cout << "Const Max(" << 4.2f << ", " << 4.3f << ") = " 
-              << Fixed::max(Fixed(4.2f), Fixed(4.3f)) << std::endl;
+              << Fixed::max(Fixed(4.2f), Fixed(4.3f)) << std::endl; */
 
     return 0;
 }
