@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 22:07:16 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/01/16 11:59:21 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/02/18 09:44:08 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,9 +129,10 @@ Fixed Fixed::operator*(const Fixed &rhs) const
 // Division operator with error handling for division by zero
 Fixed Fixed::operator/(const Fixed &rhs) const 
 {
-    if (rhs._fixedPointValue == 0) {
+    if (rhs._fixedPointValue == 0) 
+    {
         std::cerr << "Error: Division by zero" << std::endl;
-        return Fixed(0);
+        return Fixed();
     }
     return Fixed(this->toFloat() / rhs.toFloat());
 }
