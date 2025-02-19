@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 22:07:21 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/15 13:38:50 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/02/19 16:25:11 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,18 @@ public:
     Fixed operator/(const Fixed &rhs) const; /* Division operator */
 
     // Increment/Decrement operators
-    Fixed &operator++(); /* Pre-increment operator */
-    Fixed operator++(int); /* Post-increment operator */
-    Fixed &operator--(); /* Pre-decrement operator */
-    Fixed operator--(int); /* Post-decrement operator */
+    // Pre-increment operator: returns a reference to the modified object.
+    // This avoids creating a temporary copy, allowing efficient chaining.
+    Fixed &operator++();
+    // Post-increment operator: returns a new object holding the state before the increment.
+    // It doesn't return by reference because it needs to create a temporary copy.
+    Fixed operator++(int);
+    // Pre-decrement operator: returns a reference to the modified object.
+    // This avoids creating an extra copy, allowing efficient chaining.
+    Fixed &operator--();
+    // Post-decrement operator: returns a new object holding the state before the decrement.
+    // It doesn't return by reference because a temporary copy is required.
+    Fixed operator--(int);
 
     // Static member functions
     static Fixed &min(Fixed &a, Fixed &b); /* Return the minimum of two Fixed objects */
