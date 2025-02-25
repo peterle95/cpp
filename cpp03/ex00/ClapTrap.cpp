@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: pmolzer <pmolzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:24:09 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/16 16:42:34 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/02/25 14:40:30 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,3 +64,11 @@ void ClapTrap::beRepaired(unsigned int amount)
         std::cout << "ClapTrap " << name << " can't repair. Not enough energy or hit points." << std::endl;
     }
 }
+
+/* void ClapTrap::restoreEnergy(unsigned int amount)
+{
+    energyPoints += amount;
+    hitPoints += amount;
+    std::cout << "ClapTrap " << name << " restores " << amount << " energy points. Current energy points: " << energyPoints << std::endl;
+    std::cout << "ClapTrap " << name << " restores " << amount << " hit points. Current hit points: " << hitPoints << std::endl;
+} */
