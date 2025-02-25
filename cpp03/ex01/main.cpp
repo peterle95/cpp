@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: pmolzer <pmolzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:19:15 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/02/19 11:14:11 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/02/25 14:31:20 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ int main()
     scav.takeDamage(20);
     scav.beRepaired(15);
     scav.guardGate();
-    
+    // Don’t forget to add more tests to your program.
     return 0;
 }
