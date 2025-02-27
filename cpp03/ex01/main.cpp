@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmolzer <pmolzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:19:15 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/02/25 14:31:20 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/02/27 10:43:13 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 /*TASK OF THE PROGRAM
 
 Because you can never have enough ClapTraps, you will now create a derived robot.
-It will be named ScavTrap and will inherit the constructors and destructor from ClapTrap. However, its constructors, destructor and attack() will print different messages.
+It will be named ScavTrap and will inherit the constructors and destructor from ClapTrap. 
+However, its constructors, destructor and attack() will print different messages.
 After all, ClapTraps are aware of their individuality.
 Note that proper construction/destruction chaining must be shown in your tests.
 When a ScavTrap is created, the program starts by building a ClapTrap. Destruction is
