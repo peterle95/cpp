@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:19:15 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/02/27 10:43:13 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/02/28 16:58:14 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,9 @@ Don’t forget to add more tests to your program.*/
 
 int main() 
 {
-    ClapTrap clap("CL4P-TP");
     ScavTrap scav("SC4V-TP");
     
-    clap.attack("Enemy");
-    clap.takeDamage(5);
-    clap.beRepaired(3);
-    
-    scav.attack("Another Enemy");
+    scav.attack("Enemy");
     scav.takeDamage(20);
     scav.beRepaired(15);
     scav.guardGate();
