@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:23:39 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/02/28 16:48:23 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/04 14:59:17 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 // This explicitly calls the base class constructor first before executing ScavTrap's constructor body
 {
     std::cout << "ScavTrap " << name << " is created!" << std::endl;
-    this->setHitPoints(100);
+    this->setHitPoints(220);
     this->setEnergyPoints(50);
     this->setAttackDamage(20);
 }
