@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 22:07:39 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/02/27 11:12:04 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/04 14:19:02 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,30 @@ Implement and turn in your own tests to ensure your code works as expected.
 
 int main() 
 {
-    ClapTrap clap("CL4P-TP");
-    // ClapTrap clap2("CL4P-TP2"); 
+    ClapTrap clap("Clappy");
+    ClapTrap clap2("Clappy2");  // Uncommented second instance
     
+    // Initial functioning tests
     clap.attack("Enemy");
     clap.attack("Some Enemy");
     clap.takeDamage(5);
-    /* clap.takeDamage(6); */
     clap.beRepaired(3);
 
-    // clap2.attack("Another Enemy");
-    // clap.attack("Another Enemy");
+    // Energy depletion tests
+    for (int i = 0; i < 8; i++) {  // Already used 2 energy, 8 remaining
+        clap.attack("Energy Drain Target");
+    }
+    clap.attack("Should Fail Attack");  // Should fail (no energy)
     
-    // Implement and turn in your own tests to ensure your code works as expected.
+    // Hit points exhaustion tests
+    clap.takeDamage(8);  // Should reduce to 0 HP (3 remaining after repair - 8 damage)
+    clap.beRepaired(3);  // Should fail (no HP left)
+    clap.attack("Dead Trap");  // Should fail (no HP)
+
+    // Second instance tests
+    clap2.attack("Another Enemy");  // Should work independently
+    clap2.takeDamage(15);  // Should set HP to 0
+    clap2.beRepaired(5);  // Should fail (no HP)
+
     return 0;
 }
