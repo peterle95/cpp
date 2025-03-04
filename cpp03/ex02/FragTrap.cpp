@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:26:48 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/07 15:57:06 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/04 14:31:45 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name) 
 {
-    std::cout << "FragTrap " << this->getName() << " is created!" << std::endl;
+    std::cout << "FragTrap: " << this->getName() << " is created!" << std::endl;
     this->setHitPoints(100);
     this->setEnergyPoints(100);
     this->setAttackDamage(30);
@@ -23,23 +23,23 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name)
 
 FragTrap::~FragTrap() 
 {
-    std::cout << "FragTrap " << this->getName() << " is destroyed!" << std::endl;
+    std::cout << "FragTrap: " << this->getName() << " is destroyed!" << std::endl;
 }
 
 void FragTrap::attack(const std::string& target) 
 {
     if (this->getEnergyPoints() > 0 && this->getHitPoints() > 0) 
     {
-        std::cout << "FragTrap " << this->getName() << " attacks " << target 
+        std::cout << "FragTrap: " << this->getName() << " attacks " << target 
                   << ", causing " << this->getAttackDamage() << " points of damage!" << std::endl;
         this->setEnergyPoints(this->getEnergyPoints() - 1);
     } else 
     {
-        std::cout << "FragTrap " << this->getName() << " can't attack. Not enough energy or hit points." << std::endl;
+        std::cout << "FragTrap: " << this->getName() << " can't attack. Not enough energy or hit points." << std::endl;
     }
 }
 
 void FragTrap::highFivesGuys(void) 
 {
-    std::cout << "FragTrap " << this->getName() << " enthusiastically requests high fives from everyone!" << std::endl;
+    std::cout << "FragTrap: " << this->getName() << " enthusiastically requests high fives from everyone!" << std::endl;
 }
