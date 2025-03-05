@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 17:47:13 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/05 11:24:56 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/05 13:11:01 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,20 @@
 
 #include <string>  /* Include the string library for using std::string */
 
-/* 
- * ClapTrap class definition.
- * This class simulates a ClapTrap character with attributes for name, hit points,
- * energy points, and attack damage. It provides methods for attacking, taking damage,
- * repairing, and accessing/modifying its attributes.
- */
+/*
+* Protected access enables direct member access in derived classes while
+* maintaining encapsulation from external code. This design choice:
+* 1. Allows derived classes (like ScavTrap) to modify attributes directly
+*    without getters/setters
+* 2. Maintains proper encapsulation hierarchy - only immediate descendants
+*    get access
+* 3. Reduces boilerplate code while keeping implementation details hidden
+*    from unrelated classes
+* 
+* Tradeoff: Weakens strict encapsulation but is appropriate for tightly
+* coupled inheritance hierarchies where derived classes need intimate
+* knowledge of base implementation
+*/
 class ClapTrap 
 {
 protected:  /* Access specifier for private members */
@@ -44,8 +52,10 @@ protected:  /* Access specifier for private members */
 public:  /* Access specifier for public members */
     ClapTrap(std::string name);  /* Constructor that initializes the ClapTrap with a name */
     ~ClapTrap();  /* Destructor that cleans up when a ClapTrap instance is destroyed */
+    // virtual ~ClapTrap(); // Destructor for virtual member functions
 
     void attack(const std::string& target);  /* Method for the ClapTrap to attack a target */
+    // virtual void attack(const std::string& target); // 
     void takeDamage(unsigned int amount);  /* Method for the ClapTrap to take damage */
     void beRepaired(unsigned int amount);  /* Method for the ClapTrap to repair itself */
 

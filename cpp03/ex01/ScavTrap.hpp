@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:18:59 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/02/28 16:47:29 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/05 13:10:53 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ public:
     ~ScavTrap();
 
     void attack(const std::string& target);
+    // virtual void attack(const std::string& target);
     void guardGate();
 };
 
