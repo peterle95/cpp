@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:19:15 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/05 11:40:06 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/05 16:07:52 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,19 @@ int main()
     
     // Test 1: Basic object lifecycle
     ScavTrap scav("\033[31mscavvy\033[0m");
+    ClapTrap* base = &scav;
+
     std::cout << "\nCreated ScavTrap with 100 HP, 50 EP, 20 AD\n";
     
     // Test 2: Single attack
-    scav.attack("\033[31mEnemy\033[0m");
+    scav.attack("\033[34mEnemy\033[0m"); // Calls ScavTrap::attack
+    base->attack("\033[34mAnother Enemy\033[0m"); // Calls ClapTrap::attack (no virtual)
+    // Explanation:
+    // If the attack method were declared as virtual in ClapTrap,
+    // a call via a base pointer (like 'base->attack(...)') would be dynamically dispatched
+    // and execute ScavTrap::attack due to runtime polymorphism.
+    // Without the virtual keyword, the method resolution is done at compile time based on the pointer type,
+    // so base->attack(...) calls ClapTrap::attack.
     
     // Test 3: Take damage and repair
     scav.takeDamage(30);

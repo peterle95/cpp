@@ -1,90 +1,153 @@
 ### Overview
 
-This program implements a simple simulation of two types of characters, `ClapTrap` and `ScavTrap`, which can perform actions like attacking, taking damage, and being repaired. The program demonstrates object-oriented programming concepts such as classes, inheritance, and encapsulation.
+This simulation demonstrates C++98 inheritance mechanics through `ClapTrap` (base) and `ScavTrap` (derived) classes. Key implementation details:
 
-### Step-by-Step Explanation
+```cpp:cpp03/ex01/ClapTrap.hpp
+// Protected members enable direct access in derived classes
+class ClapTrap {
+protected:
+    std::string name;
+    unsigned int hitPoints;
+    unsigned int energyPoints; 
+    unsigned int attackDamage;
+public:
+    ClapTrap(std::string name);
+    ~ClapTrap();
+    void attack(const std::string& target);
+    void takeDamage(unsigned int amount);
+    void beRepaired(unsigned int amount);
+};
+```
 
-1. **File Structure**:
-   - The program consists of multiple files:
-     - `main.cpp`: The entry point of the program.
-     - `ClapTrap.hpp` and `ClapTrap.cpp`: Header and implementation files for the `ClapTrap` class.
-     - `ScavTrap.hpp` and `ScavTrap.cpp`: Header and implementation files for the `ScavTrap` class, which inherits from `ClapTrap`.
-     - `Makefile`: A file used to compile the program.
+```cpp:cpp03/ex01/ScavTrap.hpp
+// Public inheritance with method hiding
+class ScavTrap : public ClapTrap {
+public:
+    ScavTrap(std::string name);
+    ~ScavTrap();
+    void attack(const std::string& target); // Hides ClapTrap::attack
+    void guardGate();
+};
+```
 
-2. **Main Function**:
-   - The program starts execution from the `main` function defined in `main.cpp`.
+### Key Technical Implementation Details
 
-   ```cpp
-   int main() 
-   {
-       ClapTrap clap("CL4P-TP");
-       ScavTrap scav("SC4V-TP");
-   ```
+1. **Construction/Destruction Order**:
+```cpp:cpp03/ex01/main.cpp
+ClapTrap *ptr = new ScavTrap("Test");
+// Output:
+// ClapTrap Test is created!
+// ScavTrap Test is created!
+delete ptr; 
+// Output:
+// ScavTrap Test is destroyed!
+// ClapTrap Test is destroyed!
+```
 
-   - Here, two objects are created:
-     - `clap`: An instance of `ClapTrap` initialized with the name "CL4P-TP".
-     - `scav`: An instance of `ScavTrap` initialized with the name "SC4V-TP".
+2. **Attribute Initialization**:
+```cpp:cpp03/ex01/ScavTrap.cpp
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name) {
+    hitPoints = 100;    // Direct access to protected members
+    energyPoints = 50;
+    attackDamage = 20;
+}
+```
 
-3. **Object Creation**:
-   - When the `ClapTrap` and `ScavTrap` objects are created, their constructors are called.
+3. **Function Hiding Mechanism**:
+```cpp:cpp03/ex01/main.cpp
+ScavTrap scav("S1");
+ClapTrap* base = &scav;
 
-   - **ClapTrap Constructor** (assumed to be in `ClapTrap.cpp`):
-     - Initializes the character's attributes (hit points, energy points, attack damage).
-     - Outputs a message indicating the character's creation.
+scav.attack("A");  // Calls ScavTrap::attack
+base->attack("B"); // Calls ClapTrap::attack (no virtual)
+```
 
-   - **ScavTrap Constructor**:
-     - Inherits from `ClapTrap` and initializes its attributes.
-     - Sets specific values for `ScavTrap` (e.g., hit points = 100, energy points = 50, attack damage = 20).
-     - Outputs a message indicating the `ScavTrap` creation.
+### Critical Technical Considerations
 
-4. **Performing Actions**:
-   - The program then simulates actions performed by the characters:
+1. **Memory Layout**:
+```
+ClapTrap Instance: [name][hitPoints][energyPoints][attackDamage]
+ScavTrap Instance: [ClapTrap members][no additional members]
+Size: Both 28 bytes (assuming 4-byte ints and 16-byte string)
+```
 
-   ```cpp
-       clap.attack("Enemy");
-       clap.takeDamage(5);
-       clap.beRepaired(3);
-   ```
+2. **Method Resolution Table**:
+```
+Without virtual:
+ClapTrap: attack@0x1000
+ScavTrap: attack@0x2000, guardGate@0x3000
 
-   - **ClapTrap Actions**:
-     - `attack`: The `clap` object attacks an enemy, which reduces the enemy's hit points (not shown in the provided code).
-     - `takeDamage`: The `clap` object takes damage, which reduces its hit points.
-     - `beRepaired`: The `clap` object is repaired, which increases its hit points.
+With virtual (hypothetical):
+VTable ClapTrap: [~ClapTrap][attack]
+VTable ScavTrap: [~ScavTrap][attack_override]
+```
 
-   - **ScavTrap Actions**:
-   ```cpp
-       scav.attack("Another Enemy");
-       scav.takeDamage(20);
-       scav.beRepaired(15);
-       scav.guardGate();
-   ```
+3. **Destruction Chain**:
+```
+delete ptr:
+1. ScavTrap destructor (explicit)
+2. ClapTrap destructor (implicit base cleanup)
+```
 
-   - Similar to `ClapTrap`, the `scav` object performs actions:
-     - Attacks another enemy.
-     - Takes damage.
-     - Repairs itself.
-     - Calls `guardGate`, which puts the `scav` in a special mode (outputs a message).
+### Evaluation Focus Points
 
-5. **Return Statement**:
-   - The `main` function ends with a return statement, indicating successful execution of the program.
+1. **Construction Validation**:
+```cpp
+ScavTrap scav("SC4V");
+// Verify initialization:
+assert(scav.hitPoints == 100);
+assert(scav.energyPoints == 50); 
+assert(scav.attackDamage == 20);
+```
 
-   ```cpp
-       return 0;
-   }
-   ```
+2. **Energy Point Management**:
+```cpp
+ClapTrap clap("CL4P");
+for (int i = 0; i < 12; i++) {
+    clap.attack("Target"); // Fails after 10th attack
+}
+```
 
-### Important Concepts
+3. **Type Slice Protection**:
+```cpp
+ScavTrap scav("S");
+ClapTrap copy = scav;  // Slicing occurs
+copy.attack("X");      // Always uses ClapTrap::attack
+```
 
-- **Classes and Objects**: The program uses classes (`ClapTrap` and `ScavTrap`) to define the properties and behaviors of the characters. Objects are instances of these classes.
+### Updated Implementation Notes
 
-- **Inheritance**: `ScavTrap` inherits from `ClapTrap`, meaning it can use the properties and methods of `ClapTrap`, while also having its own specific behaviors.
+1. **Protected Member Access**:
+- Allows direct manipulation in derived classes
+- Avoids getter/setter boilerplate
+- Requires careful maintenance of invariants
 
-- **Encapsulation**: The attributes of the classes (like hit points, energy points) are typically private, and access to them is controlled through public methods (getters and setters).
+2. **Destruction Sequence**:
+- Derived destructor completes first
+- Base destructor automatically invoked after
+- Critical for resource cleanup order
 
-- **Polymorphism**: Although not explicitly shown in the provided code, polymorphism allows for methods to be overridden in derived classes, enabling different behaviors for `ScavTrap` compared to `ClapTrap`.
+3. **Attack Method Hiding**:
+- ScavTrap::attack hides ClapTrap::attack
+- No polymorphic behavior without `virtual`
+- Explicit scope resolution required:
+```cpp
+ScavTrap s("S");
+s.ClapTrap::attack("Target"); // Force base version
+```
 
-- **Makefile**: The `Makefile` is used to compile the program. It defines how to build the executable from the source files, including cleaning up object files and the executable.
+### Execution Flow Visualization
 
-### Conclusion
+```text
+Construction:
+ClapTrap Constructor -> ScavTrap Constructor
 
-This program is a simple demonstration of object-oriented programming in C++. It showcases how to create classes, instantiate objects, and implement basic functionality through methods. The use of inheritance allows for code reuse and the creation of specialized behavior in derived classes.
+Method Call:
+ScavTrap.attack() 
+  if (energy > 0 && HP > 0)
+    print attack message
+    energy--
+
+Destruction:
+ScavTrap Destructor -> ClapTrap Destructor
+```
