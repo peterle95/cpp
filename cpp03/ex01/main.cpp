@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:19:15 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/05 11:13:36 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/05 11:34:17 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,50 +37,6 @@ Don't forget to add more tests to your program*/
 static void separator() {
     std::cout << "\n\033[36m************************************\033[0m\n" << std::endl;
 }
-
-/* int main() 
-{
-    separator();
-    std::cout << "1. Testing Construction/Destruction Order:\n";
-    {
-        ScavTrap *scav = new ScavTrap("ConstructorTest");
-        delete scav;
-    }
-
-    separator();
-    std::cout << "2. Testing Initial Values:\n";
-    ScavTrap scav("Scavy");
-    std::cout << "Initial Hit Points: " << scav.getHitPoints() << " (should be 100)\n";
-    std::cout << "Initial Energy Points: " << scav.getEnergyPoints() << " (should be 50)\n";
-    std::cout << "Initial Attack Damage: " << scav.getAttackDamage() << " (should be 20)\n";
-
-    separator();
-    std::cout << "3. Testing Energy Point Depletion:\n";
-    for (int i = 0; i < 52; i++) {
-        std::cout << "Attack #" << (i+1) << ": ";
-        scav.attack("Dummy");
-    }
-
-    separator();
-    std::cout << "4. Testing Hit Point Management:\n";
-    scav.takeDamage(99);
-    scav.takeDamage(5);
-    scav.beRepaired(50);
-    scav.takeDamage(150);
-
-    separator();
-    std::cout << "5. Testing ClapTrap/ScavTrap Differentiation:\n";
-    ClapTrap *poly = new ScavTrap("PolymorphTest");
-    poly->attack("Target");
-    delete poly;
-
-    separator();
-    std::cout << "6. Testing Gate Keeper Mode:\n";
-    scav.guardGate();
-    
-    separator();
-    return 0;
-} */
 
 int main() 
 {
