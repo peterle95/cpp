@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 17:47:13 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/16 17:52:52 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/05 11:24:56 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
  */
 class ClapTrap 
 {
-private:  /* Access specifier for private members */
+protected:  /* Access specifier for private members */
     std::string name;  /* The name of the ClapTrap instance */
     unsigned int hitPoints;  /* The health of the ClapTrap */
     unsigned int energyPoints;  /* The energy available for actions */
@@ -49,16 +49,6 @@ public:  /* Access specifier for public members */
     void takeDamage(unsigned int amount);  /* Method for the ClapTrap to take damage */
     void beRepaired(unsigned int amount);  /* Method for the ClapTrap to repair itself */
 
-        // Getters
-    std::string getName() const;
-    unsigned int getHitPoints() const;
-    unsigned int getEnergyPoints() const;
-    unsigned int getAttackDamage() const;
-    // Setters
-    void setName(const std::string& name);
-    void setHitPoints(unsigned int hitPoints);
-    void setEnergyPoints(unsigned int energyPoints);
-    void setAttackDamage(unsigned int attackDamage);
 };
 
 #endif
