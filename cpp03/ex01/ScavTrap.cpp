@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:23:39 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/05 11:37:21 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/05 13:59:09 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,6 @@ ScavTrap::~ScavTrap()
 {
     std::cout << "ScavTrap: " << this->name << " is destroyed!" << std::endl;
 }
-
-/* void ScavTrap::attack(const std::string& target) 
-{
-    if (ClapTrap::getEnergyPoints() > 0 && ClapTrap::getHitPoints() > 0) 
-    {
-        std::cout << "ScavTrap: " << ClapTrap::getName() << " attacks " << target 
-                  << ", causing " << ClapTrap::getAttackDamage() << " points of damage!" << std::endl;
-        ClapTrap::setEnergyPoints(ClapTrap::getEnergyPoints() - 1);
-    } else 
-    {
-        std::cout << "ScavTrap: " << ClapTrap::getName() << " can't attack. Not enough energy or hit points." << std::endl;
-    }
-}
-
-void ScavTrap::guardGate() {
-    std::cout << "ScavTrap: " << ClapTrap::getName() << " is now in Gate keeper mode." << std::endl;
-} */
 
 void ScavTrap::attack(const std::string& target) 
 {
