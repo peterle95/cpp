@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:19:15 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/05 11:34:17 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/05 11:39:02 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ int main()
     std::cout << "BASIC FUNCTIONALITY TEST\n";
     
     // Test 1: Basic object lifecycle
-    ScavTrap scav("scavvy");
+    ScavTrap scav("\033[31mscavvy\033[0m");
     std::cout << "\nCreated ScavTrap with 100 HP, 50 EP, 20 AD\n";
     
     // Test 2: Single attack
-    scav.attack("Training Dummy");
+    scav.attack("\033[31mEnemy\033[0m");
     
     // Test 3: Take damage and repair
     scav.takeDamage(30);
@@ -58,7 +58,7 @@ int main()
     scav.guardGate();
     
     // Test 5: Verify destruction order
-    ClapTrap *ptr = new ScavTrap("PointerTest");
+    ClapTrap *ptr = new ScavTrap("\033[31mPointerTest\033[0m");
     delete ptr;
 
     separator();
