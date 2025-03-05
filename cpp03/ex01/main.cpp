@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:19:15 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/04 15:03:47 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/05 11:12:01 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,18 +88,18 @@ int main()
     std::cout << "BASIC FUNCTIONALITY TEST\n";
     
     // Test 1: Basic object lifecycle
-    ScavTrap basic("SimpleScav");
+    ScavTrap scav("scavvy");
     std::cout << "\nCreated ScavTrap with 100 HP, 50 EP, 20 AD\n";
     
     // Test 2: Single attack
-    basic.attack("Training Dummy");
+    scav.attack("Enemy");
     
     // Test 3: Take damage and repair
-    basic.takeDamage(30);
-    basic.beRepaired(15);
+    scav.takeDamage(30);
+    scav.beRepaired(15);
     
     // Test 4: Special ability
-    basic.guardGate();
+    scav.guardGate();
     
     // Test 5: Verify destruction order
     ClapTrap *ptr = new ScavTrap("PointerTest");
