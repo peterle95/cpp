@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:26:30 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/12 14:08:44 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/12 14:31:55 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,6 @@
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
 #include <iostream>
-
-/*TASK OF THE PROGRAM
-Making ClapTraps is probably starting to get on your nerves.
-Now, implement a FragTrap class that inherits from ClapTrap. It is very similar to
-ScavTrap. However, its construction and destruction messages must be different. Proper
-construction/destruction chaining must be shown in your tests. When a FragTrap is
-created, the program starts by building a ClapTrap. Destruction is in reverse order.
-Same things for the attributes, but with different values this time:
-•Name, which is passed as parameter to a constructor
-•Hit points (100), represent the health of the ClapTrap
-•Energy points (100)
-•Attack damage (30)
-FragTrap has a special capacity too:
-void highFivesGuys(void);
-This member function displays a positive high fives request on the standard output.*/
-
 
 /* int main() 
 {
@@ -52,8 +36,6 @@ This member function displays a positive high fives request on the standard outp
     frag.highFivesGuys();
     return 0;
 } */
-
-// ... existing code ...
 
 int main() 
 {
