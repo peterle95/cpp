@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:23:39 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/05 13:59:09 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/12 12:59:25 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name) 
 {
     std::cout << "ScavTrap: " << name << " is created!" << std::endl;
-    hitPoints = 100;    // Direct access
-    energyPoints = 50;  // Direct access 
-    attackDamage = 20;  // Direct access
+    hitPoints = 100;   
+    energyPoints = 50;  
+    attackDamage = 20; 
 }
 
 ScavTrap::~ScavTrap()
