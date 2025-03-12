@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:19:15 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/05 16:07:52 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/05 16:23:25 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,31 @@ int main()
     // Test 5: Verify destruction order
     ClapTrap *ptr = new ScavTrap("\033[31mPointerTest\033[0m");
     delete ptr;
+    /* 
+    Why the order matters:
+    1. Construction Order (Base → Derived):
+       - Base class must be fully initialized before derived class construction
+       - Ensures derived class can safely use base class members during its construction
+       - Follows ISO C++98 [class.base.init]/5: "Base classes are initialized in declaration order"
+
+    2. Destruction Order (Derived → Base):
+       - Derived class must clean up its resources first
+       - Base class might depend on its own members still being valid during destruction
+       - Mandated by C++98 [class.dtor]/4: "Destructors are invoked in reverse order of construction"
+
+    3. Memory Implications:
+       Stack unwinding: 
+       - Derived destructor runs before base destructor during stack unwinding
+       - Ensures proper release of resources in exception-safe code
+
+    4. Inheritance Safety:
+       - Without virtual destructor (C++98 limitation), proper order only guaranteed when:
+         a) Deleting through derived pointer (as in this test)
+         b) Not using polymorphic deletion through base pointer
+       - Current implementation is safe because we're: 
+         1) Allocating as ScavTrap (even though storing in ClapTrap*)
+         2) Deleting through ScavTrap* (implicitly via type conversion)
+    */
 
     separator();
     return 0;
