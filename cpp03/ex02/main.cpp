@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:26:30 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/04 16:03:46 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/12 14:08:44 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,60 +59,59 @@ int main()
 {
     // Test construction order
     std::cout << "\n=== Constructing ClapTraps ===" << std::endl;
-    ClapTrap clap("clappy");
-    ScavTrap scav("scavvy");
-    FragTrap frag("fraggy");
+    ClapTrap clap("\033[31mclappy\033[0m");
+    ScavTrap scav("\033[31mscavvy\033[0m");
+    FragTrap frag("\033[31mfraggy\033[0m");
 
-    // Verify initial FragTrap values
+    // Verify initial FragTrap stats
     std::cout << "\n=== Initial FragTrap Stats ===" << std::endl;
-    std::cout << "Name: " << frag.getName() << std::endl;
-    std::cout << "HP: " << frag.getHitPoints() << " EP: " << frag.getEnergyPoints()
-              << " AD: " << frag.getAttackDamage() << std::endl;
+    frag.showStats();
 
     // Test basic functionality
     std::cout << "\n=== Basic Functionality Tests ===" << std::endl;
-    clap.attack("Enemy");
+    clap.attack("\033[94mEnemy\033[0m");
     clap.takeDamage(5);
     clap.beRepaired(3);
     
-    scav.attack("Another Enemy");
+    scav.attack("\033[94mAnother Enemy\033[0m");
     scav.takeDamage(20);
     scav.beRepaired(15);
     scav.guardGate();
     
-    frag.attack("Big Enemy");
+    frag.attack("\033[94mBig Enemy\033[0m");
     frag.takeDamage(30);
     frag.beRepaired(25);
     frag.highFivesGuys();
 
     // Test energy depletion
     std::cout << "\n=== Energy Depletion Test ===" << std::endl;
-    FragTrap energy_test("EnergyTest");
-    for (int i = 0; i < 100; i++) {
-        energy_test.attack("Target Dummy");
+    FragTrap energy_test("\033[31mEnergyTest\033[0m");
+    for (int i = 0; i < 100; i++) 
+    {
+        energy_test.attack("\033[94mTarget Dummy\033[0m");
     }
     energy_test.attack("Should Fail");  // No energy left
 
     // Test destruction order with nested scope
     std::cout << "\n=== Construction/Destruction Order Test ===" << std::endl;
     {
-        FragTrap temp("TemporaryFrag");
+        FragTrap temp("\033[31mTemporaryFrag\033[0m");
         temp.highFivesGuys();
     } // Destructor called here before main's frag
 
     // Test death and repair limitations
     std::cout << "\n=== Death and Repair Tests ===" << std::endl;
-    FragTrap mortal("MortalFrag");
+    FragTrap mortal("\033[31mMortalFrag\033[0m");
     mortal.takeDamage(100);  // Reduce HP to 0
-    mortal.attack("Ghost");  // Should fail
+    mortal.attack("\033[94mGhost\033[0m");  // Should fail
     mortal.beRepaired(50);   // Should fail
     mortal.highFivesGuys();  // Should still work (if allowed)
 
     // Test different attack values
     std::cout << "\n=== Class-Specific Attack Values ===" << std::endl;
-    clap.attack("Enemy");  // 0 damage (ClapTrap default)
-    scav.attack("Enemy");  // 20 damage (ScavTrap)
-    frag.attack("Enemy");  // 30 damage (FragTrap)
+    clap.attack("\033[94mEnemy\033[0m");  // 0 damage (ClapTrap default)
+    scav.attack("\033[94mEnemy\033[0m");  // 20 damage (ScavTrap)
+    frag.attack("\033[94mEnemy\033[0m");  // 30 damage (FragTrap)
 
     // Destruction order of main objects will be shown here
     std::cout << "\n=== Destroying Main Objects ===" << std::endl;

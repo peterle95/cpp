@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:26:48 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/04 14:31:45 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/12 13:51:31 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,40 @@
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name) 
 {
-    std::cout << "FragTrap: " << this->getName() << " is created!" << std::endl;
-    this->setHitPoints(100);
-    this->setEnergyPoints(100);
-    this->setAttackDamage(30);
+    std::cout << "FragTrap: " << this->name << " is created!" << std::endl;
+    this->hitPoints = 100;
+    this->energyPoints = 100;
+    this->attackDamage = 30;
 }
 
 FragTrap::~FragTrap() 
 {
-    std::cout << "FragTrap: " << this->getName() << " is destroyed!" << std::endl;
+    std::cout << "FragTrap: " << this->name << " is destroyed!" << std::endl;
 }
 
 void FragTrap::attack(const std::string& target) 
 {
-    if (this->getEnergyPoints() > 0 && this->getHitPoints() > 0) 
+    if (this->energyPoints > 0 && this->hitPoints> 0) 
     {
-        std::cout << "FragTrap: " << this->getName() << " attacks " << target 
-                  << ", causing " << this->getAttackDamage() << " points of damage!" << std::endl;
-        this->setEnergyPoints(this->getEnergyPoints() - 1);
+        std::cout << "FragTrap: " << this->name << " attacks " << target 
+                  << ", causing " << this->attackDamage << " points of damage!" << std::endl;
+        this->energyPoints = this->energyPoints - 1;
     } else 
     {
-        std::cout << "FragTrap: " << this->getName() << " can't attack. Not enough energy or hit points." << std::endl;
+        std::cout << "FragTrap: " << this->name << " can't attack. Not enough energy or hit points." << std::endl;
     }
 }
 
 void FragTrap::highFivesGuys(void) 
 {
-    std::cout << "FragTrap: " << this->getName() << " enthusiastically requests high fives from everyone!" << std::endl;
+    std::cout << "FragTrap: " << this->name << " enthusiastically requests high fives from everyone!" << std::endl;
+}
+
+void FragTrap::showStats() const 
+{
+    std::cout << "FragTrap " << name << " stats: "
+              << "HP: " << hitPoints
+              << " EP: " << energyPoints
+              << " AD: " << attackDamage 
+              << std::endl;
 }
