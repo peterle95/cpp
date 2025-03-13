@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 22:07:39 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/04 14:19:02 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/13 14:55:39 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,30 +40,31 @@ Implement and turn in your own tests to ensure your code works as expected.
 
 int main() 
 {
-    ClapTrap clap("Clappy");
-    ClapTrap clap2("Clappy2");  // Uncommented second instance
+    ClapTrap clap("\033[31mclappy\033[0m");
+    ClapTrap clap2("\033[31mclappy2\033[0m");
     
     // Initial functioning tests
-    clap.attack("Enemy");
-    clap.attack("Some Enemy");
+    clap.attack("\033[94mEnemy\033[0m");
+    clap.attack("\033[94mSome Enemy\033[0m");
     clap.takeDamage(5);
     clap.beRepaired(3);
 
     // Energy depletion tests
-    for (int i = 0; i < 8; i++) {  // Already used 2 energy, 8 remaining
-        clap.attack("Energy Drain Target");
+    for (int i = 0; i < 8; i++) 
+    {
+        clap.attack("\033[94mEnergy Drain Target\033[0m");
     }
-    clap.attack("Should Fail Attack");  // Should fail (no energy)
+    clap.attack("\033[94mShould Fail Attack\033[0m");
     
     // Hit points exhaustion tests
-    clap.takeDamage(8);  // Should reduce to 0 HP (3 remaining after repair - 8 damage)
-    clap.beRepaired(3);  // Should fail (no HP left)
-    clap.attack("Dead Trap");  // Should fail (no HP)
+    clap.takeDamage(8);
+    clap.beRepaired(3);
+    clap.attack("\033[94mDead clappy\033[0m");
 
     // Second instance tests
-    clap2.attack("Another Enemy");  // Should work independently
-    clap2.takeDamage(15);  // Should set HP to 0
-    clap2.beRepaired(5);  // Should fail (no HP)
+    clap2.attack("\033[94mAnother Enemy\033[0m");
+    clap2.takeDamage(15);
+    clap2.beRepaired(5);
 
     return 0;
 }
