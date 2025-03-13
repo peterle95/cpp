@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:26:30 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/13 15:13:42 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/13 15:14:42 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,21 +79,21 @@ int main()
     {
         FragTrap temp("\033[31mTemporaryFrag\033[0m");
         temp.highFivesGuys();
-    } // Destructor called here before main's frag
+    } 
 
     // Test death and repair limitations
     std::cout << "\n=== Death and Repair Tests ===" << std::endl;
     FragTrap mortal("\033[31mMortalFrag\033[0m");
-    mortal.takeDamage(100);  // Reduce HP to 0
-    mortal.attack("\033[94mGhost\033[0m");  // Should fail
-    mortal.beRepaired(50);   // Should fail
-    mortal.highFivesGuys();  // Should still work (if allowed)
+    mortal.takeDamage(100);  
+    mortal.attack("\033[94mGhost\033[0m");  
+    mortal.beRepaired(50);   
+    mortal.highFivesGuys();  
 
     // Test different attack values
     std::cout << "\n=== Class-Specific Attack Values ===" << std::endl;
-    clap.attack("\033[94mEnemy\033[0m");  // 0 damage (ClapTrap default)
-    scav.attack("\033[94mEnemy\033[0m");  // 20 damage (ScavTrap)
-    frag.attack("\033[94mEnemy\033[0m");  // 30 damage (FragTrap)
+    clap.attack("\033[94mEnemy\033[0m");  
+    scav.attack("\033[94mEnemy\033[0m");  
+    frag.attack("\033[94mEnemy\033[0m");  
 
     // Destruction order of main objects will be shown here
     std::cout << "\n=== Destroying Main Objects ===" << std::endl;
