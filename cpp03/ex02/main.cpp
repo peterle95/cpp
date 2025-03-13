@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:26:30 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/12 14:31:55 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/13 15:13:42 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int main()
     {
         energy_test.attack("\033[94mTarget Dummy\033[0m");
     }
-    energy_test.attack("Should Fail");  // No energy left
+    energy_test.attack("\033[94mShould Fail\033[0m");
 
     // Test destruction order with nested scope
     std::cout << "\n=== Construction/Destruction Order Test ===" << std::endl;

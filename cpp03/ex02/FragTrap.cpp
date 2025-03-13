@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:26:48 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/12 13:51:31 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/13 15:09:40 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void FragTrap::highFivesGuys(void)
     std::cout << "FragTrap: " << this->name << " enthusiastically requests high fives from everyone!" << std::endl;
 }
 
-void FragTrap::showStats() const 
+void FragTrap::showStats() 
 {
     std::cout << "FragTrap " << name << " stats: "
               << "HP: " << hitPoints
