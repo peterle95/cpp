@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:26:30 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/13 15:14:42 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/14 15:44:38 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,41 +15,15 @@
 #include "FragTrap.hpp"
 #include <iostream>
 
-/* int main() 
-{
-    ClapTrap clap("clappy");
-    ScavTrap scav("scavvy");
-    FragTrap frag("fraggy");
-    
-    clap.attack("Enemy");
-    clap.takeDamage(5);
-    clap.beRepaired(3);
-    
-    scav.attack("Another Enemy");
-    scav.takeDamage(20);
-    scav.beRepaired(15);
-    scav.guardGate();
-    
-    frag.attack("Big Enemy");
-    frag.takeDamage(30);
-    frag.beRepaired(25);
-    frag.highFivesGuys();
-    return 0;
-} */
-
 int main() 
 {
-    // Test construction order
-    std::cout << "\n=== Constructing ClapTraps ===" << std::endl;
     ClapTrap clap("\033[31mclappy\033[0m");
     ScavTrap scav("\033[31mscavvy\033[0m");
     FragTrap frag("\033[31mfraggy\033[0m");
 
-    // Verify initial FragTrap stats
     std::cout << "\n=== Initial FragTrap Stats ===" << std::endl;
     frag.showStats();
 
-    // Test basic functionality
     std::cout << "\n=== Basic Functionality Tests ===" << std::endl;
     clap.attack("\033[94mEnemy\033[0m");
     clap.takeDamage(5);
@@ -65,7 +39,6 @@ int main()
     frag.beRepaired(25);
     frag.highFivesGuys();
 
-    // Test energy depletion
     std::cout << "\n=== Energy Depletion Test ===" << std::endl;
     FragTrap energy_test("\033[31mEnergyTest\033[0m");
     for (int i = 0; i < 100; i++) 
@@ -74,14 +47,6 @@ int main()
     }
     energy_test.attack("\033[94mShould Fail\033[0m");
 
-    // Test destruction order with nested scope
-    std::cout << "\n=== Construction/Destruction Order Test ===" << std::endl;
-    {
-        FragTrap temp("\033[31mTemporaryFrag\033[0m");
-        temp.highFivesGuys();
-    } 
-
-    // Test death and repair limitations
     std::cout << "\n=== Death and Repair Tests ===" << std::endl;
     FragTrap mortal("\033[31mMortalFrag\033[0m");
     mortal.takeDamage(100);  
@@ -89,13 +54,11 @@ int main()
     mortal.beRepaired(50);   
     mortal.highFivesGuys();  
 
-    // Test different attack values
     std::cout << "\n=== Class-Specific Attack Values ===" << std::endl;
     clap.attack("\033[94mEnemy\033[0m");  
     scav.attack("\033[94mEnemy\033[0m");  
     frag.attack("\033[94mEnemy\033[0m");  
 
-    // Destruction order of main objects will be shown here
     std::cout << "\n=== Destroying Main Objects ===" << std::endl;
     return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 22:07:39 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/13 14:55:39 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/14 15:42:46 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int main()
     clap.takeDamage(5);
     clap.beRepaired(3);
 
-    // Energy depletion tests
     for (int i = 0; i < 8; i++) 
     {
         clap.attack("\033[94mEnergy Drain Target\033[0m");
