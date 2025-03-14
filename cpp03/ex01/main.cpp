@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:19:15 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/13 17:32:31 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/14 15:53:52 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,18 @@ int main()
     
     // Test 1: Basic object lifecycle
     ScavTrap scav("\033[31mscavvy\033[0m");
-    // 'base' is a pointer of type ClapTrap* that points to the existing ScavTrap object 'scav'.
+    // Here we declare a pointer of type ClapTrap*, which is a base class pointer, 
+    // and assign it the address of the derived object 'scav' (an instance of ScavTrap).
+    // This approach is used when you want to leverage polymorphism: by handling a 
+    // derived object through its base class interface,
+    // you can write code that operates on a variety of derived types uniformly.
+    // For example, if the methods in ClapTrap were declared as virtual (e.g., attack()), 
+    // calling these methods through the base
+    // pointer would result in dynamic dispatch, invoking the overridden functions in ScavTrap at runtime.
+    // This technique is particularly beneficial for managing collections of 
+    // objects and if dynamic binding is required,
+    // as it facilitates flexible code reuse and consistent memory 
+    // management (especially when paired with virtual destructors).
     ClapTrap* base = &scav;
 
     std::cout << "\nCreated ScavTrap with 100 HP, 50 EP, 20 AD\n";
