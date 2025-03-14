@@ -11,32 +11,6 @@
    ```
    This ensures proper base class initialization before derived specifics.
 
-2. **Q: How does FragTrap's attack implementation differ from ScavTrap's?**  
-   **A:** The key differences are:
-   ```cpp
-   // ScavTrap attack (typical implementation)
-   void attack(const std::string& target) {
-       if (energyPoints > 0) {
-           energyPoints--;
-           std::cout << "ScavTrap " << name << " attacks..." << std::endl;
-       }
-   }
-   
-   // FragTrap attack (actual implementation)
-   void attack(const std::string& target) {
-       if (energyPoints > 0 && hitPoints > 0) {  // Extra hitPoints check
-           std::cout << "FragTrap " << name << " attacks..." << std::endl;
-           energyPoints--;  // Same energy consumption
-       } else {
-           std::cout << "Can't attack - low energy/hp" << std::endl;
-       }
-   }
-   ```
-   Main differences:
-   - Additional hitPoints viability check
-   - Different failure message
-   - Same energy consumption (1 EP per attack)
-
 3. **Q: What happens if FragTrap::highFivesGuys() is called with 0 hit points?**  
    **A:** The method should first check viability:
    ```cpp

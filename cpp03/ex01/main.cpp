@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:19:15 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/05 16:23:25 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/13 17:32:31 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,28 @@ int main()
     
     // Test 1: Basic object lifecycle
     ScavTrap scav("\033[31mscavvy\033[0m");
+    // 'base' is a pointer of type ClapTrap* that points to the existing ScavTrap object 'scav'.
     ClapTrap* base = &scav;
 
     std::cout << "\nCreated ScavTrap with 100 HP, 50 EP, 20 AD\n";
     
     // Test 2: Single attack
     scav.attack("\033[34mEnemy\033[0m"); // Calls ScavTrap::attack
-    base->attack("\033[34mAnother Enemy\033[0m"); // Calls ClapTrap::attack (no virtual)
-    // Explanation:
-    // If the attack method were declared as virtual in ClapTrap,
-    // a call via a base pointer (like 'base->attack(...)') would be dynamically dispatched
-    // and execute ScavTrap::attack due to runtime polymorphism.
-    // Without the virtual keyword, the method resolution is done at compile time based on the pointer type,
-    // so base->attack(...) calls ClapTrap::attack.
+    base->attack("\033[34mAnother Enemy\033[0m");
+    // We use the 'base' pointer (of type ClapTrap*) to call the attack() method.
+    // Although 'base' actually points to a ScavTrap object, the attack() method in ClapTrap is not virtual.
+    // Because of this, the compiler binds the method call at compile time to ClapTrap::attack, not ScavTrap::attack.
+    // In contrast, if attack() were declared as virtual in ClapTrap, the call would be dynamically dispatched,
+    // and the overridden ScavTrap::attack() would be executed based on the actual object's type at runtime.
+    // Dynamically dispatched means that if attack() were declared as virtual in ClapTrap, the decision about which function
+    // to execute would be made at runtime based on the actual type of the object (in this case, ScavTrap).
+    // This runtime decision process—determining the correct overridden method to call—is what is known as dynamic dispatch,
+    // a fundamental mechanism in achieving polymorphism.
+    // "At runtime" means that the decision of which method to call is made while the program is executing, not during compilation.
+    // This is crucial for dynamic dispatch: if attack() were declared as virtual in ClapTrap, 
+    // the program would, at runtime, determine the actual type of the object (in this case, ScavTrap)
+    // and select the correct overridden method to execute. This runtime decision process is key to achieving polymorphism.
+
     
     // Test 3: Take damage and repair
     scav.takeDamage(30);
