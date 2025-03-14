@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:19:15 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/13 15:17:10 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/14 15:36:48 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ int main()
     
     // Test 1: Basic object lifecycle
     ScavTrap scav("\033[31mscavvy\033[0m");
-    //ClapTrap* base = &scav;
+    ClapTrap* base = &scav;
 
     std::cout << "\nCreated ScavTrap with 100 HP, 50 EP, 20 AD\n";
     
     // Test 2: Single attack
     scav.attack("\033[34mEnemy\033[0m"); 
-    // base->attack("\033[34mAnother Enemy\033[0m"); 
+    base->attack("\033[34mAnother Enemy\033[0m"); 
     
     // Test 3: Take damage and repair
     scav.takeDamage(30);
