@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:19:15 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/14 15:36:48 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/14 15:40:41 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,6 @@ int main()
     
     // Test 4: Special ability
     scav.guardGate();
-    
-    // Test 5: Verify destruction order
-    /* ClapTrap *ptr = new ScavTrap("\033[31mPointerTest\033[0m");
-    delete ptr; */
 
     return 0;
 }
