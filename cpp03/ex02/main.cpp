@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:26:30 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/12 14:26:05 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/14 15:56:41 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,30 +30,6 @@ FragTrap has a special capacity too:
 void highFivesGuys(void);
 This member function displays a positive high fives request on the standard output.*/
 
-
-/* int main() 
-{
-    ClapTrap clap("clappy");
-    ScavTrap scav("scavvy");
-    FragTrap frag("fraggy");
-    
-    clap.attack("Enemy");
-    clap.takeDamage(5);
-    clap.beRepaired(3);
-    
-    scav.attack("Another Enemy");
-    scav.takeDamage(20);
-    scav.beRepaired(15);
-    scav.guardGate();
-    
-    frag.attack("Big Enemy");
-    frag.takeDamage(30);
-    frag.beRepaired(25);
-    frag.highFivesGuys();
-    return 0;
-} */
-
-// ... existing code ...
 
 int main() 
 {
