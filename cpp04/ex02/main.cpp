@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:47:07 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/12 09:17:15 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/20 14:54:10 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,12 @@
 #include "Cat.hpp"
 #include <iostream>
 
-/*TASK OF THE PROGRAM*/
+/*TASK OF THE PROGRAM
+Creating Animal objects doesn’t make sense after all. It’s true, they make no sound!
+To avoid any possible mistakes, the default Animal class should not be instantiable.
+Fix the Animal class so that nobody can instantiate it. Everything should work as before.
+If you want to, you can update the class name by adding an A prefix to Animal.
+*/
 
 
 int main()

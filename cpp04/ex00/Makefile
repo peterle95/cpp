@@ -1,4 +1,4 @@
-NAME = animal
+NAME = animal00
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
