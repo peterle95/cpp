@@ -1,4 +1,4 @@
-NAME = animal_program
+NAME = animal02
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98

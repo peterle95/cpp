@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:38:04 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/07 15:58:35 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/20 13:34:48 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ public:
     WrongAnimal();
     WrongAnimal(const WrongAnimal& other);
     WrongAnimal& operator=(const WrongAnimal& other);
-    ~WrongAnimal();
+    virtual ~WrongAnimal();
 
     void makeSound() const;
     std::string getType() const;

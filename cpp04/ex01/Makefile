@@ -1,4 +1,4 @@
-NAME = animal_program
+NAME = animal01
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
