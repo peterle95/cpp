@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:36:56 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/20 13:37:17 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/20 13:38:27 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ int main()
     std::cout << wrongCat->getType() << " : ";
     wrongCat->makeSound(); // Calls WrongAnimal's version ❌
 
-    delete meta;
-    delete j;
-    delete i;
+    delete animal;
+    delete dog;
+    delete cat;
     delete wrong;
     delete wrongCat;        // Properly calls ~WrongCat then ~WrongAnimal ✅
 
