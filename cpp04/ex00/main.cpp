@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:36:56 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/20 12:10:30 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/20 13:36:07 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,17 +69,18 @@ int main()
     j->makeSound();
     meta->makeSound();
 
-    std::cout << "Wrong animal tests:" << std::endl;
-    std::cout << wrong->getType() << " " << std::endl;
-    std::cout << wrongCat->getType() << " " << std::endl;
+    std::cout << "****Wrong animal tests:****" << std::endl;
+    std::cout << wrong->getType() << " : ";
     wrong->makeSound();
-    wrongCat->makeSound();
+    
+    std::cout << wrongCat->getType() << " : ";
+    wrongCat->makeSound(); // Calls WrongAnimal's version ❌
 
     delete meta;
     delete j;
     delete i;
     delete wrong;
-    delete wrongCat;
+    delete wrongCat;        // Properly calls ~WrongCat then ~WrongAnimal ✅
 
     return 0;
 }
