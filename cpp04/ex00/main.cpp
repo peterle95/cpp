@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:36:56 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/20 13:36:07 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/20 13:37:17 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,17 @@ Implement and turn in more tests than the ones given above.
 
 int main()
 {
-    const Animal* meta = new Animal();
-    const Animal* j = new Dog();
-    const Animal* i = new Cat();
+    const Animal* animal = new Animal();
+    const Animal* dog = new Dog();
+    const Animal* cat = new Cat();
     const WrongAnimal* wrong = new WrongAnimal();
     const WrongAnimal* wrongCat = new WrongCat();
 
-    std::cout << j->getType() << " " << std::endl;
-    std::cout << i->getType() << " " << std::endl;
-    i->makeSound(); // will output the cat sound!
-    j->makeSound();
-    meta->makeSound();
+    std::cout << dog->getType() << " " << std::endl;
+    std::cout << cat->getType() << " " << std::endl;
+    cat->makeSound(); // will output the cat sound!
+    dog->makeSound();
+    animal->makeSound();
 
     std::cout << "****Wrong animal tests:****" << std::endl;
     std::cout << wrong->getType() << " : ";
