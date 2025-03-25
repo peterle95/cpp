@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:36:56 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/25 17:36:39 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/25 17:46:22 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,18 +63,20 @@ int main()
     const WrongAnimal* wrong = new WrongAnimal();
     const WrongAnimal* wrongCat = new WrongCat();
 
-    std::cout << dog->getType() << " " << std::endl;
-    std::cout << cat->getType() << " " << std::endl;
+    std::cout << "Type: " << dog->getType() << std::endl;
+    std::cout << "Type: " << cat->getType() << std::endl;
+    std::cout << "Type: " << animal->getType() << std::endl;
     cat->makeSound(); // will output the cat sound!
     dog->makeSound();
     animal->makeSound();
 
-    std::cout << "****Wrong animal tests:****" << std::endl;
+    std::cout << "\033[31m****Wrong animal tests:****\033[0m" << std::endl;
     std::cout << wrong->getType() << " : ";
     wrong->makeSound();
     
     std::cout << wrongCat->getType() << " : ";
     wrongCat->makeSound(); // Calls WrongAnimal's version ❌
+    std::cout << "\033[31m****End Wrong animal tests:****\033[0m" << std::endl;
 
     delete animal;
     delete dog;

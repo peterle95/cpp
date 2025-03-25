@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:38:04 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/20 13:22:44 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/25 17:42:54 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ public:
     WrongAnimal();
     WrongAnimal(const WrongAnimal& other);
     WrongAnimal& operator=(const WrongAnimal& other);
-    virtual ~WrongAnimal();
+    ~WrongAnimal(); // on purpose not virtual to display how polymorphism works
 
     void makeSound() const; // on purpose not virtual to display how polymorphism works
     std::string getType() const;
