@@ -6,12 +6,17 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:37:19 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/25 17:21:00 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/25 17:31:25 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
 #include <iostream>
+
+/* Animal::Animal() : type("Animal") // this uses the initialization list
+{
+    std::cout << "Animal constructor called" << std::endl;
+} */
 
 Animal::Animal()
 {
