@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:36:56 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/25 17:41:45 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/25 17:52:04 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,21 @@ int main()
 {
     const Animal* animal = new Animal();
     const Animal* dog = new Dog();
+    /*
+    - Creates a pointer to a base class (Animal*)
+    - Points to a dynamically allocated derived class object (new Dog())
+    - const prevents modifying the object through this pointer
+    - virtual methods enable polymorphic behavior
+    - Allows calling derived class methods through base class pointer
+    - Enables runtime polymorphism
+    - The destructor must also be virtual to ensure proper deletion of derived class objects
+    
+    This syntax allows you to:
+    
+    - Use base class interface
+    - Override specific methods in derived classes
+    - Achieve polymorphic behavior
+    - Provide a common interface for different types of objects*/
     const Animal* cat = new Cat();
     const WrongAnimal* wrong = new WrongAnimal();
     const WrongAnimal* wrongCat = new WrongCat();
@@ -88,18 +103,20 @@ int main()
         
         Memory management note: Always `delete` pointers created with `new` to prevent memory leaks.*/
 
-    std::cout << dog->getType() << " " << std::endl;
-    std::cout << cat->getType() << " " << std::endl;
+    std::cout << "Type: " << dog->getType() << std::endl;
+    std::cout << "Type: " << cat->getType() << std::endl;
+    std::cout << "Type: " << animal->getType() << std::endl;
     cat->makeSound(); // will output the cat sound!
     dog->makeSound();
     animal->makeSound();
 
-    std::cout << "****Wrong animal tests:****" << std::endl;
+    std::cout << "\033[31m****Wrong animal tests:****\033[0m" << std::endl;
     std::cout << wrong->getType() << " : ";
     wrong->makeSound();
     
     std::cout << wrongCat->getType() << " : ";
     wrongCat->makeSound(); // Calls WrongAnimal's version ❌
+    std::cout << "\033[31m****End Wrong animal tests:****\033[0m" << std::endl;
 
     /*The key difference is in how `makeSound()` is defined:
 
