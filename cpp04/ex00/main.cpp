@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:36:56 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/25 17:22:16 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/25 17:36:39 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int main()
     delete dog;
     delete cat;
     delete wrong;
-    delete wrongCat;        // Properly calls ~WrongCat then ~WrongAnimal ✅
+    delete wrongCat; // Properly calls ~WrongCat then ~WrongAnimal ✅
 
     return 0;
 }
