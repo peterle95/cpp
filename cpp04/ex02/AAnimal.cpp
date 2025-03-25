@@ -6,15 +6,16 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:47:21 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/07 16:02:39 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/25 17:21:39 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AAnimal.hpp"
 #include <iostream>
 
-AAnimal::AAnimal() : type("AAnimal") 
+AAnimal::AAnimal()
 {
+    this->type = "AAnimal";
     std::cout << "AAnimal constructor called" << std::endl;
 }
 
