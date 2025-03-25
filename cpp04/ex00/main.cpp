@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:36:56 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/20 13:38:27 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/25 17:41:45 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,31 @@ int main()
     const WrongAnimal* wrong = new WrongAnimal();
     const WrongAnimal* wrongCat = new WrongCat();
 
+    /*Let's break this down:
+
+        1. `const` Usage:
+           - `const` here means the pointer cannot modify the object it points to
+           - Prevents accidental modifications to the objects
+           - Provides type safety and helps enforce design intentions
+        
+        2. Pointer Usage:
+           - Polymorphism requires pointers or references
+           - Allows calling the most derived class's method through base class pointer
+           - Dynamic memory allocation with `new`
+           - Enables runtime polymorphic behavior (virtual function calls)
+        
+        Example of polymorphic behavior:
+        
+        dog->makeSound();  // Calls Dog's makeSound(), not Animal's
+        cat->makeSound();  // Calls Cat's makeSound(), not Animal's
+    
+        
+        Without pointers, you'd lose this runtime polymorphic behavior. 
+        The pointer allows the correct method to be called based on the 
+        actual object type, not the pointer's type.
+        
+        Memory management note: Always `delete` pointers created with `new` to prevent memory leaks.*/
+
     std::cout << dog->getType() << " " << std::endl;
     std::cout << cat->getType() << " " << std::endl;
     cat->makeSound(); // will output the cat sound!
@@ -75,6 +100,26 @@ int main()
     
     std::cout << wrongCat->getType() << " : ";
     wrongCat->makeSound(); // Calls WrongAnimal's version ❌
+
+    /*The key difference is in how `makeSound()` is defined:
+
+        1. In the correct implementation (Animal/Dog/Cat):
+        
+        virtual void makeSound() const;  // virtual keyword allows polymorphic behavior
+        
+        2. In WrongAnimal/WrongCat:
+        
+        void makeSound() const;  // No virtual keyword
+        
+        Without `virtual`, when you call `makeSound()` through a base class pointer, 
+        it always calls the base class method. 
+        
+        In the main code:
+        const WrongAnimal* wrongCat = new WrongCat();
+        wrongCat->makeSound();  // Calls WrongAnimal::makeSound(), not WrongCat::makeSound()
+        
+        This demonstrates the lack of polymorphic behavior - the method called depends on 
+        the pointer type, not the actual object type.*/
 
     delete animal;
     delete dog;
