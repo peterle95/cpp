@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:41:58 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/27 14:19:01 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/27 14:41:31 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ return 0;
 Implement and turn in more tests than the ones given above.*/
 
 int main()
-{
+{    
     std::cout << "=== Constructors ===" << std::endl;
     const int arraySize = 10;
     Animal* animals[arraySize];

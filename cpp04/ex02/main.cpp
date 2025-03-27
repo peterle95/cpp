@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:47:07 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/20 14:54:10 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/27 14:40:46 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ If you want to, you can update the class name by adding an A prefix to Animal.
 
 int main()
 {
-    // Animal* meta = new Animal(); // This should not compile now
+   //AAnimal Animal;// This should not compile now
 
     const AAnimal* j = new Dog();
     const AAnimal* i = new Cat();
