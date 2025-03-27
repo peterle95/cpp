@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:47:07 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/27 17:16:20 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/27 17:16:40 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 
 int main()
 {
-    // Animal* meta = new Animal(); // This should not compile now
-
+    //AAnimal Animal;// This should not compile now
+    
     const AAnimal* j = new Dog();
     const AAnimal* i = new Cat();
 
