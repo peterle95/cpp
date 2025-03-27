@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:42:30 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/12 09:17:41 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/27 17:11:04 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@
 Dog::Dog() : brain(new Brain()) 
 {
     type = "Dog";
-    std::cout << "Dog constructor called" << std::endl;
+    std::cout << "\033[92mDog\033[0m constructor called" << std::endl;
 }
 
 Dog::Dog(const Dog& other) : AAnimal(other), brain(new Brain(*other.brain)) 
 {
-    std::cout << "Dog copy constructor called" << std::endl;
+    std::cout << "\033[92mDog\033[0m copy constructor called" << std::endl;
 }
 
 Dog& Dog::operator=(const Dog& other) 
 {
-    std::cout << "Dog assignment operator called" << std::endl;
+    std::cout << "\033[92mDog\033[0m assignment operator called" << std::endl;
     if (this != &other) 
     {
         AAnimal::operator=(other);
@@ -39,7 +39,7 @@ Dog& Dog::operator=(const Dog& other)
 Dog::~Dog() 
 {
     delete brain;
-    std::cout << "Dog destructor called" << std::endl;
+    std::cout << "\033[92mDog\033[0m destructor called" << std::endl;
 }
 
 void Dog::makeSound() const 
