@@ -6,15 +6,17 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:42:50 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/07 16:01:56 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/27 12:12:20 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 #include <iostream>
 
-Cat::Cat() : brain(new Brain()) 
+Cat::Cat() // : brain(new Brain()) this is theoretically better
 {
+    this->brain = new Brain();
+    // Brain* brain = new Brain(); // This creates a *local* variable named 'brain' and is wrong
     type = "Cat";
     std::cout << "Cat constructor called" << std::endl;
 }
