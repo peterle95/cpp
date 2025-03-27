@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:41:58 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/27 12:35:32 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/27 14:05:12 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,19 @@ int main()
         else
             animals[i] = new Cat();
     }
+
+    Brain myBrain;
+    std::cout << myBrain.getIdea(0) << std::endl;  // Will print "Empty idea"
+
+    myBrain.setIdea(5, "Play fetch");
+    std::cout << myBrain.getIdea(5) << std::endl;  // Will print "Play fetch"
+    std::cout << myBrain.getIdea(0) << std::endl;
+
+
+    Brain copiedBrain(myBrain);
+    
+    copiedBrain.setIdea(5, "I'm a good boy!");
+    std::cout << copiedBrain.getIdea(5) << std::endl;
 
     // Test deep copy
     Dog* originalDog = new Dog();
