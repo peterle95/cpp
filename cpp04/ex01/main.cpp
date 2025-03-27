@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:41:58 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/27 14:05:12 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/27 14:13:32 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ Implement and turn in more tests than the ones given above.*/
 
 int main()
 {
+    std::cout << "=== Constructors ===" << std::endl;
     const int arraySize = 10;
     Animal* animals[arraySize];
 
@@ -53,13 +54,13 @@ int main()
         else
             animals[i] = new Cat();
     }
-
+    
+    std::cout << "\n=== Getting & Setting Ideas ===" << std::endl;
     Brain myBrain;
     std::cout << myBrain.getIdea(0) << std::endl;  // Will print "Empty idea"
 
-    myBrain.setIdea(5, "Play fetch");
-    std::cout << myBrain.getIdea(5) << std::endl;  // Will print "Play fetch"
-    std::cout << myBrain.getIdea(0) << std::endl;
+    myBrain.setIdea(0, "Play fetch");
+    std::cout << myBrain.getIdea(0) << std::endl;  // Will print "Play fetch"
 
 
     Brain copiedBrain(myBrain);
@@ -67,6 +68,7 @@ int main()
     copiedBrain.setIdea(5, "I'm a good boy!");
     std::cout << copiedBrain.getIdea(5) << std::endl;
 
+    std::cout << "\n=== Deep copy ===" << std::endl;
     // Test deep copy
     Dog* originalDog = new Dog();
     Dog* copiedDog = new Dog(*originalDog);
