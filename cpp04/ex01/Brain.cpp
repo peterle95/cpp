@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:43:09 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/12 09:11:25 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/27 12:23:03 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 Brain::Brain() 
 {
-    std::cout << "Brain constructor called" << std::endl;
+    std::cout << "\033[94mBrain\033[0m constructor called" << std::endl;
     for (int i = 0; i < 100; ++i) 
     {
         ideas[i] = "Empty idea";
@@ -24,7 +24,7 @@ Brain::Brain()
 
 Brain::Brain(const Brain& other) 
 {
-    std::cout << "Brain copy constructor called" << std::endl;
+    std::cout << "\033[94mBrain\033[0m copy constructor called" << std::endl;
     for (int i = 0; i < 100; ++i) 
     {
         ideas[i] = other.ideas[i];
@@ -33,7 +33,7 @@ Brain::Brain(const Brain& other)
 
 Brain& Brain::operator=(const Brain& other) 
 {
-    std::cout << "Brain assignment operator called" << std::endl;
+    std::cout << "\033[94mBrain\033[0m assignment operator called" << std::endl;
     if (this != &other) 
     {
         for (int i = 0; i < 100; ++i) 
@@ -46,7 +46,7 @@ Brain& Brain::operator=(const Brain& other)
 
 Brain::~Brain() 
 {
-    std::cout << "Brain destructor called" << std::endl;
+    std::cout << "\033[94mBrain\033[0m destructor called" << std::endl;
 }
 
 void Brain::setIdea(int index, const std::string& idea) 
