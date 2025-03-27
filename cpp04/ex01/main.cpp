@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:41:58 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/27 14:13:32 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/27 14:19:01 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int main()
     // Clean up
     delete copiedDog;
 
+    std::cout << "\n=== Delete dynamically allocated animal objects ===" << std::endl;
     // Delete all animals in the array
     for (int i = 0; i < arraySize; ++i) 
         delete animals[i];
