@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:47:07 by pmolzer           #+#    #+#             */
-/*   Updated: 2024/11/12 09:17:15 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/03/27 17:16:20 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ int main()
 
     j->makeSound();
     i->makeSound();
+    /* It indicates that the following code demonstrates polymorphic behavior in C++, 
+    where j and i are base class pointers (const AAnimal*) that call the derived classes' 
+    (Dog and Cat) specific makeSound() implementations. 
+    This showcases runtime polymorphism through virtual functions.*/
 
     delete j;
     delete i;
