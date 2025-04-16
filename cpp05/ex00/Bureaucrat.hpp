@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 16:02:06 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/04/11 11:21:10 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/04/16 13:36:51 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,16 @@ public:
     ~Bureaucrat();
     Bureaucrat& operator=(const Bureaucrat& other);
 
-    class GradeTooHighException : public std::exception {
-        public: virtual const char* what() const throw();
+    class GradeTooHighException : public std::exception 
+    {
+        public: 
+            virtual const char* what() const throw();
     };
 
-    class GradeTooLowException : public std::exception {
-        public: virtual const char* what() const throw();
+    class GradeTooLowException : public std::exception 
+    {
+        public: 
+            virtual const char* what() const throw();
     };
 
     const std::string& getName() const;
