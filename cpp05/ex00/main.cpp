@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 13:33:05 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/04/16 13:34:04 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/04/16 16:09:39 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int main() 
 {
-    try {
+    try 
+    {
         Bureaucrat b1("Alice", 2);
         std::cout << b1 << std::endl;
 
