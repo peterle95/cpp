@@ -6,15 +6,12 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 13:33:05 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/04/16 16:22:00 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/04/16 16:22:33 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-int main() 
-{
-    try {
 int main() 
 {
    // FIRST TEST CASE: Testing incrementGrade() when reaching grade limit
