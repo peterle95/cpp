@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/28 16:02:06 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/04/16 13:55:45 by pmolzer          ###   ########.fr       */
+/*   Created: 2025/04/16 14:10:36 by pmolzer           #+#    #+#             */
+/*   Updated: 2025/04/16 14:10:38 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,9 @@
 #include <string>
 #include <iostream>
 #include <exception>
-#include "Form.hpp"
 
 // Forward declaration
-class Form;
+class AForm;
 
 class Bureaucrat
 {
@@ -51,7 +50,8 @@ public:
 
     void incrementGrade();
     void decrementGrade();
-    void signForm(Form& form);
+    void signForm(AForm& form);
+    void executeForm(AForm const & form) const;
 };
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat);

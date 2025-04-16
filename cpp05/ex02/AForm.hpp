@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_HPP
-#define FORM_HPP
+#ifndef AFORM_HPP
+#define AFORM_HPP
 
 #include <string>
 #include <iostream>
@@ -20,7 +20,7 @@
 
 class Bureaucrat;
 
-class Form
+class AForm
 {
 private:
     const std::string _name;
@@ -29,11 +29,11 @@ private:
     const int _gradeToExecute;
 
 public:
-    Form();
-    Form(const std::string& name, int gradeToSign, int gradeToExecute);
-    Form(const Form& other);
-    ~Form();
-    Form& operator=(const Form& other);
+    AForm();
+    AForm(const std::string& name, int gradeToSign, int gradeToExecute);
+    AForm(const AForm& other);
+    virtual ~AForm();
+    AForm& operator=(const AForm& other);
 
     class GradeTooHighException : public std::exception 
     {
@@ -47,14 +47,23 @@ public:
             virtual const char* what() const throw();
     };
 
+    class FormNotSignedException : public std::exception 
+    {
+        public: 
+            virtual const char* what() const throw();
+    };
+
     const std::string& getName() const;
     bool isSigned() const;
     int getGradeToSign() const;
     int getGradeToExecute() const;
 
     void beSigned(const Bureaucrat& bureaucrat);
+    
+    // Pure virtual function making AForm abstract
+    virtual void execute(Bureaucrat const & executor) const = 0;
 };
 
-std::ostream& operator<<(std::ostream& os, const Form& form);
+std::ostream& operator<<(std::ostream& os, const AForm& form);
 
 #endif
