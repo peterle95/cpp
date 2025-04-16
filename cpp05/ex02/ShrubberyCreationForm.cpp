@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 14:11:36 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/04/16 14:11:58 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/04/16 14:17:51 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,18 @@
 
 ShrubberyCreationForm::ShrubberyCreationForm() 
     : AForm("ShrubberyCreationForm", 145, 137), _target("default")
-{
-}
+{}
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target)
     : AForm("ShrubberyCreationForm", 145, 137), _target(target)
-{
-}
+{}
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other)
     : AForm(other), _target(other._target)
-{
-}
+{}
 
 ShrubberyCreationForm::~ShrubberyCreationForm()
-{
-}
+{}
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& other)
 {

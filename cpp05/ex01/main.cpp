@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 15:10:25 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/04/16 13:57:42 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/04/16 14:18:47 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
-int main() {
-    try {
+int main() 
+{
+    try 
+    {
         // Test basic Form functionality
         Form taxForm("Tax Form", 50, 25);
         std::cout << taxForm << std::endl;
@@ -40,14 +42,19 @@ int main() {
         
         // Test form with invalid grade (too high)
         Form invalidForm("Invalid Form", 0, 50);
-    } catch (std::exception& e) {
+    } 
+    catch (std::exception& e) 
+    {
         std::cout << "Exception: " << e.what() << std::endl;
     }
     
-    try {
+    try 
+    {
         // Test form with invalid grade (too low)
         Form invalidForm("Invalid Form", 50, 151);
-    } catch (std::exception& e) {
+    } 
+    catch (std::exception& e) 
+    {
         std::cout << "Exception: " << e.what() << std::endl;
     }
 

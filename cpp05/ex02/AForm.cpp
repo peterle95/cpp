@@ -14,12 +14,11 @@
 #include "AForm.hpp"
 
 AForm::AForm() : _name("default"), _signed(false), _gradeToSign(150), _gradeToExecute(150) 
-{
-}
+{}
 
 AForm::AForm(const std::string& name, int gradeToSign, int gradeToExecute) 
     : _name(name), _signed(false), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute) 
-    {
+{
     if (gradeToSign < 1 || gradeToExecute < 1) 
     {
         throw GradeTooHighException();
@@ -33,12 +32,10 @@ AForm::AForm(const std::string& name, int gradeToSign, int gradeToExecute)
 AForm::AForm(const AForm& other) 
     : _name(other._name), _signed(other._signed), 
       _gradeToSign(other._gradeToSign), _gradeToExecute(other._gradeToExecute) 
-      {
-}
+{}
 
 AForm::~AForm() 
-{
-}
+{}
 
 AForm& AForm::operator=(const AForm& other) 
 {

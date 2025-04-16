@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 14:14:12 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/04/16 14:14:15 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/04/16 14:17:38 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,18 @@
 
 RobotomyRequestForm::RobotomyRequestForm() 
     : AForm("RobotomyRequestForm", 72, 45), _target("default")
-{
-}
+{}
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string& target)
     : AForm("RobotomyRequestForm", 72, 45), _target(target)
-{
-}
+{}
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other)
     : AForm(other), _target(other._target)
-{
-}
+{}
 
 RobotomyRequestForm::~RobotomyRequestForm()
-{
-}
+{}
 
 RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& other)
 {
