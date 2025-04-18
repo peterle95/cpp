@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 11:21:31 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/04/17 15:20:54 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/04/18 12:49:55 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,19 @@ std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat) {
 }
 
 // Implementation of the GradeTooHighException's what() method.
+// The return type is const char*, which indicates that this function returns a pointer to a constant character string.
 const char* Bureaucrat::GradeTooHighException::what() const throw() {
+    // The 'const' qualifier after the function name indicates that this method does not modify any member variables of the class.
+    // The 'throw()' specifier indicates that this function is guaranteed not to throw any exceptions.
     return "Grade too high"; // Return error message for too high grade.
 }
 
 // Implementation of the GradeTooLowException's what() method.
+// The return type is const char*, which indicates that this function returns a pointer 
+// to a constant character string.
 const char* Bureaucrat::GradeTooLowException::what() const throw() {
+    // The 'const' qualifier after the function name indicates that this method does 
+    // not modify any member variables of the class.
+    // The 'throw()' specifier indicates that this function is guaranteed not to throw any exceptions.
     return "Grade too low"; // Return error message for too low grade.
 }
