@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 14:45:33 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/04/18 12:55:45 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/04/19 21:01:46 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,13 @@ public:
     ~Form();
     Form& operator=(const Form& other);
 
+    /* Custom exception classes for grade-related errors */
     class GradeTooHighException : public std::exception 
     {
         public: 
-            virtual const char* what() const throw();
+            /* The what() method is inherited from std::exception and provides 
+               an error message when the exception is caught */
+            virtual const char* what() const throw();  // Returns a descriptive error message
     };
 
     class GradeTooLowException : public std::exception 
@@ -65,6 +68,7 @@ public:
     void beSigned(const Bureaucrat& bureaucrat);
 };
 
-std::ostream& operator<<(std::ostream& os, const Form& form);
+/* Overloading the insertion operator to enable printing Form objects */
+std::ostream& operator<<(std::ostream& os, const Form& form);  // For std::cout << form
 
 #endif
