@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 14:14:59 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/04/16 14:15:40 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/04/20 07:13:49 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,42 @@
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
 #include <iostream>
+
+/*Based on the code you've provided, I can explain the main differences between exercise ex01 and ex02, 
+though I only see the files for ex02 in your documents.
+
+The primary difference appears to be the transition from a concrete `Form` class in ex01 to an abstract `AForm` 
+class in ex02 that introduces concrete implementations of specific form types.
+
+Here are the key differences:
+
+1. **Abstract Base Class**: 
+   - In ex01, you likely had a concrete `Form` class
+   - In ex02, this has been renamed to `AForm` and made abstract with a pure virtual function `execute()`
+
+2. **Form Specialization**:
+   - Ex02 introduces three concrete form classes that inherit from `AForm`:
+     - `ShrubberyCreationForm`: Creates a file with ASCII trees (requires grades 145 to sign, 137 to execute)
+     - `RobotomyRequestForm`: Makes drilling noises and has a 50% chance of successful robotomy (grades 72/45)
+     - `PresidentialPardonForm`: Pardons someone by Zaphod Beeblebrox (grades 25/5)
+
+3. **Form Execution**:
+   - Ex01 likely just had the signing mechanism
+   - Ex02 adds an execution mechanism via the `execute()` method that performs different actions based on the form type
+   - Added `executeForm()` method to the `Bureaucrat` class
+
+4. **Additional Exception**:
+   - Ex02 adds a `FormNotSignedException` to prevent execution of unsigned forms
+
+5. **Implementation Details**:
+   - Each form type has different requirements for signing and execution
+   - Each form performs a different action when executed:
+     - `ShrubberyCreationForm` creates a file with ASCII art
+     - `RobotomyRequestForm` performs a randomized robotomy operation
+     - `PresidentialPardonForm` issues a presidential pardon
+
+In summary, ex01 likely focused on the basic form mechanics (creating, signing forms), while ex02 extends this by 
+making forms abstract and introducing specialized form types with unique behaviors and execution requirements.*/
 
 int main() 
 {
