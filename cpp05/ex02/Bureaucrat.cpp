@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 11:21:31 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/04/16 14:10:59 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/04/21 17:23:26 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,20 @@ void Bureaucrat::executeForm(AForm const & form) const
 {
     try
     {
+        /*When `execute` is called on a form object, the program knows which concrete implementation to call 
+        through dynamic binding (also known as runtime polymorphism). Here's how it works:
+
+        1. The `AForm` class is abstract and defines a virtual `execute` method
+        2. Each derived form class (ShrubberyCreationForm, RobotomyRequestForm, PresidentialPardonForm) 
+        overrides this method with its own implementation
+        3. When `form.execute(*this)` is called in the Bureaucrat class, the actual form object's type is
+         determined at runtime
+        4. The program uses the virtual function table (vtable) to call the correct implementation based 
+        on the actual object type
+        
+        This is C++'s implementation of polymorphism. Even though the parameter is typed as `AForm const &`, 
+        the program will call the execute method of the actual derived class that the reference points to, not 
+        the base class method.*/
         form.execute(*this);
         std::cout << this->_name << " executed " << form.getName() << std::endl;
     }

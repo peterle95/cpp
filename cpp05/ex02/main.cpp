@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 14:14:59 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/04/20 07:13:49 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/04/21 17:17:26 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 #include "PresidentialPardonForm.hpp"
 #include <iostream>
 
-/*Based on the code you've provided, I can explain the main differences between exercise ex01 and ex02, 
-though I only see the files for ex02 in your documents.
+/*The main differences between exercise ex01 and ex02.
 
 The primary difference appears to be the transition from a concrete `Form` class in ex01 to an abstract `AForm` 
 class in ex02 that introduces concrete implementations of specific form types.
@@ -26,7 +25,7 @@ class in ex02 that introduces concrete implementations of specific form types.
 Here are the key differences:
 
 1. **Abstract Base Class**: 
-   - In ex01, you likely had a concrete `Form` class
+   - In ex01, you had a concrete `Form` class
    - In ex02, this has been renamed to `AForm` and made abstract with a pure virtual function `execute()`
 
 2. **Form Specialization**:
@@ -73,10 +72,21 @@ int main()
         ShrubberyCreationForm shrub("garden");
         
         // Low should be able to sign but not execute
+        /*In low.signForm(shrub), the bureaucrat object low is calling its signForm method 
+        with shrub (a ShrubberyCreationForm object) as the argument.  
+        Looking at the implementation in Bureaucrat.cpp, the signForm method:
+        
+        Attempts to call form.beSigned(*this) - passing the bureaucrat itself to the form
+        If successful, outputs a message that the bureaucrat signed the form
+        If an exception occurs (like when the bureaucrat's grade is too low), it catches the 
+        exception and prints a failure message
+        In this specific case, since low has grade 150 and the ShrubberyCreationForm requires 
+        grade 145 to sign, the attempt fails with a "Grade too low for form" exception, 
+        which is caught and displayed in the output.
+   	  */
         low.signForm(shrub);
         low.executeForm(shrub);  // Should fail
         
-        // Mid should be able to execute
         mid.executeForm(shrub);
         std::cout << "====================================" << std::endl << std::endl;
         
