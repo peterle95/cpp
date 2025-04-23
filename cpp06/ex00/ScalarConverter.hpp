@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:16:05 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/04/22 15:16:06 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/04/23 14:10:53 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,18 @@
 #define SCALAR_CONVERTER_HPP
 
 #include <string>
+#include <iostream>
+#include <cstdlib>
+#include <climits>
+#include <cmath>
+#include <limits> 
+#include <cctype>
+#include <string>
+#include <sstream>
+#include <iomanip>
 
-class ScalarConverter {
+class ScalarConverter 
+{
 private:
     // Private constructor to prevent instantiation
     ScalarConverter();
