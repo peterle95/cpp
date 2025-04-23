@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:16:36 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/04/23 14:10:47 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/04/23 14:18:18 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ ScalarConverter::ScalarConverter(const ScalarConverter& other)
     
 ScalarConverter& ScalarConverter::operator=(const ScalarConverter& other) 
 { 
-    (void)other; return *this; 
+    (void)other; 
+    return *this; 
 }
     
 ScalarConverter::~ScalarConverter() 
