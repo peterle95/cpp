@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 16:42:50 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/03/28 15:37:29 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/04/30 15:08:33 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ Cat::Cat() // : brain(new Brain()) this is theoretically better
 
 /*Takes a constant reference to another Cat object as parameter
 Calls the base Animal class copy constructor using : Animal(other)
-Performs a deep copy of the brain by creating a new Brain object using the source object's brain: brain(new Brain(*other.brain))
+Performs a deep copy of the brain by creating a new Brain object using the source object's 
+brain: brain(new Brain(*other.brain))
 This ensures the copied Cat has its own independent Brain instance, not just a pointer to the original Brain
 
 Key points:
