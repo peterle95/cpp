@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 13:33:05 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/05/07 15:44:31 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/05/07 16:10:17 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,15 @@ int main()
         - Because what() is a virtual function, the program uses the virtual function table (vtable) to find the correct implementation
         - It locates and calls GradeTooHighException's version of what(), not the base class version
     5. The method returns the C-string "Grade too high"
-    6. The returned string is passed to std::cerr and printed*/
+    6. The returned string is passed to std::cerr and printed
+    
+    The const keyword is used for several good reasons:
+
+    1. Safety - It prevents the catch block from modifying the exception object, which follows the principle of least privilege
+    2. Efficiency - It allows catching by reference without making a copy, while ensuring 
+            the original exception can't be altered
+    3. Compatibility - Some exception methods (like what()) are marked as const, so having
+             a const reference ensures you can call all methods*/
    {
        std::cerr << "Exception: " << e.what() << std::endl;
        /*You need to call it as e.what() because:
@@ -111,7 +119,7 @@ int main()
        // This line won't execute if an exception is thrown
        std::cout << b2 << std::endl;
    } 
-   // Catch any exceptions
+   // Catch any exceptions that inherits from std::exception
    catch (const std::exception& e) 
    {
        // Print the error message
