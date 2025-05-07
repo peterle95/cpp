@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 16:02:06 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/04/17 15:30:56 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/05/07 15:47:30 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,24 @@ public:
     class GradeTooLowException : public std::exception 
     {
         public: 
-            virtual const char* what() const throw(); // Override what() to return an error message.
+            virtual const char* what() const throw();
+            /*
+            - virtual: Specifies this is a virtual function that can be overridden by derived classes. This enables polymorphic behavior.
+            - const char*: The return type - a pointer to constant characters (a C-style string that can't be modified).
+            - what(): The function name.
+            - const (after the function name): Indicates this is a "const member function" that doesn't modify the object's state. 
+                    This allows the function to be called on const objects.
+            - throw(): This is an exception specification (in C++98) that declares this function doesn't throw any exceptions. 
+                    In modern C++ (C++11 and later), this would be replaced with noexcept.
+
+            In your derived exception classes, when you override this method:
+
+            You're not required to use the virtual keyword again (though some add it for clarity)
+            You must match the function signature exactly (return type, parameter list, const-ness)
+            You must include the exception specification throw()
+            
+            This declaration ensures that when code catches an std::exception reference but the actual object is your 
+            custom exception, the proper error message is displayed.*/
     };
 
     // Getter for the bureaucrat's name.

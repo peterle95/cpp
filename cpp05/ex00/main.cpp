@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 13:33:05 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/04/18 12:52:00 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/05/07 15:44:31 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,24 @@ int main()
        // This line won't execute if an exception is thrown
        std::cout << b1 << std::endl;
    } 
-   // Catch any exceptions that inherit from std::exception
-   // (including our custom GradeTooHighException)
    catch (const std::exception& e) 
+   /*When your code enters the catch block after throwing an exception, here's what happens step by step:
+
+    1. An exception is thrown (e.g., throw GradeTooHighException() in the incrementGrade() method)
+    2. Program execution immediately jumps to the matching catch block: catch (const std::exception& e)
+    3. The thrown exception object (of type GradeTooHighException) is caught as a reference to its base class (std::exception)
+    4. When you call e.what() inside the catch block:
+        - The compiler sees you're calling the what() method on an std::exception reference
+        - At runtime, the program checks the actual type of the object e refers to (which is GradeTooHighException)
+        - Because what() is a virtual function, the program uses the virtual function table (vtable) to find the correct implementation
+        - It locates and calls GradeTooHighException's version of what(), not the base class version
+    5. The method returns the C-string "Grade too high"
+    6. The returned string is passed to std::cerr and printed*/
    {
-       // Print the error message from the exception's what() method
        std::cerr << "Exception: " << e.what() << std::endl;
+       /*You need to call it as e.what() because:
+            1. what() is a method of the exception object
+            2. e is your reference to that exception object*/
    }
 
    std::cout << std::endl;
