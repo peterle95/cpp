@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 13:33:05 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/04/16 16:13:33 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/05/07 16:12:33 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,18 @@ int main()
         b1.incrementGrade();
         std::cout << b1 << std::endl;
     } 
+    /* catch (const Bureaucrat::GradeTooHighException& e) 
+    {
+    std::cerr << "High grade error: " << e.what() << std::endl;
+    }
+    catch (const Bureaucrat::GradeTooLowException& e) 
+    {
+    std::cerr << "Low grade error: " << e.what() << std::endl;
+    } */ 
     catch (const std::exception& e) 
     {
         std::cerr << "Exception: " << e.what() << std::endl;
-    }
+    } 
 
     std::cout << std::endl;
 
@@ -73,7 +81,15 @@ int main()
 
         b2.decrementGrade();
         std::cout << b2 << std::endl;
-    } 
+    }
+    /* catch (const Bureaucrat::GradeTooHighException& e) 
+    {
+    std::cerr << "High grade error: " << e.what() << std::endl;
+    }
+    catch (const Bureaucrat::GradeTooLowException& e) 
+    {
+    std::cerr << "Low grade error: " << e.what() << std::endl;
+    }   */
     catch (const std::exception& e) 
     {
         std::cerr << "Exception: " << e.what() << std::endl;
