@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 15:10:25 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/05/08 14:01:43 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/05/08 14:38:14 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,20 @@
 
 int main() 
 {
+    /*The Problem
+        The project has a circular relationship:
+
+        Bureaucrat needs to know about Form (to sign it)
+        Form needs to know about Bureaucrat (to check if they can sign it)
+    
+    Without proper handling, this would create an impossible situation where each header file needs to include the other.
+    The Solution: Forward Declarations
+    The project uses forward declarations to break this circular dependency:*/
     try 
     {
         // Test basic Form functionality
         // Creates a Form object named "Tax Form" requiring grade 50 to sign and 25 to execute.
-        Form taxForm("Tax Form", 50, 25);
+        Form taxForm("\033[31mTax Form\033[0m", 50, 25);
         // Prints the form's information using the overloaded << operator.
         std::cout << taxForm << std::endl;
         /* When you write `std::cout << taxForm << std::endl;`, the C++ compiler looks for 
@@ -52,7 +61,7 @@ int main()
         
         // Test high-level bureaucrat signing a form
         // Creates a high-ranking Bureaucrat (grade 10) named "Director".
-        Bureaucrat highLevel("Director", 10);
+        Bureaucrat highLevel("\033[92mDirector\033[0m", 10);
         // Displays the bureaucrat's information.
         std::cout << highLevel << std::endl;
         // Director signs the form - succeeds because grade 10 is better than required grade 50.
@@ -61,16 +70,16 @@ int main()
         std::cout << taxForm << std::endl;
         // Test attempting to sign an already signed form
         // Creates another bureaucrat and attempts to sign the already-signed form (succeeds but has no effect).
-        Bureaucrat anotherHighLevel("Manager", 20);
+        Bureaucrat anotherHighLevel("\033[92mManager\033[0m", 20);
         anotherHighLevel.signForm(taxForm);
         
         // Test low-level bureaucrat failing to sign a form
         // Creates another form requiring grade 15 to sign.
-        Form secretForm("Secret Clearance", 15, 5);
+        Form secretForm("\033[93mSecret Clearance\033[0m", 15, 5);
         // Displays the secret form details.
         std::cout << secretForm << std::endl;
         // Creates a low-ranking bureaucrat (grade 100).
-        Bureaucrat lowLevel("Intern", 100);
+        Bureaucrat lowLevel("\033[92mIntern\033[0m", 100);
         // Shows the intern's information.
         std::cout << lowLevel << std::endl;
         // Intern attempts to sign but fails since grade 100 > required grade 15. Exception is caught in signForm().
@@ -84,7 +93,7 @@ int main()
     } 
     catch (std::exception& e) 
     {
-        std::cout << "Exception: " << e.what() << std::endl;
+        std::cout << "\033[31mException: \033[0m" << e.what() << std::endl;
     }
     
     try 
@@ -96,7 +105,7 @@ int main()
     } 
     catch (std::exception& e) 
     {
-        std::cout << "Exception: " << e.what() << std::endl;
+        std::cout << "\033[31mException: \033[0m" << e.what() << std::endl;
     }
 
     return 0;

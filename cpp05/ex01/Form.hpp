@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 14:45:33 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/04/19 21:01:46 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/05/08 14:36:34 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,6 @@ public:
 };
 
 /* Overloading the insertion operator to enable printing Form objects */
-std::ostream& operator<<(std::ostream& os, const Form& form);  // For std::cout << form
+std::ostream& operator<<(std::ostream& os, const Form& form);  // std::cout << form calls this
 
 #endif
