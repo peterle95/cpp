@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 21:04:53 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/04/19 21:26:42 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/05/07 16:31:19 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,19 @@ void Form::beSigned(const Bureaucrat& bureaucrat)
 std::ostream& operator<<(std::ostream& os, const Form& form) 
 {
     os << "Form: " << form.getName() 
-       << ", Signed: " << (form.isSigned() ? "Yes" : "No")  // Convert bool to Yes/No
+       << ", Signed: " << (form.isSigned() ? "Yes" : "No")
+       /*This line is part of the overloaded << operator.
+       Here's what's happening:
+
+        The code is using the ternary conditional operator ? : which works like a compact if-else statement
+        form.isSigned() is called, which returns a boolean value (true or false)
+        If form.isSigned() returns true, the expression evaluates to "Yes"
+        If form.isSigned() returns false, the expression evaluates to "No"
+        The resulting string ("Yes" or "No") is then inserted into the output stream
+        
+        This creates a user-friendly output when displaying a Form object. Instead of showing 
+        "true" or "false" (or worse, 1 or 0) for the signed status, it shows 
+        "Yes" or "No" which is more readable for users.*/
        << ", Grade to Sign: " << form.getGradeToSign()
        << ", Grade to Execute: " << form.getGradeToExecute();
     return os;  // Similar to Bureaucrat's operator<< implementation

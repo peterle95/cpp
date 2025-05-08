@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 15:10:25 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/04/18 13:09:49 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/05/08 14:01:43 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,32 @@ int main()
         Form taxForm("Tax Form", 50, 25);
         // Prints the form's information using the overloaded << operator.
         std::cout << taxForm << std::endl;
+        /* When you write `std::cout << taxForm << std::endl;`, the C++ compiler looks for 
+        an appropriate implementation of the `<<` operator that can handle the operands provided.
+
+        Here's what happens:
+        
+        1. The compiler sees `std::cout << taxForm` and needs to find a function that can process this operation
+        2. It looks for a function with the signature: `operator<<(std::ostream&, const Form&)`
+        3. It finds the overloaded operator in your code:
+           ```cpp
+           std::ostream& operator<<(std::ostream& os, const Form& form)
+           ```
+        
+        This process is called "function overload resolution" in C++. The compiler matches function 
+        calls to the most appropriate function definition based on the types of the arguments.
+        
+        The `<<` operator is technically being *overloaded*, not overridden. 
+        Overriding applies to virtual functions in derived classes, while overloading refers to defining 
+        multiple functions with the same name but different parameters.
+        
+        When you define `operator<<` for your custom class, you're adding a new function that extends the 
+        functionality of the existing `<<` operator to work with your class. The compiler will automatically use this 
+        function whenever it encounters the `<<` operator with your class type.
+        
+        The beauty of operator overloading is that it lets you use familiar syntax with your custom types, 
+        making your code more readable and intuitive. That's why you can write `std::cout << taxForm` instead 
+        of something like `taxForm.print(std::cout)`.*/
         
         // Test high-level bureaucrat signing a form
         // Creates a high-ranking Bureaucrat (grade 10) named "Director".
@@ -33,7 +59,6 @@ int main()
         highLevel.signForm(taxForm);
         // Shows the form again - now with signed status = Yes.
         std::cout << taxForm << std::endl;
-        
         // Test attempting to sign an already signed form
         // Creates another bureaucrat and attempts to sign the already-signed form (succeeds but has no effect).
         Bureaucrat anotherHighLevel("Manager", 20);

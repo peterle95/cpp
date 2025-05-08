@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 21:14:28 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/04/19 21:32:21 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/05/08 13:30:36 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,12 @@ void Bureaucrat::signForm(Form& form)
 {
     try 
     {
-        form.beSigned(*this);  // Try to sign the form, passing this bureaucrat
+        form.beSigned(*this);
+        /*Since beSigned() expects a reference (const Bureaucrat&), but this is a pointer (Bureaucrat*), 
+        we need to dereference this using the * operator to convert it from a pointer to a reference.
+        If beSigned() had been declared to accept a pointer: 
+            void beSigned(const Bureaucrat* bureaucrat)
+        then we would call it with form.beSigned(this) instead.*/
         /* If successful, print confirmation message */
         std::cout << this->_name << " signed " << form.getName() << std::endl;
     } 
