@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 14:14:59 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/05/09 15:56:42 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/05/09 16:22:29 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int main()
         
         // Test ShrubberyCreationForm (sign: 145, exec: 137)
         std::cout << "=== Testing ShrubberyCreationForm ===" << std::endl;
-        ShrubberyCreationForm shrub("\033[35mgarden\033[0m");
+        ShrubberyCreationForm shrub("garden");
         low.signForm(shrub);
         low.executeForm(shrub);
         mid.signForm(shrub);        
