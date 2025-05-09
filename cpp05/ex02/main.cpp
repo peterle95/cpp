@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 14:14:59 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/05/09 12:31:41 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/05/09 15:56:42 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,45 +35,29 @@ int main()
         // Test ShrubberyCreationForm (sign: 145, exec: 137)
         std::cout << "=== Testing ShrubberyCreationForm ===" << std::endl;
         ShrubberyCreationForm shrub("\033[35mgarden\033[0m");
-        
-        // Low should be able to sign but not execute
         low.signForm(shrub);
-        low.executeForm(shrub);  // Should fail
-        
-        // Mid should be able to execute
+        low.executeForm(shrub);
+        mid.signForm(shrub);        
         mid.executeForm(shrub);
         std::cout << "====================================" << std::endl << std::endl;
         
         // Test RobotomyRequestForm (sign: 72, exec: 45)
         std::cout << "=== Testing RobotomyRequestForm ===" << std::endl;
         RobotomyRequestForm robot("\033[31mtarget\033[0m");
-        
-        // Low shouldn't be able to sign or execute
-        low.signForm(robot);  // Should fail
-        
-        // Mid should be able to sign and execute
+        low.signForm(robot);
         mid.signForm(robot);
         mid.executeForm(robot);
+        high.signForm(robot);
+        high.executeForm(robot);
         std::cout << "===================================" << std::endl << std::endl;
         
         // Test PresidentialPardonForm (sign: 25, exec: 5)
         std::cout << "=== Testing PresidentialPardonForm ===" << std::endl;
         PresidentialPardonForm pardon("\033[33mcriminal\033[0m");
-        
-        // Mid shouldn't be able to sign
-        mid.signForm(pardon);  // Should fail
-        
-        // High should be able to sign and execute
+        mid.signForm(pardon);
         high.signForm(pardon);
         high.executeForm(pardon);
         std::cout << "======================================" << std::endl << std::endl;
-        
-        // Test executing without signing
-        std::cout << "=== Testing Unsigned Form ===" << std::endl;
-        ShrubberyCreationForm unsignedShrub("\033[36mtest\033[0m");
-        high.executeForm(unsignedShrub);  // Should fail
-        std::cout << "============================" << std::endl;
-        
     } 
     catch (std::exception& e) 
     {
