@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 14:14:59 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/05/10 15:00:30 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/05/10 15:20:50 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int main()
         
     } 
     catch (std::exception& e) 
-    {
+    {   // This exception catch block will be thrown when in the Bureaucrat constructor the grade is too high or too low
         std::cerr << "Exception: " << e.what() << std::endl;
     }
     
