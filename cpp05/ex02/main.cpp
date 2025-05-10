@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 14:14:59 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/05/10 15:20:50 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/05/10 15:37:52 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ int main()
     try 
     {
         // Create bureaucrats with different grades
-        Bureaucrat high("High Grade", 1);
-        Bureaucrat mid("Mid Grade", 50);
-        Bureaucrat low("Low Grade", 150);
+        Bureaucrat high("\033[92mHigh Grade\033[0m", 1); // Green
+        Bureaucrat mid("\033[94mMid Grade\033[0m", 50);    // Blue
+        Bureaucrat low("\033[91mLow Grade\033[0m", 150);    // Red
         
         std::cout << "=== Bureaucrats Created ===" << std::endl;
         std::cout << high << std::endl;
@@ -91,7 +91,7 @@ int main()
         
         // Test RobotomyRequestForm (sign: 72, exec: 45)
         std::cout << "=== Testing RobotomyRequestForm ===" << std::endl;
-        RobotomyRequestForm robot("target");
+        RobotomyRequestForm robot("\033[31mtarget\033[0m");
         low.signForm(robot);
         mid.signForm(robot);
         mid.executeForm(robot);
@@ -99,7 +99,7 @@ int main()
         
         // Test PresidentialPardonForm (sign: 25, exec: 5)
         std::cout << "=== Testing PresidentialPardonForm ===" << std::endl;
-        PresidentialPardonForm pardon("criminal");
+        PresidentialPardonForm pardon("\033[33mcriminal\033[0m");
         mid.signForm(pardon);
         high.signForm(pardon);
         high.executeForm(pardon);
@@ -108,7 +108,7 @@ int main()
     } 
     catch (std::exception& e) 
     {   // This exception catch block will be thrown when in the Bureaucrat constructor the grade is too high or too low
-        std::cerr << "Exception: " << e.what() << std::endl;
+        std::cerr << "\033[31mException: \033[0m" << e.what() << std::endl;
     }
     
     return 0;
