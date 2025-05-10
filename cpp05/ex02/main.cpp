@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 14:14:59 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/05/10 15:37:52 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/05/10 15:44:03 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,9 @@ int main()
    	  */
         low.signForm(shrub);
         low.executeForm(shrub);
+        mid.signForm(shrub);        
         mid.executeForm(shrub);
+        high.executeForm(shrub);
         std::cout << "====================================" << std::endl << std::endl;
         
         // Test RobotomyRequestForm (sign: 72, exec: 45)
@@ -95,6 +97,8 @@ int main()
         low.signForm(robot);
         mid.signForm(robot);
         mid.executeForm(robot);
+        high.signForm(robot);
+        high.executeForm(robot);
         std::cout << "===================================" << std::endl << std::endl;
         
         // Test PresidentialPardonForm (sign: 25, exec: 5)
