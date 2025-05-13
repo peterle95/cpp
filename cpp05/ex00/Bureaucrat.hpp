@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 16:02:06 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/05/07 15:49:13 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/05/13 10:36:56 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ public:
     class GradeTooHighException : public std::exception 
     {
         public: 
-            virtual const char* what() const throw(); // virtual keyword is optional in derived classes
+            virtual const char* what() const throw();
     };
 
     class GradeTooLowException : public std::exception 
