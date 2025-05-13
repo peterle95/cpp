@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 14:14:59 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/05/10 15:44:49 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/05/13 10:38:32 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,9 @@ int main()
 {
     try 
     {
-        // Create bureaucrats with different grades
-        Bureaucrat high("\033[92mHigh Grade\033[0m", 1); // Green
-        Bureaucrat mid("\033[94mMid Grade\033[0m", 50);    // Blue
-        Bureaucrat low("\033[91mLow Grade\033[0m", 150);    // Red
+        Bureaucrat high("\033[92mHigh Grade\033[0m", 1);
+        Bureaucrat mid("\033[94mMid Grade\033[0m", 50);
+        Bureaucrat low("\033[91mLow Grade\033[0m", 150);
         
         std::cout << "=== Bureaucrats Created ===" << std::endl;
         std::cout << high << std::endl;
