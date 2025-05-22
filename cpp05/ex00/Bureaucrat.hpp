@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 16:02:06 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/05/07 15:47:30 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/05/22 17:43:09 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,24 @@ public:
     const std::string& getName() const;
     // Getter for the bureaucrat's grade.
     int getGrade() const;
+    /*both getName() and getGrade() are actually declared the same way - 
+    they're both const member functions (notice the const at the end of both declarations). 
+    The difference you're seeing is in their return types:
+    
+    Here's why they're different:
+        
+        getName() returns const std::string&:
+        
+        Returns a const reference to avoid copying the string (more efficient)
+        The const in the return type prevents the caller from modifying the original string
+        Since _name is declared as const std::string _name, returning a const reference makes sense
+        
+        getGrade() returns int:
+        
+        Returns the integer by value (which is cheap to copy)
+        For primitive types like int, returning by value is the standard practice
+        There's no performance benefit to returning a reference to an int
+        Returning int by value is safer - the caller gets their own copy and can't accidentally modify the original*/
 
     // Method to increment the bureaucrat's grade (make it higher).
     void incrementGrade();
