@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 14:14:59 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/05/10 15:44:03 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/05/22 18:00:13 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ Here are the key differences:
      - `PresidentialPardonForm`: Pardons someone by Zaphod Beeblebrox (grades 25/5)
 
 3. **Form Execution**:
-   - Ex01 likely just had the signing mechanism
    - Ex02 adds an execution mechanism via the `execute()` method that performs different actions based on the form type
    - Added `executeForm()` method to the `Bureaucrat` class
 
