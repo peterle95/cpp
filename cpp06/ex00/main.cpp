@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:17:00 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/04/23 14:12:46 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/06/03 16:41:48 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,3 +69,153 @@ int main(int argc, char* argv[])
     ScalarConverter::convert(argv[1]);
     return 0;
 }
+
+/*Why Private Constructors/Destructors?
+The ScalarConverter class is designed as a utility class or static class - it's meant to provide 
+functionality without ever creating instances of it. Here's why:
+1. Preventing Instantiation
+
+// These are private - users cannot do this:
+ScalarConverter converter;           // ❌ Compilation error
+ScalarConverter* ptr = new ScalarConverter(); // ❌ Compilation error
+
+The class is designed to work like this instead:
+
+//Only this is allowed:
+ScalarConverter::convert("42");      // ✅ Static method call
+
+2. The Class Has No State
+The ScalarConverter class doesn't need to store any data (no member variables). 
+It's purely a collection of related functions. Creating objects would be wasteful and unnecessary.
+
+What About = 0 (Pure Virtual)?
+
+If you wrote:
+
+ScalarConverter() = 0;  // This would be invalid!
+
+This syntax doesn't work for constructors. You might be thinking of:
+Pure Virtual Functions:
+
+virtual void someFunction() = 0;  // Pure virtual function
+
+This makes the class abstract - you can't instantiate it, but you can inherit from it.
+Deleted Functions (C++11+):
+
+ScalarConverter() = delete;  // Explicitly deleted constructor
+
+This explicitly prevents the function from being used, but it's more modern syntax.
+The static Access Specifier
+What static does:
+
+1. No Object Required: Static members belong to the class itself, not to any instance
+2. Single Copy: Only one copy exists regardless of how many objects you create
+3. Accessible via Class Name: You call them using ClassName::functionName()
+
+Why Use Static Here?
+
+class ScalarConverter {
+public:
+    static void convert(const std::string& literal);  // Static method
+};
+
+// Usage:
+ScalarConverter::convert("42");  // No object needed!
+
+Compare this to a non-static approach:
+
+class ScalarConverter {
+public:
+    void convert(const std::string& literal);  // Non-static method
+};
+
+// Usage would require:
+ScalarConverter converter;    // Create object first
+converter.convert("42");      // Then call method on object
+
+Design Pattern: Static Utility Class
+This is a common pattern in C++ (and other languages) for utility classes:
+Benefits:
+
+1. No Memory Overhead: No objects to create/destroy
+2. Clear Intent: It's obvious this is just a collection of utility functions
+3. Performance: No object creation overhead
+4. Simplicity: Users can't accidentally create objects or pass them around
+
+Real-World Examples:
+
+// Standard library examples:
+std::sort(vec.begin(), vec.end());        // Algorithm utilities
+std::numeric_limits<int>::max();          // Type utilities
+std::string::npos;                        // String constants
+
+// Your class:
+ScalarConverter::convert("42.0f");        // Conversion utilities
+
+Alternative Approaches
+1. Free Functions (C-style):
+
+// Instead of a class, just have functions:
+void convert(const std::string& literal);
+bool isInt(const std::string& literal);
+// etc.
+Problem: Functions aren't grouped together, potential naming conflicts.
+2. Namespace:
+namespace ScalarConverter {
+    void convert(const std::string& literal);
+    bool isInt(const std::string& literal);
+    // etc.
+}
+
+// Usage:
+ScalarConverter::convert("42");
+
+This is actually a valid alternative! Many C++ developers prefer this approach.
+3. Singleton Pattern:
+
+class ScalarConverter {
+public:
+    static ScalarConverter& getInstance() {
+        static ScalarConverter instance;
+        return instance;
+    }
+    void convert(const std::string& literal);
+};
+
+// Usage:
+ScalarConverter::getInstance().convert("42");
+
+Problem: More complex, still requires object creation, overkill for stateless utilities.
+
+Why Not Abstract Base Class?
+If you made it abstract:
+class ScalarConverter {
+public:
+    virtual void convert(const std::string& literal) = 0;  // Pure virtual
+    virtual ~ScalarConverter() = default;
+};
+
+class ConcreteConverter : public ScalarConverter {
+public:
+    void convert(const std::string& literal) override {
+        // Implementation
+    }
+};
+
+Problems with this approach:
+
+More complex inheritance hierarchy
+Still need to create objects: ConcreteConverter converter;
+Virtual function overhead
+Unnecessary complexity for simple utility functions
+
+Summary
+The current design is a Static Utility Class pattern:
+
+Private constructors prevent instantiation
+Static methods provide functionality without objects
+Clean, simple interface: ScalarConverter::convert("42")
+No memory overhead or object management
+Clear intent that this is just a collection of related utility functions
+
+This pattern is particularly common in C++ for utility classes that don't need to maintain state and just provide algorithmic functionality.*/
