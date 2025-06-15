@@ -6,68 +6,101 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 00:00:00 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/06/12 15:01:33 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/06/15 17:44:55 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Intern.hpp"
-#include <iostream>
+#include "Intern.hpp"   // Include the Intern class header file
+#include <iostream>     // For console output (std::cout)
 
+// Default constructor - creates an intern with no special initialization needed
 Intern::Intern()
-{}
+{} // Empty body since interns don't need any member variables or special setup
 
+// Copy constructor - creates a new intern by copying from another intern
 Intern::Intern(const Intern& other)
 {
-    (void)other;
+    (void)other;  // Cast to void to suppress "unused parameter" compiler warning
+                  // No actual copying needed since Intern has no member variables to copy
 }
 
+// Destructor - cleans up when an intern object is destroyed
 Intern::~Intern()
-{}
+{} // Empty body since there's no dynamic memory allocation or resources to clean up
 
+// Assignment operator - assigns one intern to another
 Intern& Intern::operator=(const Intern& other)
 {
-    (void)other;
-    return *this;
+    (void)other;  // Cast to void to suppress "unused parameter" compiler warning
+                  // No actual assignment needed since Intern has no member variables
+    return *this; // Return reference to current object for chaining assignments
 }
 
+// Private helper method to create a ShrubberyCreationForm
+// This encapsulates the creation logic and is used by the factory method
 AForm* Intern::makeShrubberyCreationForm(const std::string& target)
 {
-    return new ShrubberyCreationForm(target);
+    return new ShrubberyCreationForm(target);  // Dynamically allocate and return new form
+                                              // Caller is responsible for deleting this memory
 }
 
+// Private helper method to create a RobotomyRequestForm
+// This encapsulates the creation logic and is used by the factory method
 AForm* Intern::makeRobotomyRequestForm(const std::string& target)
 {
-    return new RobotomyRequestForm(target);
+    return new RobotomyRequestForm(target);   // Dynamically allocate and return new form
+                                             // Caller is responsible for deleting this memory
 }
 
+// Private helper method to create a PresidentialPardonForm
+// This encapsulates the creation logic and is used by the factory method
 AForm* Intern::makePresidentialPardonForm(const std::string& target)
 {
-    return new PresidentialPardonForm(target);
+    return new PresidentialPardonForm(target); // Dynamically allocate and return new form
+                                              // Caller is responsible for deleting this memory
 }
 
+// Main factory method - creates forms based on string names
+// This is the core of the Factory design pattern implementation
 AForm* Intern::makeForm(const std::string& formName, const std::string& target)
 {
+    // Array of valid form names that the intern can create
+    // These strings must match exactly what the client passes in
     std::string formNames[3] = {
-        "shrubbery creation",
-        "robotomy request", 
-        "presidential pardon"
+        "shrubbery creation",  // Index 0 - corresponds to ShrubberyCreationForm
+        "robotomy request",    // Index 1 - corresponds to RobotomyRequestForm
+        "presidential pardon"  // Index 2 - corresponds to PresidentialPardonForm
     };
     
+    // Array of function pointers to the private creation methods
+    // Each pointer corresponds to the form name at the same index
+    // This is a clever way to avoid a long if-else chain or switch statement
     AForm* (Intern::*formCreators[3])(const std::string&) = {
-        &Intern::makeShrubberyCreationForm,
-        &Intern::makeRobotomyRequestForm,
-        &Intern::makePresidentialPardonForm
+        &Intern::makeShrubberyCreationForm,   // Index 0 - creates ShrubberyCreationForm
+        &Intern::makeRobotomyRequestForm,     // Index 1 - creates RobotomyRequestForm
+        &Intern::makePresidentialPardonForm   // Index 2 - creates PresidentialPardonForm
     };
     
+    // Loop through all available form names to find a match
     for (int i = 0; i < 3; i++)
     {
+        // Check if the requested form name matches any of our valid names
         if (formName == formNames[i])
         {
+            // Inform user that intern is creating the requested form
             std::cout << "Intern creates " << formName << std::endl;
+            
+            // Use the function pointer to call the appropriate creation method
+            // (this->*formCreators[i]) dereferences the function pointer and calls it
+            // with 'target' as the parameter
             return (this->*formCreators[i])(target);
         }
     }
     
+    // If we reach here, the form name was not found in our valid names array
+    // Print an error message to inform the user
     std::cout << "Error: Form name '" << formName << "' does not exist" << std::endl;
+    
+    // Return NULL to indicate failure - caller should check for this
     return NULL;
 }
