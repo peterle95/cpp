@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 14:14:59 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/06/15 17:37:27 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/06/16 19:09:18 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,11 @@ int main()
         std::cout << "=== Testing Intern Class ===" << std::endl;
         Intern someRandomIntern;  // Create an intern object (no special constructor parameters)
         
-        // Declare pointers to hold forms that the intern will create
+        // Declare pointers to hold forms that the intern will create, THESE ARE NOT OBJECTS    
         AForm* rrf;  // Will hold RobotomyRequestForm
         AForm* scf;  // Will hold ShrubberyCreationForm  
         AForm* ppf;  // Will hold PresidentialPardonForm
+        // these are pointers that can point to any object that inherits from AForm.
         
         // Use intern to create different types of forms by string names
         // The intern acts as a factory - you give it a form name and target, it returns the appropriate form
@@ -65,6 +66,13 @@ int main()
         {
             std::cout << "=== Testing Robotomy Request Form ===" << std::endl;
             high.signForm(*rrf);    // High-grade bureaucrat signs the form (grade 1 can sign grade 72 requirement)
+            /*So when signForm(*rrf) is called:
+            We're passing a complete RobotomyRequestForm object
+            That object contains _target = "Bender" as one of its properties
+            The method can access all aspects of the form, not just the target
+            
+            The dereferencing (*rrf) is necessary because signForm expects an object reference, 
+            but we have a pointer, so we need to convert pointer → object reference.*/
             high.executeForm(*rrf); // High-grade bureaucrat executes the form (grade 1 can execute grade 45 requirement)
                                    // This will print drilling noises and 50% chance success/failure message
             std::cout << "=====================================" << std::endl << std::endl;
