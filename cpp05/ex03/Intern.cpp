@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 00:00:00 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/06/28 11:21:10 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/06/28 11:26:22 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,13 @@ AForm* Intern::makeForm(const std::string& formName, const std::string& target)
 // Each pointer corresponds to the form name at the same index
 // This is a clever way to avoid a long if-else chain or switch statement
 AForm* (Intern::*formCreators[3])(const std::string&) = {
-//  ^      ^      ^       ^  ^         ^
-//  |      |      |       |  |         |
-//  |      |      |       |  |         +-- Array size (3 elements)
-//  |      |      |       |  +-- Parameter type (const std::string&)
-//  |      |      |       +-- Method name pattern
-//  |      |      +-- Scope resolution (belongs to Intern class)
-//  |      +-- Member function pointer syntax
+//  ^      ^       ^        ^  ^         ^
+//  |      |       |        |  |         |
+//  |      |       |        |  |         +-- Parameter type (const std::string&)
+//  |      |       |        |  +-- Array size (3 elements)
+//  |      |       |        +-- Array name (formCreators)
+//  |      |       +-- Member function pointer syntax (*...)
+//  |      +-- Scope (Intern class)
 //  +-- Return type (AForm pointer)
 
    &Intern::makeShrubberyCreationForm,   // Index 0 - creates ShrubberyCreationForm
@@ -104,7 +104,9 @@ AForm* (Intern::*formCreators[3])(const std::string&) = {
 //   +-- Object instance (this pointer)
 /*
 Holistic Explanation
-This demonstrates C++ member function pointers - a powerful but complex feature. The syntax AForm* (Intern::*)(const std::string&) declares a pointer that can hold the address of any Intern method matching that signature.
+This demonstrates C++ member function pointers - a powerful but complex feature. 
+The syntax AForm* (Intern::*)(const std::string&) declares a pointer that can 
+hold the address of any Intern method matching that signature.
 The array creates a lookup table mapping indices to creation methods. Instead of:
     if (name == "shrubbery") return makeShrubberyCreationForm(target);
     else if (name == "robotomy") return makeRobotomyRequestForm(target);
