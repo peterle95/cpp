@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 00:00:00 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/06/15 17:44:55 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/06/28 11:21:10 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,46 @@ AForm* Intern::makeForm(const std::string& formName, const std::string& target)
     };
     
     // Array of function pointers to the private creation methods
-    // Each pointer corresponds to the form name at the same index
-    // This is a clever way to avoid a long if-else chain or switch statement
-    AForm* (Intern::*formCreators[3])(const std::string&) = {
-        &Intern::makeShrubberyCreationForm,   // Index 0 - creates ShrubberyCreationForm
-        &Intern::makeRobotomyRequestForm,     // Index 1 - creates RobotomyRequestForm
-        &Intern::makePresidentialPardonForm   // Index 2 - creates PresidentialPardonForm
-    };
+// Each pointer corresponds to the form name at the same index
+// This is a clever way to avoid a long if-else chain or switch statement
+AForm* (Intern::*formCreators[3])(const std::string&) = {
+//  ^      ^      ^       ^  ^         ^
+//  |      |      |       |  |         |
+//  |      |      |       |  |         +-- Array size (3 elements)
+//  |      |      |       |  +-- Parameter type (const std::string&)
+//  |      |      |       +-- Method name pattern
+//  |      |      +-- Scope resolution (belongs to Intern class)
+//  |      +-- Member function pointer syntax
+//  +-- Return type (AForm pointer)
+
+   &Intern::makeShrubberyCreationForm,   // Index 0 - creates ShrubberyCreationForm
+   //  ^        ^
+   //  |        +-- Method name
+   //  +-- Address-of operator (gets pointer to method)
+   
+   &Intern::makeRobotomyRequestForm,     // Index 1 - creates RobotomyRequestForm
+   &Intern::makePresidentialPardonForm   // Index 2 - creates PresidentialPardonForm
+};
+
+// Usage syntax breakdown:
+// (this->*formCreators[i])(target)
+//   ^    ^       ^      ^    ^
+//   |    |       |      |    +-- Argument passed to method
+//   |    |       |      +-- Array index selection
+//   |    |       +-- Array of function pointers
+//   |    +-- Pointer-to-member dereference operator
+//   +-- Object instance (this pointer)
+/*
+Holistic Explanation
+This demonstrates C++ member function pointers - a powerful but complex feature. The syntax AForm* (Intern::*)(const std::string&) declares a pointer that can hold the address of any Intern method matching that signature.
+The array creates a lookup table mapping indices to creation methods. Instead of:
+    if (name == "shrubbery") return makeShrubberyCreationForm(target);
+    else if (name == "robotomy") return makeRobotomyRequestForm(target);
+// etc...
+
+You get:
+    return (this->*formCreators[i])(target);  // Single line, index-driven
+This pattern scales better (add new forms by extending arrays) and demonstrates how C++*/
     
     // Loop through all available form names to find a match
     for (int i = 0; i < 3; i++)
