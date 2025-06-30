@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:16:05 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/04/23 14:10:53 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/06/29 12:50:27 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,9 @@ private:
 
 public:
     // The only public method - convert
+    /*Static utility pattern: 
+    Making convert static allows it to be called directly on the class 
+    (ScalarConverter::convert(literal)) without needing an object instance.*/
     static void convert(const std::string& literal);
 };
 

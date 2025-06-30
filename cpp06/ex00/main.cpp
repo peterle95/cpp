@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:17:00 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/06/03 16:41:48 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/06/29 12:55:01 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ double: 42.0
 
 int main(int argc, char* argv[]) 
 {
+    // ScalarConverter testobj;
+    
     if (argc != 2) 
     {
         std::cout << "Usage: " << argv[0] << " <literal>" << std::endl;

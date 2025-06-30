@@ -6,14 +6,14 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 14:29:22 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/04/23 14:31:14 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/06/30 21:04:26 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SERIALIZER_HPP
 #define SERIALIZER_HPP
 
-#include <stdint.h>  // For uintptr_t
+#include <stdint.h>  // For uintptr_t   
 #include "Data.hpp"
 
 class Serializer 

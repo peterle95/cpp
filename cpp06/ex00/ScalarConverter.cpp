@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:16:36 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/06/03 15:00:13 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/06/29 13:11:04 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ ScalarConverter::~ScalarConverter()
 
 /**
  * Determines if a string literal represents a character
- * Accepts two formats: single character 'c' or quoted character 'c'
+ * Accepts two formats: single character c or quoted character 'c'
  * Returns true if the string is a valid character literal
  */
 bool ScalarConverter::isChar(const std::string& literal) 
