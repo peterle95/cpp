@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:16:36 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/04/23 14:18:18 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/07/04 14:52:19 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ bool ScalarConverter::isFloat(const std::string& literal)
 bool ScalarConverter::isDouble(const std::string& literal) 
 {
     // Check for special double literals
-    if (literal == "nan" || literal == "+inf" || literal == "-inf")
+    if (literal == "nan" || literal == "+inf" || literal == "-inf" || literal == "inf")
         return true;
     
     // Try to convert it to double
@@ -160,7 +160,10 @@ void ScalarConverter::convertFromDouble(double d)
     else
         printInt(static_cast<int>(d));
     
-    if (d > __FLT_MAX__ || d < -__FLT_MAX__)
+    
+    if (std::isnan(d) || std::isinf(d))
+        printFloat(static_cast<float>(d));
+    else if (d > __FLT_MAX__ || d < -__FLT_MAX__)
         std::cout << "float: impossible" << std::endl;
     else
         printFloat(static_cast<float>(d));
@@ -200,7 +203,7 @@ void ScalarConverter::convert(const std::string& literal)
         double d;
         if (literal == "nan")
             d = std::numeric_limits<double>::quiet_NaN();
-        else if (literal == "+inf")
+        else if (literal == "+inf" || literal == "inf")
             d = std::numeric_limits<double>::infinity();
         else if (literal == "-inf")
             d = -std::numeric_limits<double>::infinity();
