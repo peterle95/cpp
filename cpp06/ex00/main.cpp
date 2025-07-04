@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:17:00 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/07/04 14:25:20 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/07/04 15:44:43 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,42 @@ int main(int argc, char* argv[])
     }
     
     ScalarConverter::convert(argv[1]);
+
+    
     /* ScalarConverter::convert("nan");
     ScalarConverter::convert("+inf"); */
+    using namespace std;
+
+    cout << endl << "---------- TESTING ----------" << endl;
+    float f = 42.0f;
+
+    // With std::fixed + std::setprecision(1):
+    std::cout << "With std::fixed + std::setprecision(1): " << std::fixed << std::setprecision(1) << f << endl;  // Prints: 42.0
+
+    // With only std::setprecision(3):
+    std::cout << "With only std::setprecision(3): " << std::setprecision(3) << f << endl;                // Prints: 42.0 (3 total digits)
+
+    // With a larger number:
+    float big = 123456.789f;
+    std::cout << "With std::setprecision(3): " << std::setprecision(3) << big << endl;              // Prints: 1.23e+05 (scientific!)
+    std::cout << "With std::fixed + std::setprecision(3): " << std::fixed << std::setprecision(3) << big << endl; // Prints: 123456.789 (fixed!)
+
+    float tiny = 0.000001f;
+    float huge = 1000000000.0f;
+    
+    // Without std::fixed (automatic format):
+    std::cout << "Without std::fixed (automatic format): " << std::setprecision(3) << tiny << endl;  // Might print: 1e-06
+    std::cout << "Without std::fixed (automatic format): " << std::setprecision(3) << huge << endl;  // Might print: 1e+09
+    
+    // With std::fixed (forced decimal format):
+    std::cout << "With std::fixed (forced decimal format): " << std::fixed << std::setprecision(3) << tiny << endl;  // Prints: 0.000
+    std::cout << "With std::fixed (forced decimal format): " << std::fixed << std::setprecision(3) << huge << endl;  // Prints: 1000000000.000
+
+    float extreme_tiny = 1e-10f;    // 0.0000000001
+    float extreme_huge = 1e15f;     // 1000000000000000
+    
+    std::cout << "With std::setprecision(3): " << std::setprecision(3) << extreme_tiny << endl;  // Might show scientific
+    std::cout << "With std::setprecision(3): " << std::setprecision(3) << extreme_huge << endl;  // Might show scientific
     return 0;
 }
 

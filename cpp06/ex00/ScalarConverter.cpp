@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:16:36 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/07/04 14:49:06 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/07/04 15:48:37 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,16 @@ void ScalarConverter::printInt(int i)
  */
 void ScalarConverter::printFloat(float f) 
 {
-    // Set precision to 1 decimal place, use fixed-point notation, add 'f' suffix
+    // std::setprecision(1): Sets the number of digits after the decimal point to 1
+    // std::fixed: Forces fixed-point notation (as opposed to scientific notation)
+    // Without these manipulators, C++ might print floats in various formats:
+    // - 42.0 might print as "42" (no decimal)
+    // - 42.123456 might print as "42.1235" (default precision ~6)
+    // - Very large numbers might print as "4.2e+10" (scientific notation)
+    // 
+    // Example: f = 42.0f
+    // Without manipulators: might print "42" 
+    // With manipulators: prints "42.0f"
     std::cout << "float: " << std::setprecision(1) << std::fixed << f << "f" << std::endl;
 }
 
@@ -187,7 +196,13 @@ void ScalarConverter::printFloat(float f)
  */
 void ScalarConverter::printDouble(double d) 
 {
-    // Set precision to 1 decimal place, use fixed-point notation
+    // std::setprecision(1): Ensures exactly 1 digit after decimal point
+    // std::fixed: Prevents scientific notation (e.g., 1.23e+05)
+    // This ensures consistent output format regardless of the number's magnitude
+    // 
+    // Example: d = 1234.5678
+    // Without manipulators: might print "1234.57" or "1.23457e+03"
+    // With manipulators: prints "1234.6" (rounded to 1 decimal place)
     std::cout << "double: " << std::setprecision(1) << std::fixed << d << std::endl;
 }
 
@@ -345,13 +360,22 @@ void ScalarConverter::convert(const std::string& literal)
         float f;
         // Handle special float pseudo-literals
         if (literal == "nanf")
-            // Set to Not-a-Number float value
+            // Handle the special float pseudo-literal "nanf" (Not-a-Number)
+            // std::numeric_limits<float>::quiet_NaN() returns a float NaN value
+            // that doesn't signal floating-point exceptions when used in operations
+            // This represents undefined/invalid mathematical operations like 0/0
             f = std::numeric_limits<float>::quiet_NaN();
         else if (literal == "+inff")
-            // Set to positive infinity float value
+            // Handle the special float pseudo-literal "+inff" (positive infinity)
+            // std::numeric_limits<float>::infinity() returns positive infinity
+            // This represents mathematical positive infinity (e.g., 1.0/0.0)
+            // The '+' sign is explicit but optional in C++ float literals      
             f = std::numeric_limits<float>::infinity();
         else if (literal == "-inff")
-            // Set to negative infinity float value
+            // Handle the special float pseudo-literal "-inff" (negative infinity)
+            // We negate the positive infinity to get negative infinity
+            // This represents mathematical negative infinity (e.g., -1.0/0.0)
+            // Cannot use std::numeric_limits<float>::-infinity() so we negate it
             f = -std::numeric_limits<float>::infinity();
         else
             // Convert regular float literal using standard library function
