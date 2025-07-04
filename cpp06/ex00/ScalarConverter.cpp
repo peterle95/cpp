@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:16:36 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/07/04 15:48:37 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/07/04 15:53:23 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,24 @@ bool ScalarConverter::isInt(const std::string& literal)
     // Pointer to track where string parsing stopped
     char* end;
     // Attempt to convert string to long integer (base 10)
+    // Convert the string literal to a long integer using strtol function
+    // std::strtol() is the standard library function for string-to-long conversion
+    // Parameters breakdown:
+    // - literal.c_str(): Converts std::string to const char* (C-style string)
+    //   because strtol expects a C-style string, not a C++ string object
+    // - &end: Pointer to char* that will store the address of the first invalid character
+    //   This allows us to check if the entire string was successfully converted
+    //   If conversion succeeds completely, *end will point to the null terminator '\0'
+    // - 10: Base/radix for conversion (10 = decimal, 16 = hexadecimal, 8 = octal, etc.)
+    //   We use base 10 since we're parsing decimal integers like "42", "-123"
+    // 
+    // Example: literal = "42abc"
+    // - num will be 42 (successfully parsed part)
+    // - *end will point to 'a' (first character that couldn't be converted)
+    // 
+    // Example: literal = "42"
+    // - num will be 42
+    // - *end will point to '\0' (null terminator - complete success)
     long num = std::strtol(literal.c_str(), &end, 10);
     
     // Check if we parsed the entire string (*end == '\0') 
