@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 14:30:09 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/06/30 21:09:39 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/07/01 22:57:12 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ the original object's data through the restored pointer.*/
 int main() 
 {
     // Create a Data object with sample values to test serialization
+    // is this an object? It should be part of the struct...
     Data original;
     original.id = 42;
     original.name = "Sample Data";

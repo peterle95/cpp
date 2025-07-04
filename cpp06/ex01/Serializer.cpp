@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 14:32:26 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/06/30 21:08:27 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/07/01 23:03:55 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ uintptr_t Serializer::serialize(Data* ptr)
    // - Reinterprets those same bits as an unsigned integer
    // - No data is changed, only how we interpret the bits
    // - Example: pointer 0x7fff5fbff6c0 becomes integer 140734799925952
+   
+   // how does actually the memory address become that number??
    return reinterpret_cast<uintptr_t>(ptr);
 }
 
