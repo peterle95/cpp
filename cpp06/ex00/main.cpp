@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:17:00 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/07/03 20:17:47 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/07/04 14:25:20 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ int main(int argc, char* argv[])
     }
     
     ScalarConverter::convert(argv[1]);
-    ScalarConverter::convert("nan");
-    ScalarConverter::convert("+inf");
+    /* ScalarConverter::convert("nan");
+    ScalarConverter::convert("+inf"); */
     return 0;
 }
 

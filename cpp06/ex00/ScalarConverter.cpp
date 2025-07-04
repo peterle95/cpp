@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:16:36 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/06/29 13:11:04 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/07/04 14:49:06 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ bool ScalarConverter::isFloat(const std::string& literal)
 bool ScalarConverter::isDouble(const std::string& literal) 
 {
     // First check for special double pseudo-literals
-    if (literal == "nan" || literal == "+inf" || literal == "-inf")
+    if (literal == "nan" || literal == "+inf" || literal == "-inf" || literal == "inf")
         return true;
     
     // Pointer to track where string parsing stopped
@@ -290,7 +290,13 @@ void ScalarConverter::convertFromDouble(double d)
         // Convert and print as integer (truncates decimal part)
         printInt(static_cast<int>(d));
     
+    if (std::isnan(d) || std::isinf(d))
+        printFloat(static_cast<float>(d));  // inf/nan can be converted
     // Check if double value exceeds float range
+    // we need to check because float has a smaller range than double
+    // Float vs Double ranges:
+    // Float: ~3.4 × 10³⁸ (32-bit, single precision)
+    // Double: ~1.8 × 10³⁰⁸ (64-bit, double precision)
     if (d > __FLT_MAX__ || d < -__FLT_MAX__)
         // Double value too large/small for float representation
         std::cout << "float: impossible" << std::endl;
@@ -362,7 +368,7 @@ void ScalarConverter::convert(const std::string& literal)
         if (literal == "nan")
             // Set to Not-a-Number double value
             d = std::numeric_limits<double>::quiet_NaN();
-        else if (literal == "+inf")
+        else if (literal == "+inf" || literal == "inf")
             // Set to positive infinity double value
             d = std::numeric_limits<double>::infinity();
         else if (literal == "-inf")
