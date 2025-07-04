@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:17:00 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/07/04 15:44:43 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/07/04 15:49:37 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int main(int argc, char* argv[])
     
     /* ScalarConverter::convert("nan");
     ScalarConverter::convert("+inf"); */
-    using namespace std;
+   /*  using namespace std;
 
     cout << endl << "---------- TESTING ----------" << endl;
     float f = 42.0f;
@@ -104,7 +104,7 @@ int main(int argc, char* argv[])
     float extreme_huge = 1e15f;     // 1000000000000000
     
     std::cout << "With std::setprecision(3): " << std::setprecision(3) << extreme_tiny << endl;  // Might show scientific
-    std::cout << "With std::setprecision(3): " << std::setprecision(3) << extreme_huge << endl;  // Might show scientific
+    std::cout << "With std::setprecision(3): " << std::setprecision(3) << extreme_huge << endl;  // Might show scientific */
     return 0;
 }
 
