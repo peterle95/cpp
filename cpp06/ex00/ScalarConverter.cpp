@@ -6,7 +6,7 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:16:36 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/07/04 15:53:23 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/07/07 14:20:01 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -408,17 +408,43 @@ void ScalarConverter::convert(const std::string& literal)
         double d;
         // Handle special double pseudo-literals
         if (literal == "nan")
+            // Check if the input string literal exactly matches "nan" (Not-a-Number)
+            // The == operator performs string comparison between literal and "nan"
+            // literal is a const std::string& parameter passed to the function
             // Set to Not-a-Number double value
             d = std::numeric_limits<double>::quiet_NaN();
+            // d is a double variable declared earlier in the function
+            // std::numeric_limits is a template class from <limits> header
+            // <double> specifies we want limits for the double data type
+            // :: is the scope resolution operator to access static members
+            // quiet_NaN() is a static method that returns a quiet NaN double value
+            // quiet NaN means "Not-a-Number" that doesn't raise exceptions
+            // The assignment operator = stores this NaN value in variable d
         else if (literal == "+inf" || literal == "inf")
-            // Set to positive infinity double value
             d = std::numeric_limits<double>::infinity();
+            // std::numeric_limits<double> accesses double type limits
+            // infinity() is a static method returning positive infinity for doubles
+            // IEEE 754 standard defines infinity as a special floating-point value
+            // Assignment stores positive infinity in variable d
         else if (literal == "-inf")
-            // Set to negative infinity double value
             d = -std::numeric_limits<double>::infinity();
+            // std::numeric_limits<double>::infinity() returns positive infinity
+            // The unary minus operator - negates the positive infinity
+            // This creates negative infinity value
+            // Assignment stores negative infinity in variable d
         else
+            // else clause handles all other cases (regular numeric strings)
+            // This branch executes when none of the special cases match
             // Convert regular double literal using standard library function
             d = std::strtod(literal.c_str(), NULL);
+            // std::strtod is a C standard library function from <cstdlib>
+            // It converts a string to double precision floating-point number
+            // literal.c_str() method converts std::string to const char*
+            // c_str() returns a null-terminated character array
+            // First parameter: pointer to the string to convert
+            // Second parameter: NULL means we don't want end pointer information
+            // The function parses the string and returns the converted double value
+            // Assignment operator = stores the converted value in variable d
         // Convert from double to all types
         convertFromDouble(d);
     }
