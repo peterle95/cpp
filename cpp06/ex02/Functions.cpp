@@ -48,9 +48,19 @@ Base* generate(void)
     static bool firstCall = true;
     if (firstCall) 
     {
-        // std::srand() seeds the random number generator
-        // std::time(NULL) returns current time in seconds since epoch
-        // This ensures different random sequences each program run
+        // std::srand() seeds the pseudo-random number generator (PRNG) used by std::rand().
+        // Think of the PRNG as a long, predetermined sequence of numbers that appears random.
+        // The "seed" is the starting point in that sequence.
+        //
+        // - If you provide the SAME seed to srand(), you will get the EXACT SAME sequence of
+        //   "random" numbers from subsequent calls to rand(). This is useful for testing
+        //   and reproducibility.
+        // - To get a different sequence of numbers each time the program runs, we need a
+        //   different seed. A common practice is to use the current time (std::time(NULL)),
+        //   which is nearly always different on each execution.
+        //
+        // In summary: srand() sets the starting point. rand() gets the next number in the sequence.
+        // You only need to seed ONCE per program execution.
         std::srand(std::time(NULL));
         firstCall = false;
     }
