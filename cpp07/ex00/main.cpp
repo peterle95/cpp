@@ -44,17 +44,40 @@ int main(void) {
     int b = 3;
     
     // std::cout << "Before swap: a = " << a << ", b = " << b << std::endl;
+    
+    // The :: operator here is the global scope resolution operator
+    // It explicitly tells the compiler to use the global swap function
+    // (the one we defined in whatever.hpp) rather than std::swap
     ::swap(a, b);
+    
     std::cout << "a = " << a << ", b = " << b << std::endl;
+    
+    // Again, :: means "use the global scope version"
+    // When the compiler sees ::min(a, b), it looks for a function
+    // named 'min' in the global namespace that can handle two int arguments
     std::cout << "min( a, b ) = " << ::min(a, b) << std::endl;
+    
+    // The template system automatically deduces that T = int
+    // because both arguments are integers
     std::cout << "max( a, b ) = " << ::max(a, b) << std::endl;
     
     std::string c = "chaine1";
     std::string d = "chaine2";
     
+    std::string c = "chaine1";
+    std::string d = "chaine2";
+    
     // std::cout << "Before swap: c = " << c << ", d = " << d << std::endl;
+    
+    // ere, the compiler deduces that T = std::string
+    // and creates a version of swap that works with strings
     ::swap(c, d);
+    
     std::cout << "c = " << c << ", d = " << d << std::endl;
+    
+    // Template instantiation happens automatically:
+    // The compiler creates min<std::string> and max<std::string>
+    // versions of these functions behind the scenes
     std::cout << "min( c, d ) = " << ::min(c, d) << std::endl;
     std::cout << "max( c, d ) = " << ::max(c, d) << std::endl;
     
