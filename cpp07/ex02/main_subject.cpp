@@ -1,5 +1,8 @@
 #include <iostream>
-#include <Array.hpp>
+// #include <Array.hpp> wrong
+#include <cstdlib>  // For rand() and srand() [this was missing]
+#include <ctime>    // For time() [this was missing]
+#include "Array.hpp"  // Include the custom Array class header
 
 #define MAX_VAL 750
 int main(int, char**)
@@ -29,19 +32,19 @@ int main(int, char**)
     }
     try
     {
-        numbers[-2] = 0;
+        numbers[-2] = 0;  // This throws OutOfBoundsException
     }
     catch(const std::exception& e)
     {
-        std::cerr << e.what() << '\n';
+        std::cerr << e.what() << '\n';  // Prints: "Array index out of bounds"
     }
     try
     {
-        numbers[MAX_VAL] = 0;
+        numbers[MAX_VAL] = 0;  // This also throws OutOfBoundsException  
     }
     catch(const std::exception& e)
     {
-        std::cerr << e.what() << '\n';
+        std::cerr << e.what() << '\n';  // Prints: "Array index out of bounds"
     }
 
     for (int i = 0; i < MAX_VAL; i++)
