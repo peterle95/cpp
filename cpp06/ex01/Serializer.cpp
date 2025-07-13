@@ -6,13 +6,12 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 14:32:26 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/04/23 15:13:14 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/07/13 12:55:18 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Serializer.hpp"
 
-// Private constructors and destructor - prevent instantiation
 Serializer::Serializer() 
 {}
 

@@ -6,14 +6,12 @@
 /*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:16:36 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/07/04 14:52:19 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/07/13 12:54:14 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// ScalarConverter.cpp
 #include "ScalarConverter.hpp"
 
-// Private constructors and destructor - never called
 ScalarConverter::ScalarConverter() 
 {}
 
@@ -32,7 +30,6 @@ ScalarConverter::~ScalarConverter()
 {}
 
 
-// Helper methods for type detection
 bool ScalarConverter::isChar(const std::string& literal) 
 {
     return (literal.length() == 1 && !std::isdigit(literal[0])) || 
@@ -41,11 +38,9 @@ bool ScalarConverter::isChar(const std::string& literal)
 
 bool ScalarConverter::isInt(const std::string& literal) 
 {
-    // Check if it's a valid integer
     char* end;
     long num = std::strtol(literal.c_str(), &end, 10);
     
-    // If we reached the end of the string and the number is within INT range
     return (*end == '\0' && num >= INT_MIN && num <= INT_MAX);
 }
 
@@ -55,34 +50,27 @@ bool ScalarConverter::isFloat(const std::string& literal)
     if (literal == "nanf" || literal == "+inff" || literal == "-inff")
         return true;
     
-    // Check for float format: digit(s), decimal point, digit(s), 'f'
     size_t len = literal.length();
     if (len < 2 || literal[len - 1] != 'f')
         return false;
     
-    // Try to convert it to float
     char* end;
     std::strtof(literal.c_str(), &end);
     
-    // If we reached the 'f' at the end
     return (*end == 'f' && *(end + 1) == '\0');
 }
 
 bool ScalarConverter::isDouble(const std::string& literal) 
 {
-    // Check for special double literals
     if (literal == "nan" || literal == "+inf" || literal == "-inf" || literal == "inf")
         return true;
     
-    // Try to convert it to double
     char* end;
     std::strtod(literal.c_str(), &end);
     
-    // If we reached the end of the string
     return (*end == '\0');
 }
 
-// Print methods with appropriate handling
 void ScalarConverter::printChar(char c) 
 {
     std::cout << "char: ";
@@ -107,7 +95,6 @@ void ScalarConverter::printDouble(double d)
     std::cout << "double: " << std::setprecision(1) << std::fixed << d << std::endl;
 }
 
-// Conversion methods
 void ScalarConverter::convertFromChar(char c) 
 {
     printChar(c);
@@ -171,10 +158,8 @@ void ScalarConverter::convertFromDouble(double d)
     printDouble(d);
 }
 
-// The main convert method
 void ScalarConverter::convert(const std::string& literal) 
 {
-    // First determine what type the literal is
     if (isChar(literal)) 
     {
         char c = (literal.length() == 1) ? literal[0] : literal[1];
