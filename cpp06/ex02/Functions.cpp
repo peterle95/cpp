@@ -17,7 +17,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-#include <typeinfo> // for std::bad_cast
+// #include <typeinfo> // for std::bad_cast, not allowed in the subject
 
 Base* generate(void) 
 {
@@ -67,7 +67,7 @@ void identify(Base& p)
         std::cout << "Identified type via reference: A" << std::endl;
         return;
     } 
-    catch (const std::bad_cast&) 
+    catch (const std::exception& e) 
     {}
     
     try 
@@ -77,7 +77,7 @@ void identify(Base& p)
         std::cout << "Identified type via reference: B" << std::endl;
         return;
     } 
-    catch (const std::bad_cast&) 
+    catch (const std::exception& e) 
     {}
     
     try 
@@ -87,7 +87,7 @@ void identify(Base& p)
         std::cout << "Identified type via reference: C" << std::endl;
         return;
     } 
-    catch (const std::bad_cast&) 
+    catch (const std::exception& e) 
     {
         std::cout << "Unknown type" << std::endl;
     }
