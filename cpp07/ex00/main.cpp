@@ -64,9 +64,6 @@ int main(void) {
     std::string c = "chaine1";
     std::string d = "chaine2";
     
-    std::string c = "chaine1";
-    std::string d = "chaine2";
-    
     // std::cout << "Before swap: c = " << c << ", d = " << d << std::endl;
     
     // ere, the compiler deduces that T = std::string
