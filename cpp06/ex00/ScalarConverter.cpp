@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmolzer <pmolzer@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: pmolzer <pmolzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 15:16:36 by pmolzer           #+#    #+#             */
-/*   Updated: 2025/07/13 12:54:14 by pmolzer          ###   ########.fr       */
+/*   Updated: 2025/07/14 15:52:23 by pmolzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void ScalarConverter::convertFromFloat(float f)
     else
         std::cout << "char: impossible" << std::endl;
     
-    if (std::isnan(f) || std::isinf(f) || f > INT_MAX || f < INT_MIN)
+    if (std::isnan(f) || std::isinf(f) || f > static_cast<float>(INT_MAX) || f < static_cast<float>(INT_MIN))
         std::cout << "int: impossible" << std::endl;
     else
         printInt(static_cast<int>(f));
@@ -142,7 +142,7 @@ void ScalarConverter::convertFromDouble(double d)
     else
         std::cout << "char: impossible" << std::endl;
     
-    if (std::isnan(d) || std::isinf(d) || d > INT_MAX || d < INT_MIN)
+    if (std::isnan(d) || std::isinf(d) || d > static_cast<double>(INT_MAX) || d < static_cast<double>(INT_MIN))
         std::cout << "int: impossible" << std::endl;
     else
         printInt(static_cast<int>(d));
