@@ -56,6 +56,24 @@ void doubleValue(int& value) {
                  // Uses compound assignment operator *=
 }
 
+/* Why It's Okay to have template functions in the main.cpp and not in the header:
+
+  The templates you see inside main.cpp (increment and print) are helper functions used only for testing within that single file.
+
+   * Scope: They are not intended to be reused in any other part of the program. They exist solely to test the functionality of the
+     iter template.
+   * Locality: Since their use is confined entirely to main.cpp, the compiler has access to their full definition when it sees them
+     being used (e.g., ::iter(numbers, numbersSize, print<int>);). It can instantiate print<int> right there because the definition is
+     available just a few lines above in the same file.
+   * Good Practice: This is actually a good and common practice. If a helper function (template or not) is only needed in one .cpp
+     file, defining it there keeps it local and avoids polluting the global namespace or creating header files for single-use
+     utilities.
+
+  In summary:
+   * Reusable templates (`iter`): Must go in a header file so the compiler can see the full definition wherever it's included and used.
+   * Local, single-file helper templates (`print`, `increment`): Can and should be defined directly in the .cpp file where they are
+     used.*/
+
 // Main function - entry point of the program
 int main() {
     // Output header for the test program
