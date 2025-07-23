@@ -124,6 +124,119 @@ int* emptyArray = NULL;
 
 ---
 
+## Const and Non-Const Reference Handling
+
+### The Challenge
+
+The subject requires that the `iter` function work with functions that take either `const` or `non-const` references, depending on the context. This presents a design challenge: how can a single template function handle both scenarios without requiring separate implementations?
+
+### The Solution: Template Parameter Deduction
+
+The solution leverages C++ template parameter deduction and the flexibility of template function parameters. Here's how it works:
+
+#### 1. Generic Function Parameter Template
+```cpp
+template<typename T, typename F>
+void iter(T* array, std::size_t length, F func) {
+    for (std::size_t i = 0; i < length; ++i) {
+        func(array[i]);  // Key: Direct element access
+    }
+}
+```
+
+**Critical Design Decision:** The `iter` function simply calls `func(array[i])` where `array[i]` provides direct access to the array element. The compiler automatically handles the reference type based on the function signature.
+
+#### 2. Function Signature Compatibility
+
+The magic happens through C++ template argument deduction:
+
+**For const reference functions:**
+```cpp
+template<typename T>
+void print(const T& value) { /* read-only operations */ }
+```
+- When `print<int>` is passed to `iter`, the compiler deduces that `F` is the type of this function
+- `array[i]` (an `int` value) is automatically converted to `const int&` when passed to `print`
+
+**For non-const reference functions:**
+```cpp
+template<typename T>
+void increment(T& value) { /* modifying operations */ }
+```
+- When `increment<int>` is passed to `iter`, the compiler deduces `F` as this function type
+- `array[i]` is passed as a modifiable reference `int&` to allow modifications
+
+#### 3. Const Array Protection
+
+```cpp
+const int constNumbers[] = {10, 20, 30, 40, 50};
+::iter(constNumbers, constNumbersSize, print<int>);     // ✓ Works
+// ::iter(constNumbers, constNumbersSize, increment<int>); // ✗ Compilation error
+```
+
+**How it works:**
+- When the array is `const`, `array[i]` returns a `const` element
+- Functions expecting non-const references cannot accept const elements
+- The compiler catches this at compile-time, preventing runtime errors
+
+#### 4. Automatic Type Matching
+
+The template system automatically matches function signatures:
+
+| Array Type | Element Access | Compatible Functions |
+|------------|----------------|---------------------|
+| `int[]` | `int&` | Both `const int&` and `int&` functions |
+| `const int[]` | `const int&` | Only `const int&` functions |
+| `float[]` | `float&` | Both `const float&` and `float&` functions |
+
+#### 5. Real-World Examples from the Code
+
+**Example 1: Non-const array with const function**
+```cpp
+int numbers[] = {1, 2, 3, 4, 5};
+::iter(numbers, 5, print<int>);
+```
+- `array[i]` provides `int&` (modifiable reference)
+- `print<int>` expects `const int&` (read-only reference)
+- C++ automatically converts `int&` to `const int&` ✓
+
+**Example 2: Non-const array with non-const function**
+```cpp
+::iter(numbers, 5, increment<int>);
+```
+- `array[i]` provides `int&` (modifiable reference)
+- `increment<int>` expects `int&` (modifiable reference)
+- Direct match, no conversion needed ✓
+
+**Example 3: Const array with const function**
+```cpp
+const int constNumbers[] = {10, 20, 30};
+::iter(constNumbers, 3, print<int>);
+```
+- `array[i]` provides `const int&` (read-only reference)
+- `print<int>` expects `const int&` (read-only reference)
+- Direct match ✓
+
+**Example 4: Const array with non-const function**
+```cpp
+// ::iter(constNumbers, 3, increment<int>); // COMPILATION ERROR
+```
+- `array[i]` provides `const int&` (read-only reference)
+- `increment<int>` expects `int&` (modifiable reference)
+- Cannot convert `const int&` to `int&` ✗
+
+### Why This Approach Works
+
+1. **Compile-time Safety:** All type checking happens during compilation
+2. **Zero Runtime Overhead:** No runtime type checking or conversions
+3. **Intuitive Behavior:** Functions work exactly as their signatures suggest
+4. **Flexible:** Supports any function signature that makes logical sense
+5. **Standards Compliant:** Uses standard C++ template mechanics
+
+This design elegantly solves the const/non-const challenge by leveraging the C++ type system rather than trying to work around it.
+
+---
+
 ## Core Template Function Analysis
 
 ### The `iter` Template Function (iter.hpp)
