@@ -49,5 +49,6 @@
         "typeinfo": "cpp",
         "fstream": "cpp"
     },
-    "remote.autoForwardPortsFallback": 0
+    "remote.autoForwardPortsFallback": 0,
+    "git.ignoreLimitWarning": true
 }

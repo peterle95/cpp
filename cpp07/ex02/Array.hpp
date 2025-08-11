@@ -18,7 +18,6 @@ public:
     Array& operator=(const Array& other);
     ~Array();
     
-    // Updated to handle int indices (including negative)
     T& operator[](int index);
     const T& operator[](int index) const;
     
@@ -77,7 +76,6 @@ Array<T>::~Array() {
 
 template<typename T>
 T& Array<T>::operator[](int index) {
-    // Check for negative index or index >= size
     if (index < 0 || static_cast<std::size_t>(index) >= _size) {
         throw OutOfBoundsException();
     }
