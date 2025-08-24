@@ -31,7 +31,6 @@ public:
     };
 };
 
-// Implementation
 template<typename T>
 Array<T>::Array() : _elements(NULL), _size(0) {}
 
