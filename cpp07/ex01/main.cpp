@@ -24,10 +24,8 @@ void doubleValue(int& value) {
     value *= 2;
 }
 
-int main() {
-    std::cout << "=== Testing iter function template ===" << std::endl;
-    
-    std::cout << "\nTest 1: Integer array - printing" << std::endl;
+int main() {    
+    std::cout << "\n\033[91mTest 1:\033[0m Integer array - printing" << std::endl;
     
     int numbers[] = {1, 2, 3, 4, 5};
     
@@ -37,7 +35,7 @@ int main() {
     ::iter(numbers, numbersSize, print<int>);
     std::cout << std::endl;
     
-    std::cout << "\nTest 2: Integer array - incrementing" << std::endl;
+    std::cout << "\n\033[91mTest 2:\033[0mInteger array - incrementing" << std::endl;
     
     ::iter(numbers, numbersSize, increment<int>);
     
@@ -45,7 +43,7 @@ int main() {
     ::iter(numbers, numbersSize, print<int>);
     std::cout << std::endl;
     
-    std::cout << "\nTest 3: Integer array - doubling" << std::endl;
+    std::cout << "\n\033[91mTest 3:\033[0m Integer array - doubling" << std::endl;
     
     ::iter(numbers, numbersSize, doubleValue);
     
@@ -53,7 +51,7 @@ int main() {
     ::iter(numbers, numbersSize, print<int>);
     std::cout << std::endl;
     
-    std::cout << "\nTest 4: String array - printing" << std::endl;
+    std::cout << "\n\033[91mTest 4:\033[0m String array - printing" << std::endl;
     
     std::string words[] = {"hello", "world", "template", "functions"};
     
@@ -63,7 +61,7 @@ int main() {
     ::iter(words, wordsSize, printString);
     std::cout << std::endl;
     
-    std::cout << "\nTest 5: String array - modifying" << std::endl;
+    std::cout << "\n\033[91mTest 5:\033[0m String array - modifying" << std::endl;
     
     ::iter(words, wordsSize, addExclamation);
     
@@ -71,7 +69,7 @@ int main() {
     ::iter(words, wordsSize, printString);
     std::cout << std::endl;
     
-    std::cout << "\nTest 6: Float array" << std::endl;
+    std::cout << "\n\033[91mTest 6:\033[0m Float array" << std::endl;
     
     float floats[] = {1.1f, 2.2f, 3.3f, 4.4f};
     
@@ -86,7 +84,7 @@ int main() {
     ::iter(floats, floatsSize, print<float>);
     std::cout << std::endl;
     
-    std::cout << "\nTest 7: Const array" << std::endl;
+    std::cout << "\n\033[91mTest 7:\033[0m Const array" << std::endl;
     
     const int constNumbers[] = {10, 20, 30, 40, 50};
     
@@ -96,7 +94,7 @@ int main() {
     ::iter(constNumbers, constNumbersSize, print<int>);
     std::cout << std::endl;
     
-    std::cout << "\nTest 8: Empty array (length 0)" << std::endl;
+    std::cout << "\n\033[91mTest 8:\033[0m Empty array (length 0)" << std::endl;
     
     int* emptyArray = NULL;
     

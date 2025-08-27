@@ -12,13 +12,12 @@ void printArray(const Array<T>& arr, const std::string& name) {
 }
 
 int main() {
-    std::cout << "=== Testing Array class template ===" << std::endl;
     
-    std::cout << "\nTest 1: Default constructor" << std::endl;
+    std::cout << "\n\033[91mTest 1:\033[0m Default constructor" << std::endl;
     Array<int> emptyArray;
     std::cout << "Empty array size: " << emptyArray.size() << std::endl;
     
-    std::cout << "\nTest 2: Parametric constructor" << std::endl;
+    std::cout << "\n\033[91mTest 2:\033[0m Parametric constructor" << std::endl;
     Array<int> intArray(5);
     std::cout << "Int array size: " << intArray.size() << std::endl;
     
@@ -27,7 +26,7 @@ int main() {
     }
     printArray(intArray, "Int array");
     
-    std::cout << "\nTest 3: Copy constructor" << std::endl;
+    std::cout << "\n\033[91mTest 3:\033[0m Copy constructor" << std::endl;
     Array<int> copiedArray(intArray);
     printArray(copiedArray, "Copied array");
     
@@ -36,7 +35,7 @@ int main() {
     printArray(intArray, "Original array");
     printArray(copiedArray, "Copied array");
     
-    std::cout << "\nTest 4: Assignment operator" << std::endl;
+    std::cout << "\n\033[91mTest 4:\033[0m Assignment operator" << std::endl;
     Array<int> assignedArray;
     assignedArray = intArray;
     printArray(assignedArray, "Assigned array");
@@ -46,14 +45,14 @@ int main() {
     printArray(intArray, "Original array");
     printArray(assignedArray, "Assigned array");
     
-    std::cout << "\nTest 5: String array" << std::endl;
+    std::cout << "\n\033[91mTest 5:\033[0m String array" << std::endl;
     Array<std::string> stringArray(3);
     stringArray[0] = "Hello";
     stringArray[1] = "World";
     stringArray[2] = "Template";
     printArray(stringArray, "String array");
     
-    std::cout << "\nTest 6: Exception handling" << std::endl;
+    std::cout << "\n\033[91mTest 6:\033[0m Exception handling" << std::endl;
     try {
         std::cout << "Accessing valid index [2]: " << intArray[2] << std::endl;
     } catch (const std::exception& e) {
@@ -74,11 +73,11 @@ int main() {
         std::cout << "Exception caught: " << e.what() << std::endl;
     }
     
-    std::cout << "\nTest 7: Self-assignment" << std::endl;
+    std::cout << "\n\033[91mTest 7:\033[0m Self-assignment" << std::endl;
     intArray = intArray;
     printArray(intArray, "Self-assigned array");
     
-    std::cout << "\nTest 8: Assignment with different sizes" << std::endl;
+    std::cout << "\n\033[91mTest 8:\033[0m Assignment with different sizes" << std::endl;
     Array<int> smallArray(2);
     smallArray[0] = 100;
     smallArray[1] = 200;
@@ -87,12 +86,12 @@ int main() {
     smallArray = intArray;
     printArray(smallArray, "Small array after assignment");
     
-    std::cout << "\nTest 9: Const array access" << std::endl;
+    std::cout << "\n\033[91mTest 9:\033[0m Const array access" << std::endl;
     const Array<int> constArray(intArray);
     std::cout << "Const array[0]: " << constArray[0] << std::endl;
     std::cout << "Const array size: " << constArray.size() << std::endl;
     
-    std::cout << "\nTest 10: Memory allocation verification" << std::endl;
+    std::cout << "\n\033[91mTest 10:\033[0m Memory allocation verification" << std::endl;
     {
         Array<int> tempArray(1000);
         std::cout << "Created large array of size: " << tempArray.size() << std::endl;
