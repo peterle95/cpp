@@ -77,31 +77,6 @@ int main() {
         std::cerr << "Error: " << e.what() << std::endl;
     }
 
-    std::cout << "\n\033[91mTestng Set:\033[0m" << std::endl;
-    // Test with std::set (sorted, unique elements)
-    std::set<int> mySet;
-    mySet.insert(15);
-    mySet.insert(5);
-    mySet.insert(25);
-    mySet.insert(10);
-    mySet.insert(20);
-
-    try {
-        std::cout << "Searching for 10 in set..." << std::endl;
-        std::set<int>::iterator result = easyfind(mySet, 10);
-        std::cout << "Found: " << *result << std::endl;
-    } catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
-    }
-
-    try {
-        std::cout << "Searching for 35 in set..." << std::endl;
-        std::set<int>::iterator result = easyfind(mySet, 35);
-        std::cout << "Found: " << *result << std::endl;
-    } catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
-    }
-
     std::cout << "\n\033[91mTestng Edge Cases:\033[0m" << std::endl;
     // Test with empty container
     std::vector<int> emptyVector;
