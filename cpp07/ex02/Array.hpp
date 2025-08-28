@@ -4,6 +4,8 @@
 #include <exception>
 #include <stdexcept>
 #include <cstddef>
+#include <iostream>
+#include <string>
 
 template<typename T>
 class Array 

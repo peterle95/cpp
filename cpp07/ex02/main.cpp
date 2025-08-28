@@ -1,5 +1,3 @@
-#include <iostream>
-#include <string>
 #include "Array.hpp"
 
 template<typename T>
@@ -21,7 +19,8 @@ int main() {
     Array<int> intArray(5);
     std::cout << "Int array size: " << intArray.size() << std::endl;
     
-    for (std::size_t i = 0; i < intArray.size(); ++i) {
+    for (std::size_t i = 0; i < intArray.size(); ++i) 
+    {
         intArray[i] = static_cast<int>(i * 10);
     }
     printArray(intArray, "Int array");
@@ -51,8 +50,19 @@ int main() {
     stringArray[1] = "World";
     stringArray[2] = "Template";
     printArray(stringArray, "String array");
+
+    std::cout << "\n\033[91mTest 6:\033[0m Memory allocation verification" << std::endl;
+    {
+        Array<int> tempArray(1000);
+        std::cout << "Created large array of size: " << tempArray.size() << std::endl;
+        tempArray[0] = 42;
+        tempArray[999] = 84;
+        std::cout << "First element: " << tempArray[0] << std::endl;
+        std::cout << "Last element: " << tempArray[999] << std::endl;
+    }
+    std::cout << "\033[91mLarge array destroyed successfully\033[0m" << std::endl;
     
-    std::cout << "\n\033[91mTest 6:\033[0m Exception handling" << std::endl;
+    std::cout << "\n\033[91mTest 7:\033[0m Exception handling" << std::endl;
     try {
         std::cout << "Accessing valid index [2]: " << intArray[2] << std::endl;
     } catch (const std::exception& e) {
@@ -73,11 +83,11 @@ int main() {
         std::cout << "Exception caught: " << e.what() << std::endl;
     }
     
-    std::cout << "\n\033[91mTest 7:\033[0m Self-assignment" << std::endl;
+    std::cout << "\n\033[91mTest 8:\033[0m Self-assignment" << std::endl;
     intArray = intArray;
     printArray(intArray, "Self-assigned array");
     
-    std::cout << "\n\033[91mTest 8:\033[0m Assignment with different sizes" << std::endl;
+    std::cout << "\n\033[91mTest 9:\033[0m Assignment with different sizes" << std::endl;
     Array<int> smallArray(2);
     smallArray[0] = 100;
     smallArray[1] = 200;
@@ -86,21 +96,11 @@ int main() {
     smallArray = intArray;
     printArray(smallArray, "Small array after assignment");
     
-    std::cout << "\n\033[91mTest 9:\033[0m Const array access" << std::endl;
+    std::cout << "\n\033[91mTest 10:\033[0m Const array access" << std::endl;
     const Array<int> constArray(intArray);
     std::cout << "Const array[0]: " << constArray[0] << std::endl;
     std::cout << "Const array size: " << constArray.size() << std::endl;
     
-    std::cout << "\n\033[91mTest 10:\033[0m Memory allocation verification" << std::endl;
-    {
-        Array<int> tempArray(1000);
-        std::cout << "Created large array of size: " << tempArray.size() << std::endl;
-        tempArray[0] = 42;
-        tempArray[999] = 84;
-        std::cout << "First element: " << tempArray[0] << std::endl;
-        std::cout << "Last element: " << tempArray[999] << std::endl;
-    }
-    std::cout << "Large array destroyed successfully" << std::endl;
     
     return 0;
 }

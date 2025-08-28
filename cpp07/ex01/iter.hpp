@@ -2,6 +2,8 @@
 #define ITER_HPP
 
 #include <cstddef>
+#include <iostream>
+#include <string>
 
 template<typename T, typename F>
 void iter(T* array, std::size_t length, F func) {
