@@ -1,12 +1,24 @@
 #include "easyfind.hpp"
 #include <iostream>
+#include <array>
+#include <forward_list>
 #include <vector>
 #include <list>
 #include <deque>
+#include <set>
 
 int main() {
+    std::cout << "\033[91mTestng Array:\033[0m" << std::endl;
+    std::array<int, 5> myArray = {1, 2, 3, 4, 5};
+    try {
+        std::cout << "Searching for 3 in array..." << std::endl;
+        std::array<int, 5>::iterator result = easyfind(myArray, 3);
+        std::cout << "Found: " << *result << std::endl;
+    } catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
+
     std::cout << "\033[91mTestng Vector:\033[0m" << std::endl;
-    // Test with std::vector
     std::vector<int> myVector;
     for (int i = 0; i < 10; ++i) {
         myVector.push_back(i * 2);
@@ -52,24 +64,22 @@ int main() {
         std::cerr << "Error: " << e.what() << std::endl;
     }
 
+    std::cout << "\033[91mTestng Forward List:\033[0m" << std::endl;
+    std::forward_list<int> myForwardList = {5, 10, 15, 20, 25};
+    try {
+        std::cout << "Searching for 15 in forward list..." << std::endl;
+        std::forward_list<int>::iterator result = easyfind(myForwardList, 15);
+        std::cout << "Found: " << *result << std::endl;
+    } catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
+
     std::cout << "\n\033[91mTestng Deque:\033[0m" << std::endl;
     // Test with std::deque (double-ended queue)
-    // Deque allows fast insertions/removals from both ends, while vectors allow fast random access
-    // Deque is not guaranteed to store elements in contiguous memory like vector
-    // Vecors are generally better for frequent random access, while deques are better for frequent insertions/removals at both ends
-    // Vectors don't allow insertion at the front efficiently, while deques do
     std::deque<int> myDeque;
     myDeque.push_back(100);
     myDeque.push_back(200);
-    std::cout << "Deque after push_back: " << std::endl;
-    for (std::deque<int>::iterator it = myDeque.begin(); it != myDeque.end(); ++it) {
-        std::cout << *it << " " << std::endl;
-    }
     myDeque.push_front(50);  // deque allows insertion at both ends
-    std::cout << "Deque after push_front: " << std::endl;
-    for (std::deque<int>::iterator it = myDeque.begin(); it != myDeque.end(); ++it) {
-        std::cout << *it << " " << std::endl;
-    }
     myDeque.push_back(300);
 
     try {
