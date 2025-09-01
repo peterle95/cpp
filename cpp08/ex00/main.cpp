@@ -1,27 +1,23 @@
 #include "easyfind.hpp"
 #include <iostream>
-#include <array>
-#include <forward_list>
 #include <vector>
 #include <list>
 #include <deque>
-#include <set>
 
 int main() {
-    std::cout << "\033[91mTestng Array:\033[0m" << std::endl;
-    std::array<int, 5> myArray = {1, 2, 3, 4, 5};
-    try {
-        std::cout << "Searching for 3 in array..." << std::endl;
-        std::array<int, 5>::iterator result = easyfind(myArray, 3);
-        std::cout << "Found: " << *result << std::endl;
-    } catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
-    }
-
-    std::cout << "\033[91mTestng Vector:\033[0m" << std::endl;
+    /*
+     * std::vector - Dynamic Array Container
+     * - Stores elements in contiguous memory (like a resizable array)
+     * - Provides random access to elements via [] operator
+     * - Fast insertion/deletion at the end O(1), slow at beginning/middle O(n)
+     * - Automatically manages memory allocation and deallocation
+     * - Iterators can be invalidated when the vector reallocates memory
+     * - Best for: Random access, frequent access to elements by index
+     */
+    std::cout << "\033[91mTesting Vector:\033[0m" << std::endl;
     std::vector<int> myVector;
     for (int i = 0; i < 10; ++i) {
-        myVector.push_back(i * 2);
+        myVector.push_back(i * 2); // Add elements: 0, 2, 4, 6, 8, 10, 12, 14, 16, 18
     }
 
     try {
@@ -40,13 +36,22 @@ int main() {
         std::cerr << "Error: " << e.what() << std::endl;
     }
 
-    std::cout << "\n\033[91mTestng List:\033[0m" << std::endl;
-    // Test with std::list
+    /*
+     * std::list - Doubly Linked List Container
+     * - Elements are stored in separate nodes, each containing data and pointers to next/previous nodes
+     * - No random access - must traverse from beginning or end to reach an element
+     * - Fast insertion/deletion anywhere in the list O(1) if you have an iterator
+     * - No memory reallocation - each element is independently allocated
+     * - Iterators remain valid unless the specific element is deleted
+     * - Best for: Frequent insertions/deletions in the middle, when you don't need random access
+     */
+    std::cout << "\n\033[91mTesting List:\033[0m" << std::endl;
     std::list<int> myList;
-    myList.push_back(10);
+    myList.push_back(10);   // Add to end
     myList.push_back(20);
     myList.push_back(30);
     myList.push_back(40);
+    myList.push_front(5);   // Add to beginning - efficient for list
 
     try {
         std::cout << "Searching for 30 in list..." << std::endl;
@@ -64,23 +69,22 @@ int main() {
         std::cerr << "Error: " << e.what() << std::endl;
     }
 
-    std::cout << "\033[91mTestng Forward List:\033[0m" << std::endl;
-    std::forward_list<int> myForwardList = {5, 10, 15, 20, 25};
-    try {
-        std::cout << "Searching for 15 in forward list..." << std::endl;
-        std::forward_list<int>::iterator result = easyfind(myForwardList, 15);
-        std::cout << "Found: " << *result << std::endl;
-    } catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
-    }
-
-    std::cout << "\n\033[91mTestng Deque:\033[0m" << std::endl;
-    // Test with std::deque (double-ended queue)
+    /*
+     * std::deque - Double-Ended Queue Container
+     * - Combines benefits of vector and list: fast random access + efficient insertion at both ends
+     * - Internally implemented as a collection of fixed-size arrays (chunks)
+     * - Fast insertion/deletion at both front and back O(1)
+     * - Random access to elements O(1), but slightly slower than vector due to indirection
+     * - May invalidate iterators when elements are added/removed
+     * - Best for: When you need random access AND efficient insertion/deletion at both ends
+     */
+    std::cout << "\n\033[91mTesting Deque:\033[0m" << std::endl;
     std::deque<int> myDeque;
-    myDeque.push_back(100);
+    myDeque.push_back(100);   // Add to back
     myDeque.push_back(200);
-    myDeque.push_front(50);  // deque allows insertion at both ends
+    myDeque.push_front(50);   // Add to front - efficient for deque
     myDeque.push_back(300);
+    // Current deque contents: [50, 100, 200, 300]
 
     try {
         std::cout << "Searching for 50 in deque..." << std::endl;
@@ -98,7 +102,14 @@ int main() {
         std::cerr << "Error: " << e.what() << std::endl;
     }
 
-    std::cout << "\n\033[91mTestng Edge Cases:\033[0m" << std::endl;
+    /*
+     * Edge Cases Testing
+     * - Empty containers: Testing behavior when no elements exist
+     * - Single element: Testing minimal valid container size
+     * These tests ensure our easyfind function handles boundary conditions properly
+     */
+    std::cout << "\n\033[91mTesting Edge Cases:\033[0m" << std::endl;
+    
     // Test with empty container
     std::vector<int> emptyVector;
     try {
@@ -115,6 +126,14 @@ int main() {
     try {
         std::cout << "Searching for 42 in single-element list..." << std::endl;
         std::list<int>::iterator result = easyfind(singleElementList, 42);
+        std::cout << "Found: " << *result << std::endl;
+    } catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
+
+    try {
+        std::cout << "Searching for 24 in single-element list..." << std::endl;
+        std::list<int>::iterator result = easyfind(singleElementList, 24);
         std::cout << "Found: " << *result << std::endl;
     } catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << std::endl;
