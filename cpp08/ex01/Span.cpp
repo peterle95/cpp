@@ -37,10 +37,10 @@ int Span::shortestSpan() {
     std::vector<int> sorted = _numbers;
     std::sort(sorted.begin(), sorted.end());
     int minSpan = sorted[1] - sorted[0];
-    for (size_t i = 2; i < sorted.size(); ++i) {
-        if (sorted[i] - sorted[i-1] < minSpan) {
+    for (size_t i = 2; i < sorted.size(); ++i) 
+    {
+        if (sorted[i] - sorted[i-1] < minSpan) 
             minSpan = sorted[i] - sorted[i-1];
-        }
     }
     return minSpan;
 }

@@ -47,7 +47,8 @@
         "stdexcept": "cpp",
         "streambuf": "cpp",
         "typeinfo": "cpp",
-        "fstream": "cpp"
+        "fstream": "cpp",
+        "forward_list": "cpp"
     },
     "remote.autoForwardPortsFallback": 0,
     "git.ignoreLimitWarning": true
