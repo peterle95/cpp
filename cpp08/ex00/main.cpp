@@ -1,23 +1,13 @@
 #include "easyfind.hpp"
 #include <iostream>
-#include <array>
-#include <forward_list>
 #include <vector>
 #include <list>
 #include <deque>
 #include <set>
 
-int main() {
-    std::cout << "\033[91mTestng Array:\033[0m" << std::endl;
-    std::array<int, 5> myArray = {1, 2, 3, 4, 5};
-    try {
-        std::cout << "Searching for 3 in array..." << std::endl;
-        std::array<int, 5>::iterator result = easyfind(myArray, 3);
-        std::cout << "Found: " << *result << std::endl;
-    } catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
-    }
 
+int main() 
+{
     std::cout << "\033[91mTestng Vector:\033[0m" << std::endl;
     std::vector<int> myVector;
     for (int i = 0; i < 10; ++i) {
@@ -59,16 +49,6 @@ int main() {
     try {
         std::cout << "Searching for 99 in list..." << std::endl;
         std::list<int>::iterator result = easyfind(myList, 99);
-        std::cout << "Found: " << *result << std::endl;
-    } catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
-    }
-
-    std::cout << "\033[91mTestng Forward List:\033[0m" << std::endl;
-    std::forward_list<int> myForwardList = {5, 10, 15, 20, 25};
-    try {
-        std::cout << "Searching for 15 in forward list..." << std::endl;
-        std::forward_list<int>::iterator result = easyfind(myForwardList, 15);
         std::cout << "Found: " << *result << std::endl;
     } catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << std::endl;
