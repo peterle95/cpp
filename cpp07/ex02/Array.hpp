@@ -10,30 +10,30 @@
 template<typename T>
 class Array 
 {
-private:
-    T* _elements;
-    std::size_t _size;
+    private:
+        T* _elements;
+        std::size_t _size;
 
-public:
-    Array();
-    Array(unsigned int n);
-    Array(const Array& other);
-    Array& operator=(const Array& other);
-    ~Array();
-    
-    T& operator[](int index);
-    const T& operator[](int index) const;
-    
-    std::size_t size() const;
-    
-    class OutOfBoundsException : public std::exception 
-    {
     public:
-        virtual const char* what() const throw() 
+        Array();
+        Array(unsigned int n);
+        Array(const Array& other);
+        Array& operator=(const Array& other);
+        ~Array();
+
+        T& operator[](int index);
+        const T& operator[](int index) const;
+
+        std::size_t size() const;
+
+        class OutOfBoundsException : public std::exception 
         {
-            return "Array index out of bounds";
-        }
-    };
+        public:
+            virtual const char* what() const throw() 
+            {
+                return "Array index out of bounds";
+            }
+        };
 };
 
 template<typename T>
@@ -65,10 +65,12 @@ Array<T>::Array(const Array& other) : _elements(NULL), _size(other._size)
 template<typename T>
 Array<T>& Array<T>::operator=(const Array& other) 
 {
-    if (this != &other) {
+    if (this != &other) 
+    {
         delete[] _elements;
         _size = other._size;
-        if (_size > 0) {
+        if (_size > 0) 
+        {
             _elements = new T[_size];
             for (std::size_t i = 0; i < _size; ++i) 
             {

@@ -1,15 +1,18 @@
 #include "Array.hpp"
 
 template<typename T>
-void printArray(const Array<T>& arr, const std::string& name) {
+void printArray(const Array<T>& arr, const std::string& name) 
+{
     std::cout << name << " (size " << arr.size() << "): ";
-    for (std::size_t i = 0; i < arr.size(); ++i) {
+    for (std::size_t i = 0; i < arr.size(); ++i)
+    {
         std::cout << arr[i] << " ";
     }
     std::cout << std::endl;
 }
 
-int main() {
+int main() 
+{
     
     std::cout << "\n\033[91mTest 1:\033[0m Default constructor" << std::endl;
     Array<int> emptyArray;
@@ -21,7 +24,7 @@ int main() {
     
     for (std::size_t i = 0; i < intArray.size(); ++i) 
     {
-        intArray[i] = static_cast<int>(i * 10);
+        intArray[i] = static_cast<int>(i);
     }
     printArray(intArray, "Int array");
     
@@ -63,23 +66,29 @@ int main() {
     std::cout << "\033[91mLarge array destroyed successfully\033[0m" << std::endl;
     
     std::cout << "\n\033[91mTest 7:\033[0m Exception handling" << std::endl;
-    try {
+    try 
+    {
         std::cout << "Accessing valid index [2]: " << intArray[2] << std::endl;
-    } catch (const std::exception& e) {
+    } catch (const std::exception& e) 
+    {
         std::cout << "Exception caught: " << e.what() << std::endl;
     }
     
-    try {
+    try 
+    {
         std::cout << "Accessing invalid index [10]: ";
         std::cout << intArray[10] << std::endl;
-    } catch (const std::exception& e) {
+    } catch (const std::exception& e) 
+    {
         std::cout << "Exception caught: " << e.what() << std::endl;
     }
     
-    try {
+    try 
+    {
         std::cout << "Accessing empty array [0]: ";
         std::cout << emptyArray[0] << std::endl;
-    } catch (const std::exception& e) {
+    } catch (const std::exception& e) 
+    {
         std::cout << "Exception caught: " << e.what() << std::endl;
     }
     
