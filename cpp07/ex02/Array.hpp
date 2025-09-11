@@ -91,6 +91,7 @@ Array<T>::~Array()
     delete[] _elements;
 }
 
+// subscript operator overloading
 template<typename T>
 T& Array<T>::operator[](int index) 
 {
@@ -101,6 +102,7 @@ T& Array<T>::operator[](int index)
     return _elements[index];
 }
 
+// const subscript operator overloading
 template<typename T>
 const T& Array<T>::operator[](int index) const 
 {
