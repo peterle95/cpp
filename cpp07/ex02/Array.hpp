@@ -40,7 +40,6 @@ template<typename T>
 Array<T>::Array() : _elements(NULL), _size(0) 
 {}
 
-// Sized constructor implementation.
 template<typename T>
 Array<T>::Array(unsigned int n) : _elements(NULL), _size(n) 
 {
@@ -48,7 +47,6 @@ Array<T>::Array(unsigned int n) : _elements(NULL), _size(n)
         _elements = new T[n];
 }
 
-// Copy constructor implementation.
 template<typename T>
 Array<T>::Array(const Array& other) : _elements(NULL), _size(other._size) 
 {
@@ -91,7 +89,6 @@ Array<T>::~Array()
     delete[] _elements;
 }
 
-// subscript operator overloading
 template<typename T>
 T& Array<T>::operator[](int index) 
 {
@@ -102,7 +99,6 @@ T& Array<T>::operator[](int index)
     return _elements[index];
 }
 
-// const subscript operator overloading
 template<typename T>
 const T& Array<T>::operator[](int index) const 
 {

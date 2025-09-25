@@ -1,28 +1,34 @@
 #include "iter.hpp"
 
 template<typename T>
-void increment(T& value) {
+void increment(T& value) 
+{
     ++value;
 }
 
 template<typename T>
-void print(const T& value) {
+void print(const T& value) 
+{
     std::cout << value << " ";
 }
 
-void printString(const std::string& str) {
+void printString(const std::string& str) 
+{
     std::cout << "\"" << str << "\" ";
 }
 
-void addExclamation(std::string& str) {
+void addExclamation(std::string& str) 
+{
     str += "!";
 }
 
-void doubleValue(int& value) {
+void doubleValue(int& value) 
+{
     value *= 2;
 }
 
-int main() {    
+int main() 
+{    
     std::cout << "\n\033[91mTest 1:\033[0m Integer array - printing" << std::endl;
     
     int numbers[] = {1, 2, 3, 4, 5};
