@@ -25,7 +25,8 @@ int main()
     std::cout << "\033[91mBasic Tests:\033[0m" << std::endl;
     
     // Test 1: Basic functionality
-    try {
+    try 
+    {
         Span sp = Span(5);
         sp.addNumber(6);
         sp.addNumber(3);
@@ -36,46 +37,54 @@ int main()
         std::cout << "Shortest span: " << sp.shortestSpan() << std::endl; // Should be 2 (11-9)
         std::cout << "Longest span: " << sp.longestSpan() << std::endl;   // Should be 14 (17-3)
     }
-    catch (std::exception& e) {
+    catch (std::exception& e) 
+    {
         std::cout << "Error: " << e.what() << std::endl;
     }
     
     std::cout << "\n\033[91mException Tests:\033[0m" << std::endl;
     
     // Test 2: SpanFullException
-    try {
+    try 
+    {
         Span sp = Span(2);
         sp.addNumber(1);
         sp.addNumber(2);
         sp.addNumber(3); // Should throw SpanFullException
     }
-    catch (std::exception& e) {
+    catch (std::exception& e) 
+    {
         std::cout << "Expected exception: " << e.what() << std::endl;
     }
     
     // Test 3: NoSpanException - empty span
-    try {
+    try 
+    {
         Span sp = Span(5);
         sp.shortestSpan(); // Should throw NoSpanException
     }
-    catch (std::exception& e) {
+    catch (std::exception& e) 
+    {
         std::cout << "Expected exception: " << e.what() << std::endl;
     }
     
     // Test 4: NoSpanException - single element
-    try {
+    try 
+    {
         Span sp = Span(5);
         sp.addNumber(42);
         sp.longestSpan(); // Should throw NoSpanException
     }
-    catch (std::exception& e) {
+    catch (std::exception& e) 
+    {
         std::cout << "Expected exception: " << e.what() << std::endl;
     }
     
     std::cout << "\n\033[91mRange :\033[0m" << std::endl;
     
     // Test 5: Range-based addNumber with vector
-    try {
+    try 
+    {
         Span sp = Span(10);
         std::vector<int> vec;
         vec.push_back(1);
@@ -89,12 +98,14 @@ int main()
         std::cout << "Shortest span: " << sp.shortestSpan() << std::endl; // Should be 4 (5-1) 
         std::cout << "Longest span: " << sp.longestSpan() << std::endl;   // Should be 19 (20-1)
     }
-    catch (std::exception& e) {
+    catch (std::exception& e) 
+    {
         std::cout << "Error: " << e.what() << std::endl;
     }
     
     // Test 6: Range-based addNumber with list
-    try {
+    try 
+    {
         Span sp = Span(5);
         std::list<int> lst;
         lst.push_back(100);
@@ -106,12 +117,14 @@ int main()
         std::cout << "Shortest span: " << sp.shortestSpan() << std::endl; // Should be 100
         std::cout << "Longest span: " << sp.longestSpan() << std::endl;   // Should be 200
     }
-    catch (std::exception& e) {
+    catch (std::exception& e) 
+    {
         std::cout << "Error: " << e.what() << std::endl;
     }
     
     // Test 7: Range-based exception
-    try {
+    try 
+    {
         Span sp = Span(3);
         std::vector<int> vec;
         vec.push_back(1);
@@ -122,14 +135,16 @@ int main()
         
         sp.addNumber(vec.begin(), vec.end()); // Should throw SpanFullException
     }
-    catch (std::exception& e) {
+    catch (std::exception& e) 
+    {
         std::cout << "Expected exception: " << e.what() << std::endl;
     }
     
     std::cout << "\n\033[91m10.000 Numbers Test:\033[0m" << std::endl;
     
     // Test 8: Large scale test with 10,000 numbers
-    try {
+    try 
+    {
         const unsigned int LARGE_SIZE = 10000;
         Span largeSp = Span(LARGE_SIZE);
             
@@ -146,14 +161,16 @@ int main()
         std::cout << "Large span longest: " << largeSp.longestSpan() << std::endl;
         std::cout << "Successfully tested with " << LARGE_SIZE << " numbers!" << std::endl;
     }
-    catch (std::exception& e) {
+    catch (std::exception& e) 
+    {
         std::cout << "Error in large test: " << e.what() << std::endl;
     }
     
     std::cout << "\n\033[91mEdge Cases:\033[0m" << std::endl;
     
     // Test 9: Negative numbers
-    try {
+    try 
+    {
         Span sp = Span(5);
         sp.addNumber(-10);
         sp.addNumber(-5);
@@ -164,12 +181,14 @@ int main()
         std::cout << "With negatives - Shortest: " << sp.shortestSpan() << std::endl; // Should be 5
         std::cout << "With negatives - Longest: " << sp.longestSpan() << std::endl;   // Should be 20
     }
-    catch (std::exception& e) {
+    catch (std::exception& e) 
+    {
         std::cout << "Error: " << e.what() << std::endl;
     }
     
     // Test 10: Duplicate numbers
-    try {
+    try 
+    {
         Span sp = Span(4);
         sp.addNumber(5);
         sp.addNumber(5);
@@ -179,7 +198,8 @@ int main()
         std::cout << "With duplicates - Shortest: " << sp.shortestSpan() << std::endl; // Should be 0
         std::cout << "With duplicates - Longest: " << sp.longestSpan() << std::endl;   // Should be 5
     }
-    catch (std::exception& e) {
+    catch (std::exception& e) 
+    {
         std::cout << "Error: " << e.what() << std::endl;
     }
 

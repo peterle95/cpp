@@ -16,7 +16,8 @@ MutantStack with, for example, a std::list, the two outputs should be the same. 
 course, when testing another container, update the code below with the corresponding
 member functions (push() can become push_back()).*/
 
-int main() {
+int main() 
+{
     std::cout << "\033[91mBasic Test with int:\033[0m" << std::endl;
 
     MutantStack<int> mstack;
@@ -35,13 +36,15 @@ int main() {
     mstack.push(0);
 
     std::cout << "\nForward iteration:" << std::endl;
-    for (MutantStack<int>::iterator it = mstack.begin(); it != mstack.end(); ++it) {
+    for (MutantStack<int>::iterator it = mstack.begin(); it != mstack.end(); ++it)
+    {
         std::cout << *it << " ";
     }
     std::cout << std::endl;
 
     std::cout << "Reverse iteration:" << std::endl;
-    for (MutantStack<int>::reverse_iterator rit = mstack.rbegin(); rit != mstack.rend(); ++rit) {
+    for (MutantStack<int>::reverse_iterator rit = mstack.rbegin(); rit != mstack.rend(); ++rit)
+    {
         std::cout << *rit << " ";
     }
     std::cout << std::endl;
@@ -49,7 +52,8 @@ int main() {
     // Test const iterator
     const MutantStack<int> constStack = mstack;
     std::cout << "Const iteration:" << std::endl;
-    for (MutantStack<int>::const_iterator cit = constStack.begin(); cit != constStack.end(); ++cit) {
+    for (MutantStack<int>::const_iterator cit = constStack.begin(); cit != constStack.end(); ++cit)
+    {
         std::cout << *cit << " ";
     }
     std::cout << std::endl;
@@ -65,7 +69,8 @@ int main() {
     sstack.push("World");
     sstack.push("MutantStack");
 
-    for (MutantStack<std::string>::iterator it = sstack.begin(); it != sstack.end(); ++it) {
+    for (MutantStack<std::string>::iterator it = sstack.begin(); it != sstack.end(); ++it)
+    {
         std::cout << *it << std::endl;
     }
 
@@ -76,7 +81,8 @@ int main() {
     dstack.push(2.718);
     dstack.push(1.618);
 
-    for (MutantStack<double>::iterator it = dstack.begin(); it != dstack.end(); ++it) {
+    for (MutantStack<double>::iterator it = dstack.begin(); it != dstack.end(); ++it)
+    {
         std::cout << *it << std::endl;
     }
 

@@ -5,16 +5,20 @@
 
 Span::Span() : _maxSize(0) {}
 
-Span::Span(unsigned int N) : _maxSize(N) {
+Span::Span(unsigned int N) : _maxSize(N)
+{
     _numbers.reserve(N);
 }
 
-Span::Span(const Span& other) {
+Span::Span(const Span& other) 
+{
     *this = other;
 }
 
-Span& Span::operator=(const Span& other) {
-    if (this != &other) {
+Span& Span::operator=(const Span& other) 
+{
+    if (this != &other) 
+    {
         _maxSize = other._maxSize;
         _numbers = other._numbers;
     }
@@ -23,15 +27,19 @@ Span& Span::operator=(const Span& other) {
 
 Span::~Span() {}
 
-void Span::addNumber(int number) {
-    if (_numbers.size() >= _maxSize) {
+void Span::addNumber(int number) 
+{
+    if (_numbers.size() >= _maxSize) 
+    {
         throw Span::SpanFullException();
     }
     _numbers.push_back(number);
 }
 
-int Span::shortestSpan() {
-    if (_numbers.size() <= 1) {
+int Span::shortestSpan() 
+{
+    if (_numbers.size() <= 1) 
+    {
         throw Span::NoSpanException();
     }
     std::vector<int> sorted = _numbers;
@@ -45,8 +53,10 @@ int Span::shortestSpan() {
     return minSpan;
 }
 
-int Span::longestSpan() {
-    if (_numbers.size() <= 1) {
+int Span::longestSpan() 
+{
+    if (_numbers.size() <= 1) 
+    {
         throw Span::NoSpanException();
     }
     int min = *std::min_element(_numbers.begin(), _numbers.end());
@@ -54,10 +64,12 @@ int Span::longestSpan() {
     return max - min;
 }
 
-const char* Span::SpanFullException::what() const throw() {
+const char* Span::SpanFullException::what() const throw() 
+{
     return "Span is full";
 }
 
-const char* Span::NoSpanException::what() const throw() {
+const char* Span::NoSpanException::what() const throw() 
+{
     return "Not enough numbers to find a span";
 }
