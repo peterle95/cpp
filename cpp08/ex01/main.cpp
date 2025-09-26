@@ -82,8 +82,9 @@ int main()
         vec.push_back(5);
         vec.push_back(10);
         vec.push_back(15);
-        
+        // this uses the template version of addNumber
         sp.addNumber(vec.begin(), vec.end());
+        // this uses the non-template version of addNumber
         sp.addNumber(20);
         
         std::cout << "Shortest span: " << sp.shortestSpan() << std::endl; // Should be 4 (5-1) 

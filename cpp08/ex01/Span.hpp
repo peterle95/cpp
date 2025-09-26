@@ -18,8 +18,12 @@ class Span
         Span& operator=(const Span& other);
         ~Span();
 
+        // Add a single integer to the span
         void addNumber(int number);
         
+        // Template version: Add multiple numbers from a range using iterators
+        // This allows adding numbers from containers like vector, list, array, etc.
+        // More flexible than the single integer version - can add multiple numbers at once
         template<typename InputIterator>
         void addNumber(InputIterator first, InputIterator last)
         {

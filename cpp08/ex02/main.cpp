@@ -2,8 +2,10 @@
 #include <iostream>
 
 /*Now, it’s time to move on to more serious things. Let’s develop something weird.
-The std::stack container is very nice. Unfortunately, it is one of the only STL Con￾tainers that is NOT iterable. That’s too bad.
-But why would we accept this? Especially if we can take the liberty of butchering the
+The std::stack container is very nice. Unfortunately, it is one of the 
+only STL Con￾tainers that is NOT iterable. That’s too bad.
+But why would we accept this? Especially if we can take the liberty 
+of butchering the
 original stack to create missing features.
 To repair this injustice, you have to make the std::stack container iterable.
 Write a MutantStack class. It will be implemented in terms of a std::stack.
@@ -13,7 +15,8 @@ expected.
 C++ - Module 08 Templated containers, iterators, algorithms
 If you run it a first time with your MutantStack, and a second time replacing the
 MutantStack with, for example, a std::list, the two outputs should be the same. Of
-course, when testing another container, update the code below with the corresponding
+course, when testing another container, update the code below with the 
+corresponding
 member functions (push() can become push_back()).*/
 
 int main() {

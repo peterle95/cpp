@@ -22,6 +22,7 @@ int main() {
 
     try {
         std::cout << "Searching for 8 in vector..." << std::endl;
+        // need to declare an iterator because easyfind returns an iterator
         std::vector<int>::iterator result = easyfind(myVector, 8);
         std::cout << "Found: " << *result << std::endl;
     } catch (const std::exception& e) {
