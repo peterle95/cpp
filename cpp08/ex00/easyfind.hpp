@@ -25,6 +25,12 @@ typename T::iterator easyfind(T& container, int value)
     // Declare an iterator variable 'it' of the container's iterator type
     // std::find searches from container.begin() to container.end() for 'value'
     // Returns an iterator pointing to the found element, or container.end() if not found
+
+    /*The typename keyword is not just
+     telling the compiler about "the iterator"; it is required because T::iterator is a dependent type. Its
+     definition depends on the template parameter T. You must explicitly tell the compiler that this dependent
+     name is a type, otherwise, it could be misinterpreted as a static member variable. A full-credit answer
+     would have explained this concept of dependent types.*/
     typename T::iterator it = std::find(container.begin(), container.end(), value);
     
     // Check if the search failed by comparing with end() iterator
