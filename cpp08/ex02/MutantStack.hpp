@@ -16,7 +16,15 @@ public:
     }
     ~MutantStack() {}
 
-    // Iterator typedefs (using the underlying container's iterators)
+// Iterator typedefs (using the underlying container's iterators)
+    /* The purpose of the typedefs is to expose the iterator types from the underlying container and 
+    give them simple, standard names within the scope of MutantStack. std::stack
+  itself doesn't have an iterator type. We need to dig into its underlying container to find them.
+   * typename std::stack<T>::container_type: This part accesses the type of the underlying container (e.g., std::deque<T>).
+   * ::iterator: This then accesses the public iterator type defined within that container.
+  By creating these typedefs, we allow a user of MutantStack to write standard-looking code 
+  like MutantStack<int>::iterator it; without needing to know what the underlying
+  container is.*/
     typedef typename std::stack<T>::container_type::iterator iterator;
     typedef typename std::stack<T>::container_type::const_iterator const_iterator;
     typedef typename std::stack<T>::container_type::reverse_iterator reverse_iterator;
