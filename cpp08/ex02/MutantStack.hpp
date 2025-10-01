@@ -16,7 +16,6 @@ public:
     }
     ~MutantStack() {}
 
-    // Iterator typedefs (using the underlying container's iterators)
     typedef typename std::stack<T>::container_type::iterator iterator;
     typedef typename std::stack<T>::container_type::const_iterator const_iterator;
     typedef typename std::stack<T>::container_type::reverse_iterator reverse_iterator;

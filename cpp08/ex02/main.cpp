@@ -18,7 +18,7 @@ member functions (push() can become push_back()).*/
 
 int main() 
 {
-    std::cout << "\033[91mBasic Test with int:\033[0m" << std::endl;
+    std::cout << "\033[91mTest with int:\033[0m" << std::endl;
 
     MutantStack<int> mstack;
 
@@ -62,7 +62,7 @@ int main()
     std::stack<int> s(mstack);
     std::cout << "Copied into std::stack, top element: " << s.top() << std::endl;
 
-    std::cout << "\n\033[91mBasic Test with strings:\033[0m" << std::endl;
+    std::cout << "\n\033[91mTest with strings:\033[0m" << std::endl;
 
     MutantStack<std::string> sstack;
     sstack.push("Hello");
@@ -74,7 +74,7 @@ int main()
         std::cout << *it << std::endl;
     }
 
-    std::cout << "\n\033[91mBasic Test with doubles:\033[0m" << std::endl;
+    std::cout << "\n\033[91mTest with doubles:\033[0m" << std::endl;
 
     MutantStack<double> dstack;
     dstack.push(3.14);
