@@ -85,6 +85,7 @@ int main() {
     myDeque.push_back(200);
     myDeque.push_front(50);   // Add to front - efficient for deque
     myDeque.push_back(300);
+    std::cout << myDeque[2] << std::endl;
     // Current deque contents: [50, 100, 200, 300]
 
     try {
