@@ -1,3 +1,4 @@
+// PmergeMe.hpp
 #ifndef PMERGEME_HPP
 #define PMERGEME_HPP
 
@@ -9,6 +10,7 @@
 #include <algorithm>
 #include <ctime>
 #include <iomanip>
+#include <cmath>
 
 class PmergeMe
 {
@@ -24,8 +26,26 @@ private:
     std::vector<int> _vec;
     std::deque<int> _deq;
 
-    template <typename Container>
-    void mergeInsertSort(Container &container);
+    // Generate the Jacobsthal-like sequence t_k
+    // Formula: t_k = (2^(k+1) + (-1)^k) / 3
+    // This sequence determines optimal insertion group sizes
+    std::vector<size_t> generateJacobsthalSequence(size_t maxSize);
+
+    // Generate the actual insertion order based on Jacobsthal sequence
+    // This creates the "pendulum" pattern that minimizes comparisons
+    std::vector<size_t> generateInsertionOrder(size_t pendSize);
+
+    // Ford-Johnson sort for std::vector
+    void mergeInsertSortVector(std::vector<int> &container);
+    
+    // Ford-Johnson sort for std::deque
+    void mergeInsertSortDeque(std::deque<int> &container);
+
+    // Binary insertion helper for vector
+    void binaryInsertVector(std::vector<int> &mainChain, int value, size_t maxPos);
+    
+    // Binary insertion helper for deque
+    void binaryInsertDeque(std::deque<int> &mainChain, int value, size_t maxPos);
 
     void printInitialSequence(char **argv, int argc);
 
