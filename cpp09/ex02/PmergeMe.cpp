@@ -167,7 +167,16 @@ std::vector<size_t> PmergeMe::generateInsertionOrder(size_t pendSize)
 // - Insert at position 0
 // Result: [3, 5, 9, 7, 8, 10]
 // ============================================================================
-void PmergeMe::binaryInsertVector(std::vector<int> &mainChain, int value, size_t maxPos)
+
+// ============================================================================
+// BINARY INSERTION FOR DEQUE
+// ============================================================================
+// Same logic as vector version, but adapted for std::deque container.
+// Deque provides O(1) insertion at both ends, but O(n) in the middle.
+// However, it still benefits from the reduced comparisons of binary search.
+// ============================================================================
+template <typename Container>
+void PmergeMe::binaryInsert(Container &mainChain, int value, size_t maxPos)
 {
     if (mainChain.empty() || maxPos == 0)
     {
@@ -180,36 +189,6 @@ void PmergeMe::binaryInsertVector(std::vector<int> &mainChain, int value, size_t
     size_t right = (maxPos < mainChain.size()) ? maxPos : mainChain.size();
     
     // Binary search for insertion position
-    while (left < right)
-    {
-        size_t mid = left + (right - left) / 2;
-        if (mainChain[mid] < value)
-            left = mid + 1;
-        else
-            right = mid;
-    }
-    
-    mainChain.insert(mainChain.begin() + left, value);
-}
-
-// ============================================================================
-// BINARY INSERTION FOR DEQUE
-// ============================================================================
-// Same logic as vector version, but adapted for std::deque container.
-// Deque provides O(1) insertion at both ends, but O(n) in the middle.
-// However, it still benefits from the reduced comparisons of binary search.
-// ============================================================================
-void PmergeMe::binaryInsertDeque(std::deque<int> &mainChain, int value, size_t maxPos)
-{
-    if (mainChain.empty() || maxPos == 0)
-    {
-        mainChain.insert(mainChain.begin(), value);
-        return;
-    }
-    
-    size_t left = 0;
-    size_t right = (maxPos < mainChain.size()) ? maxPos : mainChain.size();
-    
     while (left < right)
     {
         size_t mid = left + (right - left) / 2;
@@ -265,18 +244,20 @@ void PmergeMe::binaryInsertDeque(std::deque<int> &mainChain, int value, size_t m
 // - Jacobsthal insertion order ensures optimal binary search ranges
 // - Each pend[i] is guaranteed ≤ its paired element, limiting search space
 // ============================================================================
-void PmergeMe::mergeInsertSortVector(std::vector<int> &container)
+template <typename Container>
+void PmergeMe::mergeInsertSort(Container &container)
 {
     // Base case: arrays of size 0 or 1 are already sorted
     if (container.size() <= 1)
         return;
     
     // STEP 1: PAIRING PHASE
+    // Store pairs as (smaller, larger) to maintain the constraint
     std::vector<std::pair<int, int> > pairs;
     bool hasStraggler = false;
     int straggler = 0;
     
-    // Create pairs and sort each pair (smaller, larger)
+    // Create pairs and sort each pair internally
     for (size_t i = 0; i + 1 < container.size(); i += 2)
     {
         int a = container[i];
@@ -294,18 +275,18 @@ void PmergeMe::mergeInsertSortVector(std::vector<int> &container)
     }
     
     // STEP 2: RECURSIVE SORT ON LARGER ELEMENTS
-    // Extract larger elements from pairs to form sequence for recursive sorting
-    std::vector<int> mainChain;
+    // Extract larger elements to form the main chain
+    Container mainChain;
     for (size_t i = 0; i < pairs.size(); ++i)
     {
         mainChain.push_back(pairs[i].second);  // larger element
     }
     
     // Recursively sort the main chain
-    mergeInsertSortVector(mainChain);
+    mergeInsertSort(mainChain);
     
     // STEP 3: BUILD PEND ARRAY
-    // Collect smaller elements in the order corresponding to sorted main chain
+    // Collect smaller elements (to be inserted)
     std::vector<int> pend;
     for (size_t i = 0; i < pairs.size(); ++i)
     {
@@ -313,7 +294,7 @@ void PmergeMe::mergeInsertSortVector(std::vector<int> &container)
     }
     
     // STEP 4: INSERT FIRST PEND ELEMENT
-    // The first pend element is guaranteed to be ≤ mainChain[0], so insert at beginning
+    // pend[0] is guaranteed ≤ mainChain[0], so insert at beginning (0 comparisons!)
     if (!pend.empty())
     {
         mainChain.insert(mainChain.begin(), pend[0]);
@@ -328,18 +309,17 @@ void PmergeMe::mergeInsertSortVector(std::vector<int> &container)
         // Insert each pend element according to the order
         for (size_t i = 0; i < insertionOrder.size(); ++i)
         {
-            size_t pendIndex = insertionOrder[i] + 1;  // +1 because we already inserted pend[0]
+            size_t pendIndex = insertionOrder[i] + 1;  // +1 because already inserted pend[0]
             int valueToInsert = pend[pendIndex];
             
             // Calculate maximum search position (maxPos)
-            // This is where the paired larger element is, plus how many we've inserted
-            // The pend element must be inserted before or at its paired element's position
-            size_t pairedElementPos = pendIndex;  // Position in original sorted main chain
-            size_t elementsInserted = i + 1;      // How many pend elements inserted so far (including first)
+            // Formula: maxPos = pairedElementPos + elementsInserted
+            size_t pairedElementPos = pendIndex;
+            size_t elementsInserted = i + 1;
             size_t maxPos = pairedElementPos + elementsInserted;
             
-            // Binary insert with limited search range
-            binaryInsertVector(mainChain, valueToInsert, maxPos);
+            // ✨ Single template function works for both vector and deque!
+            binaryInsert(mainChain, valueToInsert, maxPos);
         }
     }
     
@@ -347,92 +327,10 @@ void PmergeMe::mergeInsertSortVector(std::vector<int> &container)
     // Insert the odd element (if any) using binary search over entire array
     if (hasStraggler)
     {
-        binaryInsertVector(mainChain, straggler, mainChain.size());
+        binaryInsert(mainChain, straggler, mainChain.size());
     }
     
     // Replace original container with sorted result
-    container = mainChain;
-}
-
-// ============================================================================
-// FORD-JOHNSON ALGORITHM FOR DEQUE
-// ============================================================================
-// Identical logic to vector version, but using std::deque container.
-// Deque has similar performance characteristics but different memory layout
-// (non-contiguous storage in chunks vs vector's contiguous array).
-// This allows us to compare performance between containers.
-// ============================================================================
-void PmergeMe::mergeInsertSortDeque(std::deque<int> &container)
-{
-    if (container.size() <= 1)
-        return;
-    
-    // STEP 1: PAIRING PHASE
-    std::vector<std::pair<int, int> > pairs;
-    bool hasStraggler = false;
-    int straggler = 0;
-    
-    for (size_t i = 0; i + 1 < container.size(); i += 2)
-    {
-        int a = container[i];
-        int b = container[i + 1];
-        if (a > b)
-            std::swap(a, b);
-        pairs.push_back(std::make_pair(a, b));
-    }
-    
-    if (container.size() % 2 == 1)
-    {
-        hasStraggler = true;
-        straggler = container[container.size() - 1];
-    }
-    
-    // STEP 2: RECURSIVE SORT
-    std::deque<int> mainChain;
-    for (size_t i = 0; i < pairs.size(); ++i)
-    {
-        mainChain.push_back(pairs[i].second);
-    }
-    
-    mergeInsertSortDeque(mainChain);
-    
-    // STEP 3: BUILD PEND
-    std::vector<int> pend;
-    for (size_t i = 0; i < pairs.size(); ++i)
-    {
-        pend.push_back(pairs[i].first);
-    }
-    
-    // STEP 4: INSERT FIRST PEND
-    if (!pend.empty())
-    {
-        mainChain.insert(mainChain.begin(), pend[0]);
-    }
-    
-    // STEP 5: INSERT REMAINING PEND
-    if (pend.size() > 1)
-    {
-        std::vector<size_t> insertionOrder = generateInsertionOrder(pend.size() - 1);
-        
-        for (size_t i = 0; i < insertionOrder.size(); ++i)
-        {
-            size_t pendIndex = insertionOrder[i] + 1;
-            int valueToInsert = pend[pendIndex];
-            
-            size_t pairedElementPos = pendIndex;
-            size_t elementsInserted = i + 1;
-            size_t maxPos = pairedElementPos + elementsInserted;
-            
-            binaryInsertDeque(mainChain, valueToInsert, maxPos);
-        }
-    }
-    
-    // STEP 6: HANDLE STRAGGLER
-    if (hasStraggler)
-    {
-        binaryInsertDeque(mainChain, straggler, mainChain.size());
-    }
-    
     container = mainChain;
 }
 
@@ -493,13 +391,13 @@ void PmergeMe::sortAndMeasure(int argc, char **argv)
 
     // Sort with vector and measure time
     clock_t start_vec = clock();
-    mergeInsertSortVector(_vec);
+    mergeInsertSort(_vec);
     clock_t end_vec = clock();
     double time_vec = static_cast<double>(end_vec - start_vec) / CLOCKS_PER_SEC * 1000000;
 
     // Sort with deque and measure time
     clock_t start_deq = clock();
-    mergeInsertSortDeque(_deq);
+    mergeInsertSort(_deq);
     clock_t end_deq = clock();
     double time_deq = static_cast<double>(end_deq - start_deq) / CLOCKS_PER_SEC * 1000000;
 

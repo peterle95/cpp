@@ -35,19 +35,13 @@ private:
     // This creates the "pendulum" pattern that minimizes comparisons
     std::vector<size_t> generateInsertionOrder(size_t pendSize);
 
-    // Ford-Johnson sort for std::vector
-    void mergeInsertSortVector(std::vector<int> &container);
-    
-    // Ford-Johnson sort for std::deque
-    void mergeInsertSortDeque(std::deque<int> &container);
-
-    // Binary insertion helper for vector
-    void binaryInsertVector(std::vector<int> &mainChain, int value, size_t maxPos);
-    
-    // Binary insertion helper for deque
-    void binaryInsertDeque(std::deque<int> &mainChain, int value, size_t maxPos);
-
     void printInitialSequence(char **argv, int argc);
+
+    template <typename Container>
+    void mergeInsertSort(Container &container);
+
+    template <typename Container>
+    void binaryInsert(Container &container, int value, size_t maxPos);
 
     template <typename Container>
     void printSortedSequence(const Container &container);
