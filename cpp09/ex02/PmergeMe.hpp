@@ -9,6 +9,7 @@
 #include <algorithm>
 #include <ctime>
 #include <iomanip>
+#include <cmath>
 
 class PmergeMe
 {
@@ -24,8 +25,15 @@ private:
     std::vector<int> _vec;
     std::deque<int> _deq;
 
+    std::vector<size_t> generateJacobsthalSequence(size_t maxSize);
+    
+    std::vector<size_t> generateInsertionOrder(size_t pendSize);
+
     template <typename Container>
     void mergeInsertSort(Container &container);
+
+    template <typename Container>
+    void binaryInsert(Container &container, int value, size_t maxPos);
 
     void printInitialSequence(char **argv, int argc);
 
