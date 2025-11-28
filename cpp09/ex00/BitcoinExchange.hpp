@@ -12,11 +12,11 @@ class BitcoinExchange
 {
 private:
 	std::map<std::string, float> _data;
-	BitcoinExchange(const BitcoinExchange &other);
-	BitcoinExchange &operator=(const BitcoinExchange &other);
 
 public:
 	BitcoinExchange();
+	BitcoinExchange(const BitcoinExchange &other);
+	BitcoinExchange &operator=(const BitcoinExchange &other);
 	~BitcoinExchange();
 
 	void readData();

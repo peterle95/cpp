@@ -3,9 +3,18 @@
 
 BitcoinExchange::BitcoinExchange() {}
 
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &other) {
+    *this = other;
+}
+
+BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other) {
+    if (this != &other) {
+        _data = other._data;
+    }
+    return *this;
+}
 BitcoinExchange::~BitcoinExchange() {}
 
-// This function remains the same and is correct for C++98
 void BitcoinExchange::readData()
 {
 	std::ifstream file("data.csv");
@@ -19,7 +28,7 @@ void BitcoinExchange::readData()
 	std::getline(file, line);
 	if (line != "date,exchange_rate")
 	{
-		std::cerr << "Error: invalid header." << std::endl;
+		std::cerr << "Database: Error: invalid header." << std::endl;
 		exit(1);
 	}
 	while (std::getline(file, line))
@@ -30,12 +39,12 @@ void BitcoinExchange::readData()
 		std::getline(ss, date, ',');
 		if (date.length() != 10)
 		{
-			std::cerr << "Database: Error: invalid date format." << std::endl;
+			std::cerr << "Database: Error: invalid date format. 1" << std::endl;
 			exit(1);
 		}
 		if (date[4] != '-' || date[7] != '-')
 		{
-			std::cerr << "Database: Error: invalid date format." << std::endl;
+			std::cerr << "Database: Error: invalid date format. 2" << std::endl;
 			exit(1);
 		}
 		for (int i = 0; i < 10; ++i)
@@ -44,34 +53,23 @@ void BitcoinExchange::readData()
 				continue;
 			if (!isdigit(date[i]))
 			{
-				std::cerr << "Database: Error: invalid date format." << std::endl;
+				std::cerr << "Database: Error: invalid date format. 3" << std::endl;
 				exit(1);
 			}
 		}
 		std::getline(ss, value, ',');
 		if (value.length() == 0)
 		{
-			std::cerr << "Database: Error: invalid value format." << std::endl;
+			std::cerr << "Database: Error: invalid value format.4" << std::endl;
 			exit(1);
 		}
-		std::stringstream converter(value);
+		std::stringstream converter(value); // convert string to float
 		float price;
 		converter >> price;
-		if (price < 0)
-		{
-			std::cerr << "Database: Error: invalid value format." << std::endl;
-			exit(1);
-		}
-		if (price > 1000)
-		{
-			std::cerr << "Database: Error: invalid value format." << std::endl;
-			exit(1);
-		}
 		_data[date] = price;
 	}
 }
 
-// This function remains the same and is correct for C++98
 bool isValidDate(const std::string &date)
 {
 	if (date.length() != 10)
