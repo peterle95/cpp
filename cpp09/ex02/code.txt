@@ -200,9 +200,8 @@ void PmergeMe::mergeInsertSort(Container &container)
             
             // Calculate maximum search position (maxPos)
             // Formula: maxPos = pairedElementPos + elementsInserted
-            size_t pairedElementPos = pendIndex;
             size_t elementsInserted = i + 1;
-            size_t maxPos = pairedElementPos + elementsInserted;
+            size_t maxPos = pendIndex + elementsInserted;
             
             // ✨ Single template function works for both vector and deque!
             binaryInsert(mainChain, valueToInsert, maxPos);

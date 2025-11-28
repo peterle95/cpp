@@ -45,115 +45,6 @@ void PmergeMe::binaryInsert(Container &mainChain, int value, size_t maxPos)
     mainChain.insert(mainChain.begin() + left, value);
 }
 
-template <typename Container>
-void PmergeMe::mergeInsertSort(Container &container)
-{
-    // Base case: arrays of size 0 or 1 are already sorted
-    if (container.size() <= 1)
-        return;
-    
-    // STEP 1: PAIRING PHASE
-    // Store pairs as (smaller, larger) to maintain the constraint
-    std::vector<std::pair<int, int> > pairs;
-    bool hasStraggler = false;
-    int straggler = 0;
-    
-    // Create pairs and sort each pair internally
-    for (size_t i = 0; i + 1 < container.size(); i += 2)
-    {
-        int a = container[i];
-        int b = container[i + 1];
-        if (a > b)
-            std::swap(a, b);
-        pairs.push_back(std::make_pair(a, b));  // (smaller, larger)
-    }
-    
-    // Handle odd element (straggler)
-    if (container.size() % 2 == 1)
-    {
-        hasStraggler = true;
-        straggler = container[container.size() - 1];
-    }
-    
-    // STEP 2: RECURSIVE SORT ON LARGER ELEMENTS
-    // Extract larger elements to form the main chain
-    Container mainChain;
-    for (size_t i = 0; i < pairs.size(); ++i)
-    {
-        mainChain.push_back(pairs[i].second);  // larger element
-    }
-    
-    // Recursively sort the main chain
-    mergeInsertSort(mainChain);
-    
-    // STEP 3: BUILD PEND ARRAY
-    // Collect smaller elements (to be inserted)
-    std::vector<int> pend;
-    for (size_t i = 0; i < pairs.size(); ++i)
-    {
-        pend.push_back(pairs[i].first);  // smaller element
-    }
-    
-    // STEP 4: INSERT FIRST PEND ELEMENT
-    // pend[0] is guaranteed ≤ mainChain[0], so insert at beginning (0 comparisons!)
-    if (!pend.empty())
-    {
-        mainChain.insert(mainChain.begin(), pend[0]);
-    }
-    
-    // STEP 5: INSERT REMAINING PEND USING JACOBSTHAL ORDER
-    if (pend.size() > 1)
-    {
-        // Generate optimal insertion order based on Jacobsthal sequence
-        std::vector<size_t> insertionOrder = generateInsertionOrder(pend.size() - 1);
-        
-        // Insert each pend element according to the order
-        for (size_t i = 0; i < insertionOrder.size(); ++i)
-        {
-            size_t pendIndex = insertionOrder[i] + 1;  // +1 because already inserted pend[0]
-            int valueToInsert = pend[pendIndex];
-            
-            // Calculate maximum search position (maxPos)
-            // Formula: maxPos = pairedElementPos + elementsInserted
-            size_t pairedElementPos = pendIndex;
-            size_t elementsInserted = i + 1;
-            size_t maxPos = pairedElementPos + elementsInserted;
-            
-            // ✨ Single template function works for both vector and deque!
-            binaryInsert(mainChain, valueToInsert, maxPos);
-        }
-    }
-    
-    // STEP 6: HANDLE STRAGGLER
-    // Insert the odd element (if any) using binary search over entire array
-    if (hasStraggler)
-    {
-        binaryInsert(mainChain, straggler, mainChain.size());
-    }
-    
-    // Replace original container with sorted result
-    container = mainChain;
-}
-
-template <typename Container>
-void PmergeMe::printSortedSequence(const Container &container)
-{
-    std::cout << "After:  ";
-    for (size_t i = 0; i < container.size(); ++i)
-    {
-        std::cout << container[i] << " ";
-    }
-    std::cout << std::endl;
-}
-
-template <typename Container>
-void PmergeMe::printTime(double time, const Container &container, const std::string &containerName)
-{
-    std::cout << "Time to process a range of " << container.size()
-              << " elements with std::" << containerName << ": "
-              << std::fixed << std::setprecision(5) << time << " us" << std::endl;
-}
-
 std::vector<size_t> PmergeMe::generateJacobsthalSequence(size_t maxSize)
 {
     std::vector<size_t> jacobsthal;
@@ -218,6 +109,126 @@ std::vector<size_t> PmergeMe::generateInsertionOrder(size_t pendSize)
     }
     
     return insertionOrder;
+}
+
+// comparator function for sorting pairs by their larger element (second)
+static bool pairSecondLess(const std::pair<int,int> &p1, const std::pair<int,int> &p2)
+{
+    return p1.second < p2.second;
+}
+
+template <typename Container>
+void PmergeMe::mergeInsertSort(Container &container)
+{
+    // Base case: arrays of size 0 or 1 are already sorted
+    if (container.size() <= 1)
+        return;
+    
+    // STEP 1: PAIRING PHASE
+    // Store pairs as (smaller, larger) to maintain the constraint
+    std::vector<std::pair<int, int> > pairs;
+    bool hasStraggler = false;
+    int straggler = 0;
+    
+    // Create pairs and sort each pair internally
+    for (size_t i = 0; i + 1 < container.size(); i += 2)
+    {
+        int a = container[i];
+        int b = container[i + 1];
+        if (a > b)
+            std::swap(a, b);
+        pairs.push_back(std::make_pair(a, b));  // (smaller, larger)
+    }
+    
+    // Handle odd element (straggler)
+    if (container.size() % 2 == 1)
+    {
+        hasStraggler = true;
+        straggler = container[container.size() - 1];
+    }
+    
+    // STEP 2: RECURSIVE SORT ON LARGER ELEMENTS
+    // Extract larger elements to form the main chain
+    Container mainChain;
+    // IMPORTANT: sort pairs by their larger element before extracting the main chain
+    // This preserves the correspondence between a larger element and its paired smaller
+    // element when we later insert the pend values.
+    // sort using file-scope comparator
+    std::sort(pairs.begin(), pairs.end(), pairSecondLess);
+
+    for (size_t i = 0; i < pairs.size(); ++i)
+    {
+        mainChain.push_back(pairs[i].second);  // larger element
+    }
+    
+    // Recursively sort the main chain
+    mergeInsertSort(mainChain);
+    
+    // STEP 3: BUILD PEND ARRAY
+    // Collect smaller elements (to be inserted)
+    std::vector<int> pend;
+    for (size_t i = 0; i < pairs.size(); ++i)
+    {
+        pend.push_back(pairs[i].first);  // smaller element
+    }
+    
+    // STEP 4: INSERT FIRST PEND ELEMENT
+    // pend[0] is guaranteed ≤ mainChain[0], so insert at beginning (0 comparisons!)
+    if (!pend.empty())
+    {
+        mainChain.insert(mainChain.begin(), pend[0]);
+    }
+    
+    // STEP 5: INSERT REMAINING PEND USING JACOBSTHAL ORDER
+    if (pend.size() > 1)
+    {
+        // Generate optimal insertion order based on Jacobsthal sequence
+        std::vector<size_t> insertionOrder = generateInsertionOrder(pend.size() - 1);
+        
+        // Insert each pend element according to the order
+        for (size_t i = 0; i < insertionOrder.size(); ++i)
+        {
+            size_t pendIndex = insertionOrder[i] + 1;  // +1 because already inserted pend[0]
+            int valueToInsert = pend[pendIndex];
+            
+            // Calculate maximum search position (maxPos)
+            // Formula: maxPos = pairedElementPos + elementsInserted
+            size_t pairedElementPos = pendIndex;
+            size_t elementsInserted = i + 1;
+            size_t maxPos = pairedElementPos + elementsInserted;
+            
+            binaryInsert(mainChain, valueToInsert, maxPos);
+        }
+    }
+    
+    // STEP 6: HANDLE STRAGGLER
+    // Insert the odd element (if any) using binary search over entire array
+    if (hasStraggler)
+    {
+        binaryInsert(mainChain, straggler, mainChain.size());
+    }
+    
+    // Replace original container with sorted result
+    container = mainChain;
+}
+
+template <typename Container>
+void PmergeMe::printSortedSequence(const Container &container)
+{
+    std::cout << "After:  ";
+    for (size_t i = 0; i < container.size(); ++i)
+    {
+        std::cout << container[i] << " ";
+    }
+    std::cout << std::endl;
+}
+
+template <typename Container>
+void PmergeMe::printTime(double time, const Container &container, const std::string &containerName)
+{
+    std::cout << "Time to process a range of " << container.size()
+              << " elements with std::" << containerName << ": "
+              << std::fixed << std::setprecision(5) << time << " us" << std::endl;
 }
 
 void PmergeMe::printInitialSequence(char **argv, int argc)

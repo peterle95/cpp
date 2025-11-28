@@ -4,6 +4,8 @@
 # include <string>
 # include <stack>
 
+# define TOKEN_SPLIT 1
+
 class RPN {
 private:
     std::stack<int> _stack;

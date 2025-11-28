@@ -12,22 +12,61 @@ void BitcoinExchange::readData()
 	if (!file.is_open())
 	{
 		std::cerr << "Error: could not open data file." << std::endl;
-		return;
+		exit(1);
 	}
 
 	std::string line;
-	std::getline(file, line); // skip header
+	std::getline(file, line);
+	if (line != "date,exchange_rate")
+	{
+		std::cerr << "Error: invalid header." << std::endl;
+		exit(1);
+	}
 	while (std::getline(file, line))
 	{
 		std::stringstream ss(line);
 		std::string date;
 		std::string value;
 		std::getline(ss, date, ',');
+		if (date.length() != 10)
+		{
+			std::cerr << "Database: Error: invalid date format." << std::endl;
+			exit(1);
+		}
+		if (date[4] != '-' || date[7] != '-')
+		{
+			std::cerr << "Database: Error: invalid date format." << std::endl;
+			exit(1);
+		}
+		for (int i = 0; i < 10; ++i)
+		{
+			if (i == 4 || i == 7) // skip the hyphens
+				continue;
+			if (!isdigit(date[i]))
+			{
+				std::cerr << "Database: Error: invalid date format." << std::endl;
+				exit(1);
+			}
+		}
 		std::getline(ss, value, ',');
-		
+		if (value.length() == 0)
+		{
+			std::cerr << "Database: Error: invalid value format." << std::endl;
+			exit(1);
+		}
 		std::stringstream converter(value);
 		float price;
 		converter >> price;
+		if (price < 0)
+		{
+			std::cerr << "Database: Error: invalid value format." << std::endl;
+			exit(1);
+		}
+		if (price > 1000)
+		{
+			std::cerr << "Database: Error: invalid value format." << std::endl;
+			exit(1);
+		}
 		_data[date] = price;
 	}
 }

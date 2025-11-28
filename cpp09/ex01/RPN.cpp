@@ -7,11 +7,62 @@ RPN::RPN() {}
 
 RPN::~RPN() {}
 
-void RPN::execute(const std::string& expression) {
+void RPN::execute(const std::string& expression) 
+{
+#if TOKEN_SPLIT
+    for (size_t i = 0; i < expression.length(); ++i) 
+    {
+        char c = expression[i];
+
+        if (std::isspace(c)) continue;
+
+        if (std::isdigit(c)) 
+        {
+            _stack.push(c - '0');
+        } else if (c == '+' || c == '-' || c == '*' || c == '/') 
+        {
+            if (_stack.size() < 2) 
+            {
+                std::cerr << "Error" << std::endl;
+                return;
+            }
+            int val2 = _stack.top();
+            _stack.pop();
+            int val1 = _stack.top();
+            _stack.pop();
+
+            if (c == '+') _stack.push(val1 + val2);
+            else if (c == '-') _stack.push(val1 - val2);
+            else if (c == '*') _stack.push(val1 * val2);
+            else if (c == '/') 
+            {
+                if (val2 == 0) 
+                {
+                    std::cerr << "Error: Division by zero." << std::endl;
+                    return;
+                }
+                _stack.push(val1 / val2);
+            }
+        } else 
+        {
+            std::cerr << "Error" << std::endl;
+            return;
+        }
+    }
+
+    if (_stack.size() == 1) 
+    {
+        std::cout << _stack.top() << std::endl;
+    } else 
+    {
+        std::cerr << "Error" << std::endl;
+    }
+#else
     std::stringstream ss(expression);
     std::string token;
 
-    while (ss >> token) {
+    while (ss >> token) 
+    {
         if (token.length() == 1 && std::isdigit(token[0])) 
         {
             _stack.push(std::atoi(token.c_str()));
@@ -30,7 +81,8 @@ void RPN::execute(const std::string& expression) {
             if (token == "+") _stack.push(val1 + val2);
             else if (token == "-") _stack.push(val1 - val2);
             else if (token == "*") _stack.push(val1 * val2);
-            else if (token == "/") {
+            else if (token == "/") 
+            {
                 if (val2 == 0) 
                 {
                     std::cerr << "Error: Division by zero." << std::endl;
@@ -38,7 +90,8 @@ void RPN::execute(const std::string& expression) {
                 }
                 _stack.push(val1 / val2);
             }
-        } else {
+        } else 
+            {
             std::cerr << "Error" << std::endl;
             return;
         }
@@ -51,4 +104,5 @@ void RPN::execute(const std::string& expression) {
     {
         std::cerr << "Error" << std::endl;
     }
+#endif
 }
